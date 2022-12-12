@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Giỏ hàng</title>
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+  <main>
+    <div class="basket">
+      <div class="basket-labels">
+        <ul>
+          <li class="item item-heading">Món</li>
+          <li class="price">Giá</li>
+          <li class="quantity">Số lượng</li>
+          <li class="subtotal">Tổng tiền</li>
+        </ul>
+      </div>
+      <div class="basket-product">
+        <div class="item">
+          <div class="product-image">
+            <img src="img/food-placeholder.png" alt="Placholder Image 2" class="product-frame">
+          </div>
+          <div class="product-details">
+            <h1><strong><span class="item-quantity">4</span> x Pizza</strong></h1>
+            <p><strong>Vừa nhanh vừa ngon</strong></p>
+          </div>
+        </div>
+        <div class="price">26.000</div>
+        <div class="quantity">
+          <input type="number" value="4" min="1" class="quantity-field">
+        </div>
+        <div class="subtotal">104.000</div>
+        <div class="remove">
+          <button>Xóa</button>
+        </div>
+      </div>
+      <div class="basket-product">
+        <div class="item">
+          <div class="product-image">
+            <img src="img/food-placeholder.png" alt="Placholder Image 2" class="product-frame">
+          </div>
+          <div class="product-details">
+            <h1><strong><span class="item-quantity">1</span> x Lẩu bò</strong></h1>
+            <p><strong>Nóng hổi vừa thổi vừa húp</strong></p>
+          </div>
+        </div>
+        <div class="price">26.000</div>
+        <div class="quantity">
+          <input type="number" value="1" min="1" class="quantity-field">
+        </div>
+        <div class="subtotal">26.000</div>
+        <div class="remove">
+          <button>Xóa</button>
+        </div>
+      </div>
+    </div>
+    <aside>
+      <div class="summary">
+        <div class="summary-total-items"><span class="total-items"></span> Món ăn cần thanh toán</div>
+        <div class="summary-total">
+          <div class="total-title">Tổng thanh toán</div>
+          <div class="total-value final-value" id="basket-total">130.000</div>
+        </div>
+        <div class="summary-checkout">
+          <button class="checkout-cta">Đặt món</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
