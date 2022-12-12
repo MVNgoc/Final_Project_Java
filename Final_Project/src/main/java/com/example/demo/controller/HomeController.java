@@ -4,6 +4,12 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
+=======
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+>>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,13 +26,25 @@ import com.example.demo.repository.UserRepository;
 @Controller
 public class HomeController {
 
+<<<<<<< HEAD
 	// http://127.0.0.1:8081
+=======
+	// http://127.0.0.1:8080
+>>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 	@Autowired
 	private UserRepository repo;
 	
 	@GetMapping("/login")
     public String login() {
+<<<<<<< HEAD
         return "login";
+=======
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "login";
+		}
+        return "redirect:/home";
+>>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
     }
 	
 	@PostMapping("/fail_login")
@@ -44,7 +62,17 @@ public class HomeController {
 	@GetMapping("/signup")
 	public String signup(Model model) {
 		model.addAttribute("user", new User());
+<<<<<<< HEAD
 		return "signup";
+=======
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "signup";
+		}
+		
+		return "redirect:/home";
+>>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 	}
 	
 	@PostMapping("/process_register")
