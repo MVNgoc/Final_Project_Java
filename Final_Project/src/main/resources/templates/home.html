@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Trang chủ</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<div class="container-home">
+		<section class="navbar">
+			<ul class="nav justify-content-center">
+				<li class="nav-item"><a class="nav-link active" href="#content-home">Trang chủ</a></li>
+				<li class="nav-item"><a class="nav-link" href="menu">Thực đơn</a></li>
+				<li class="nav-item"><a class="nav-link" href="#booktable">Đặt bàn</a></li>
+				<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
+				<li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
+				<li class="nav-item"><a class="nav-link disabled" href="changepass">Đổi mật khẩu</a></li>
+				<li class="nav-item"><button class="nav-link disabled" type="submit">Đăng xuất</button></li>
+			</ul>
+			<div class="cart-container">
+				<div class="cart-icon">
+					<div class="num-cart-item-top">
+						<h4>3</h4>
+					</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>Giỏ hàng (<span class="num-cart-item">2</span>)</h4>
+						</div>
+						<div class="cart-form-body">
+							<div class="cart-item">
+								<div class="cart-image">
+									<img alt="denuong" src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img alt="denuong" src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img alt="denuong" src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+						</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>		
+					</form>
+				</div>	
+			</div>
+		</section>
+		<section id="content-home" class="content-home">
+			<div class="introduce">
+				<h1>
+					Chào mứng đến với <span>3AE</span>
+				</h1>
+				<h2>Cung cấp những món ăn tuyệt vời trong hơn 5 năm qua!</h2>
+			</div>
+			<div class="btns">
+				<a href="#">Thực đơn</a> <a href="#booktable">Đặt bàn</a>
+			</div>
+		</section>
+		<section class="about">
+			<div class="header-about">
+				<h2>WHY US</h2>
+				<p>Vì sao nên chọn nhà hàng của chúng tôi</p>
+			</div>
+			<div class="body-about">
+				<div class="about-item">
+					<span>01</span>
+					<h4>Không gian thoải mái</h4>
+					<p>Dù là một bữa ăn gia đình hay tổ chức các bữa tiệc thì ở đây
+						luôn mang lại một cảm giác thoải mái nhất cho bạn.</p>
+				</div>
+				<div class="about-item">
+					<span>02</span>
+					<h4>Đa dạng món ăn</h4>
+					<p>Một bữa ăn gia đình, một bữa tiệc hay một bữa tối sang
+						trọng. Chung tôi luôn có những món ăn phù hợp với nhu cầu của bạn.</p>
+				</div>
+				<div class="about-item">
+					<span>03</span>
+					<h4>Phục vụ hết mình</h4>
+					<p>Các nhân viên phục vụ cũng như đầu bếp luôn dốc hết sức để
+						mang lại cho bạn một bữa ăn ngon miệng nhất.</p>
+				</div>
+			</div>
+
+		</section>
+		<section class="menu">
+			<div class="header-menu">
+				<h2>MENU</h2>
+				<p>Nhiều món ăn bắt mắt và ngon miệng</p>
+			</div>
+			<div class="body-menu">
+				<div class="food-img">
+					<img alt="food" src="img/trangmieng1.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/trangmieng2.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/trangmieng3.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/annhanh1.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/annhanh2.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/bo1.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/burito.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/salad.jpg">
+				</div>
+			</div>
+
+		</section>
+		<section class="event">
+			<div class="header-event">
+				<h2>EVENT</h2>
+				<p>Tổ chức các sự kiện của bạn tại nhà hàng của chúng tôi</p>
+			</div>
+			<div class="body-event">
+				<div class="w3-content w3-section" style="max-width: 800px">
+					<img class="mySlides" src="img/birthday.jpg" style="width: 100%">
+					<img class="mySlides" src="img/buffet.jpg" style="width: 100%">
+					<img class="mySlides" src="img/wedding.jpg" style="width: 100%">
+				</div>
+			</div>
+		</section>
+		<section id="booktable" class="booktable">
+			<div class="header-booktable">
+				<h2>BOOK A TABLE</h2>
+				<p>Đặt bàn</p>
+			</div>
+			<div class="body-booktable">
+				<form action="#" class="booktable-form">
+					<div class="form-item">
+						<input type="text" placeholder="Họ Tên" required></input>
+					</div>
+					<div class="form-item">
+						<input type="email" placeholder="Email" required></input>
+					</div>
+					<div class="form-item">
+						<input type="tel" placeholder="Số điện thoại" required></input>
+					</div>
+					<div class="form-item">
+						<input id="datebook" type="date" required></input>
+					</div>
+					<div class="form-item">
+						<input id="timebook" type="time" required></input>
+					</div>
+					<div class="form-item">
+						<input type="number" placeholder="Số người" required></input>
+					</div>
+					<div class="form-item">
+						<textarea rows="5" placeholder="Ghi chú" required></textarea>
+					</div>
+					<div class="form-item">
+						<button type="submit" class="btn-booktable">Đặt bàn</button>
+					</div>
+				</form>
+			</div>
+		</section>
+		<section class="menu">
+			<div class="header-menu">
+				<h2>GALLERY</h2>
+				<p>Một vài bức ảnh về nhà hàng</p>
+			</div>
+			<div class="body-menu">
+				<div class="food-img">
+					<img alt="food" src="img/restaurant.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/restaurant2.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/trangmieng3.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/restaurant4.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/restaurant5.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/restaurant6.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/restaurant7.jpg">
+				</div>
+				<div class="food-img">
+					<img alt="food" src="img/restaurant8.jpg">
+				</div>
+			</div>
+		</section>
+		<section id="contact" class="contact">
+			<div class="header-contact">
+				<h2>CONTACT</h2>
+				<p>Thông tin liên hệ</p>
+			</div>
+			<div class="body-contact">
+				<div id="GoogleMap">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.0234563498375!2d106.6975809147439!3d10.732674162934693!2m3
+					!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528b2747a81a3%3A0x33c1813055acb613!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUw7RuIMSQ4b
+					upYyBUaOG6r25n!5e0!3m2!1svi!2s!4v1670146100245!5m2!1svi!2s"
+						width="100%" height="350" style="border: 0;"></iframe>
+				</div>
+				<div class="contact-content">
+					<div class="contact-info">
+						<div class="contact-info-item">
+							<h4>Địa chỉ:</h4>
+							<p>19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Q7</p>
+						</div>
+						<div class="contact-info-item">
+							<h4>Giờ mở cửa:</h4>
+							<p>
+								Thứ hai - Thứ bảy<br>11:00 AM - 23:00 PM
+							</p>
+						</div>
+						<div class="contact-info-item">
+							<h4>Email:</h4>
+							<p>email@gmail.com</p>
+						</div>
+						<div class="contact-info-item">
+							<h4>Số điện thoại:</h4>
+							<p>0337375409</p>
+						</div>
+					</div>
+					<div class="contact-form-container">
+						<form action="#" id="contact-form">
+							<div class="form-item">
+								<input type="text" placeholder="Họ tên" required></input>
+							</div>
+							<div class="form-item">
+								<input type="email" placeholder="Email" required></input>
+							</div>
+							<div class="form-item">
+								<input type="text" placeholder="Chủ đề" required></input>
+							</div>
+							<div class="form-item">
+								<textarea rows="5" placeholder="Nội dung" required></textarea>
+							</div>
+							<div class="form-item">
+								<button type="submit" class="btn-contact">Gửi phản hồi</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="footer">
+			<div class="footer-content">
+				<div class="info">
+					<h3>3AE</h3>
+					<p>
+						19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành phố Hồ Chí
+						Minh <br> <br> <strong>Số điện thoại: </strong>0337375409
+						<br> <strong>Email: </strong>email@gmail.com
+					</p>
+					<div class="social-link">
+						<a href="#" class="twitter"> <i class="fa-brands fa-twitter"></i>
+						</a> <a href="#" class="facebook"> <i
+							class="fa-brands fa-facebook-f"></i>
+						</a> <a href="#" class="instagram"> <i
+							class="fa-brands fa-instagram"></i>
+						</a> <a href="#" class="youtube"> <i class="fa-brands fa-youtube"></i>
+						</a>
+					</div>
+				</div>
+				<div class="link-shortcuts">
+					<h4>Xem thêm</h4>
+					<ul>
+						<li><a href="#content-home">Trang chủ</a></li>
+						<li><a href="#">Thực đơn</a></li>
+						<li><a href="#booktable">Đặt bàn</a></li>
+						<li><a href="#contact">Liên hệ</a></li>
+						<li><a href="changepass">Đổi mật khẩu</a></li>
+					</ul>
+				</div>
+				<div class="logo-restaurant">
+					<img alt="logo" src="img/3aelogo.png">
+				</div>
+			</div>
+			<div class="footer-info">
+				<ul>
+					<li>51900147 - Mai Văn Ngọc</li>
+					<li>51900145 - Phạm Hùng Nghĩa</li>
+					<li>51900200 - Nguyễn Thanh Sơn</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+	<div class="popup-contact-container">
+		<div class="popup">
+			<div class="popup-exit">
+				<i class="fa-solid fa-xmark exit-icon"></i>
+			</div>
+			<div class="header-popup">
+				<div class="header-content">
+					<i class="fa-solid fa-check"></i>
+				</div>
+			</div>
+			<div class="popup-content">
+				<h3>Cảm ơn!</h3>
+				<p>
+					Phản hồi của bản đã được lưu lại.
+					<br>
+					Cám ơn ý kiến đóng góp của bạn dành cho nhà hàng.				
+				</p>
+			</div>
+		</div>	
+	</div>
+	
+	<div class="popup-bookatable-container">
+		<div class="popup">
+			<div class="popup-exit">
+				<i class="fa-solid fa-xmark exit-icon"></i>
+			</div>
+			<div class="header-popup">
+				<div class="header-content">
+					<i class="fa-solid fa-check"></i>
+				</div>
+			</div>
+			<div class="popup-content">
+				<h3>Đặt bàn thành công!</h3>
+			</div>
+		</div>	
+	</div>
+</body>
+</html>

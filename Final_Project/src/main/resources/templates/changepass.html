@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Đổi mật khẩu</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<section class="navbar">
+			<ul class="nav justify-content-center">
+			  <li class="nav-item">
+			    <a class="nav-link active" href="home">Trang chủ</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="menu">Thực đơn</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="/home#booktable">Đặt bàn</a>
+			  </li>
+			  <li class="nav-item">
+			    <img alt="Logo" src="img/3aelogo.png">
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="/home#contact">Liên hệ</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link disabled" href="#">Đổi mật khẩu</a>
+			  </li>
+			  <li class="nav-item">
+			    <button class="nav-link disabled" type="submit">Đăng xuất</button>
+			  </li>
+			</ul>
+			<div class="cart-container">
+				<div class="cart-icon">
+					<div class="num-cart-item-top">
+						<h4>3</h4>
+					</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>Giỏ hàng (<span class="num-cart-item">2</span>)</h4>
+						</div>
+						<div class="cart-form-body">
+							<div class="cart-item">
+								<div class="cart-image">
+									<img alt="denuong" src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img alt="denuong" src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img alt="denuong" src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+						</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>		
+					</form>
+				</div>	
+			</div>
+		</section>
+		<section class="content">
+			<form action=""  id="content-info">
+				<h3>Đổi mật khẩu</h3>
+				<div class="form-group">
+					<input id="pass" placeholder="Nhập mật khẩu cũ" required>
+				</div>
+				<div class="form-group">
+					<input id="newpass" type="password" placeholder="Nhập mật khẩu mới" required>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn-submit">Xác nhận</button>
+				</div>
+			</form>
+		</section>
+	</div>
+</body>
+</html>

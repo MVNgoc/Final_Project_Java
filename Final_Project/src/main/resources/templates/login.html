@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Đăng nhập</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" th:href= "@{css/style.css}">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<section class="content">
+			<form  th:action="@{/login}"  method="post"  id="content-info">
+				<h3>Đăng nhập</h3>
+				<div class="form-group">
+					<input name="username"  placeholder="Tài khoản" required>
+				</div>
+				<div class="form-group">
+					<input name="password"  type="password" placeholder="Mật khẩu" required>
+				</div>
+
+				<td th:if="${errorMsg != null}">
+					<div class="alert alert-danger form-group">
+						<strong th:text="${errorMsg}"></strong>
+					</div>
+				</td>
+				<div class="form-group">
+					<button type="submit" class="btn-submit">Đăng nhập</button>
+				</div>
+				<div class="form-group">
+					<div class="remember-container">
+						<input id="remember" type="checkbox">
+						<label for="remember">Ghi nhớ đăng nhập</label>
+					</div>
+					<div>
+						<a th:href="@{/signup}">Đăng ký</a>
+						<a th:href="@{/fogotpass}">Quên mật khẩu</a>
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+</body>
+</html>
