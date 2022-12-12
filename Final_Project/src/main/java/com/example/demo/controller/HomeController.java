@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +29,11 @@ public class HomeController {
 	
 	@GetMapping("/login")
     public String login() {
-        return "login";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "login";
+		}
+        return "redirect:/home";
     }
 	
 	@PostMapping("/fail_login")
@@ -44,7 +51,13 @@ public class HomeController {
 	@GetMapping("/signup")
 	public String signup(Model model) {
 		model.addAttribute("user", new User());
-		return "signup";
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "signup";
+		}
+		
+		return "redirect:/home";
 	}
 	
 	@PostMapping("/process_register")
