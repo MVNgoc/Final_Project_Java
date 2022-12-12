@@ -88,11 +88,7 @@ $(document).ready(function () {
 	  });
 	}
 	
-<<<<<<< HEAD
 	/* Show Popup Send Contact and Book Table */
-=======
-	/* Show Popup Send Contact */
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 	
 	var btn_bookatable = $(".btn-booktable");
 	var btn_contact = $(".btn-contact");
@@ -105,7 +101,6 @@ $(document).ready(function () {
 	  	$(".popup-contact-container").addClass("showPopup");
 	});
 	
-<<<<<<< HEAD
 	/* Exit Popup Send Contact and Book Table */
 	var exit_icon = $(".exit-icon");
 	
@@ -113,8 +108,6 @@ $(document).ready(function () {
 	  	$(".popup-contact-container").removeClass("showPopup");
 	  	$(".popup-bookatable-container").removeClass("showPopup");
 	});
-=======
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 	/* JS Menu Page */
 	
 	var price_foods = document.getElementsByClassName("food-price");

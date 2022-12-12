@@ -477,11 +477,7 @@ html {
 
 .popup-contact-container,
 .popup-bookatable-container {
-<<<<<<< HEAD
 	display: none;	
-=======
-	display: none;
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 	position: fixed;
 	z-index: 9999;
 	top: 0;
@@ -506,34 +502,21 @@ html {
 	margin-top: 20px;
 }
 
-<<<<<<< HEAD
 .popup .header-content,
 .modal-dialog .modal-body i {
 	display: flex;
 	margin: 0 auto;
 	width: 50px;
 	height: 50px;
-=======
-.popup .header-content {
-	display: flex;
-	margin: 0 auto;
-	width: 60px;
-	height: 60px;
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 	border-radius: 50%;
 	background-color: #07fc03;
 	justify-content: center;
 	align-items: center;
 }
 
-<<<<<<< HEAD
 .popup .header-content i,
 .modal-dialog .modal-body i {
 	font-size: 16px;
-=======
-.popup .header-content i {
-	font-size: 30px;
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 }
 
 .popup .popup-content {
@@ -546,7 +529,6 @@ html {
 	font-size: 30px;
 }
 
-<<<<<<< HEAD
 .popup .popup-exit {
 	height: 38px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -561,8 +543,6 @@ html {
 .popup .popup-exit i:hover {
 	background: red;
 }
-=======
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 /* End CSS PopUp Send Contact */
 
 /* End CSS Home Page */
@@ -574,10 +554,7 @@ html {
 	background-size: contain;
 	height: 100vh;
 	width: 100vw;
-<<<<<<< HEAD
 	padding: 0;
-=======
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 }
 
 .container > .content {
@@ -606,11 +583,7 @@ html {
 
 .content #content-info .form-group {
 	margin: 10px 0;
-<<<<<<< HEAD
 	width: 55%;
-=======
-	width: 50%;
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 	display: flex;
 	justify-content: center;
 }
@@ -665,16 +638,12 @@ html {
 	height: 20px;
 	margin-right: 10px;
 	opacity: 0.5;
-<<<<<<< HEAD
 	margin-top: 0;
-=======
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 }
 
 #content-info .form-group:last-child a {
 	text-decoration: none;
 	color: white;
-<<<<<<< HEAD
 	font-weight: 700;
 }
 
@@ -729,10 +698,6 @@ html {
 .container .modal-footer button:first-child {
 	margin-left: 5px;
 }
-=======
-}
-
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 /* End CSS Login, SignUp and Change Password Page */
 
 /* Start CSS Navbar */
@@ -743,20 +708,11 @@ html {
 	position: fixed;
 	display: flex;
 	justify-content: center;
-<<<<<<< HEAD
 	background-color: black;
 }
 
 .container-home .navbar {
 	background-color: black;
-=======
-	background-color: rgba(255, 255, 255, 0.4);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.container-home .navbar {
-	background-color: rgba(0, 0, 0, 0.8);
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 	z-index: 999;
 }
 
@@ -778,7 +734,6 @@ html {
 	height: 80px;
 }
 
-<<<<<<< HEAD
 .navbar a{
 	text-decoration: none;
 	padding: 37px 30px;
@@ -798,19 +753,6 @@ html {
 
 .navbar a:hover,
 .navbar button:hover {
-=======
-.navbar a {
-	text-decoration: none;
-	padding: 36px 30px;
-	color: black;
-}
-
-.container-home .navbar a {
-	color: white;
-}
-
-.navbar a:hover {
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 	background-color: rgba(255, 255, 255, 0.6);
 }
 /* End CSS Navbar */

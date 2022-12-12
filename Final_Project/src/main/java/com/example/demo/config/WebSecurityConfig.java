@@ -1,13 +1,10 @@
 package com.example.demo.config;
 
-<<<<<<< HEAD
-=======
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +15,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-<<<<<<< HEAD
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-=======
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 
 import com.example.demo.service.CustomUserDetailsService;
 
@@ -75,9 +66,6 @@ public class WebSecurityConfig {
 				.permitAll()
 				.failureForwardUrl("/fail_login")
 			.and()
-<<<<<<< HEAD
-			.logout().logoutUrl("/logout").logoutSuccessUrl("/login");
-=======
 			.logout().logoutSuccessHandler(new LogoutSuccessHandler() {
 				 
                 public void onLogoutSuccess(HttpServletRequest request,
@@ -89,7 +77,6 @@ public class WebSecurityConfig {
                 }
             })
             .permitAll();
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 		
 		return http.build();
 	}
