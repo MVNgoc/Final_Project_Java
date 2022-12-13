@@ -30,7 +30,7 @@
 			    <a class="nav-link" href="/home#contact">Liên hệ</a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link disabled" href="#">Äá»i máº­t kháº©u</a>
+			    <a class="nav-link disabled" href="#">Đổi mật khẩu</a>
 			  </li>
 			  <form th:action="@{/logout}" method="post">
 					<li class="nav-item"><button class="nav-link disabled" type="submit">ÄÄng xuáº¥t</button></li>
@@ -44,15 +44,15 @@
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
-							<h4>Giá» hÃ ng (<span class="num-cart-item">2</span>)</h4>
+							<h4>Giỏ hàng (<span class="num-cart-item">2</span>)</h4>
 						</div>
-						<div class="cart-form-body">
+						<div class="cart-form-body" id="cart-form-body">
 							<div class="cart-item">
 								<div class="cart-image">
-									<img alt="denuong" src="img/denuong.jpg">
+									<img src="img/denuong.jpg">
 								</div>
 								<div class="cart-food-item">
-									<h4>Thá»t dÃª nÆ°á»ng</h4>
+									<h4>Thịt dê nướng</h4>
 									<p class="food-price">80000</p>
 								</div>
 								<div class="cart-delete-food">
@@ -61,10 +61,10 @@
 							</div>
 							<div class="cart-item">
 								<div class="cart-image">
-									<img alt="denuong" src="img/denuong.jpg">
+									<img src="img/denuong.jpg">
 								</div>
 								<div class="cart-food-item">
-									<h4>Thá»t dÃª nÆ°á»ng</h4>
+									<h4>Thịt dê nướng</h4>
 									<p class="food-price">80000</p>
 								</div>
 								<div class="cart-delete-food">
@@ -73,10 +73,10 @@
 							</div>
 							<div class="cart-item">
 								<div class="cart-image">
-									<img alt="denuong" src="img/denuong.jpg">
+									<img src="img/denuong.jpg">
 								</div>
 								<div class="cart-food-item">
-									<h4>Thá»t dÃª nÆ°á»ng</h4>
+									<h4>Thịt dê nướng</h4>
 									<p class="food-price">80000</p>
 								</div>
 								<div class="cart-delete-food">
@@ -85,7 +85,7 @@
 							</div>
 						</div>
 						<div class="cart-form-footer">
-							<button type="submit">Thanh toÃ¡n</button>
+							<button type="submit">Thanh toán</button>
 						</div>		
 					</form>
 					
@@ -102,14 +102,14 @@
 							</div>
 							<div class="modal-body">
 								<i class="fa-solid fa-check"></i>
-								<p>ÄÄng kÃ½ tÃ i khoáº£n thÃ nh cÃ´ng</p>
+								<p>Đổi mật khẩu thành công</p>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-success btn-secondary">
-									<a th:href="@{/login}" style="color: white;">ÄÄng nháº­p</a>
+									<a th:href="@{/login}" style="color: white;">Đăng nhập</a>
 								</button>
 								<button type="button" class="btn btn-danger btn-primary"
-									data-dismiss="modal">ÄÃ³ng</button>
+									data-dismiss="modal">Đóng</button>
 							</div>
 						</div>
 					</div>
@@ -121,15 +121,15 @@
 		</section>
 		<section class="content">
 			<form th:action="@{/changepass}" method="post"  id="content-info">
-				<h3>Äá»i máº­t kháº©u</h3>
+				<h3>Đổi mật khẩu</h3>
 				<div class="form-group">
-					<input id="password" name="password" type="password" placeholder="Nháº­p máº­t kháº©u cÅ©" required>
+					<input id="password" name="password" type="password" placeholder="Nhập mật khẩu cũ" required>
 				</div>
 				<div class="form-group">
-					<input id="newpass" name="newpass" type="password" placeholder="Nháº­p máº­t kháº©u má»i" required>
+					<input id="newpass" name="newpass" type="password" placeholder="Nhập mật khẩu mới" required>
 				</div>
 				<div class="form-group">
-					<input id="newpasscf" name="newpasscf" type="password" placeholder="Nháº­p xÃ¡c nháº­n máº­t kháº©u má»i" required>
+					<input id="newpasscf" name="newpasscf" type="password" placeholder="Xác nhận mật khẩu mới" required>
 				</div>
 				
 				<td th:if="${errorMsg != null}">
