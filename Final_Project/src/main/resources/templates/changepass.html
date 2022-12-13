@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -87,32 +86,7 @@
 						<div class="cart-form-footer">
 							<button type="submit">Thanh toán</button>
 						</div>		
-					</form>
-					
-			<td th:object="${user}" th:if="${success != null}">
-				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<i class="fa-solid fa-check"></i>
-								<p>Đổi mật khẩu thành công</p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger btn-primary"
-									data-dismiss="modal">Đóng</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</td>
-					
+					</form>		
 				</div>	
 			</div>
 		</section>
@@ -139,6 +113,40 @@
 					<button type="submit" class="btn-submit">Xác nhận</button>
 				</div>
 			</form>
+			
+			<td th:object="${user}" th:if="${success != null}">
+				<div class="popup-changepass-container">
+					<div class="popup">
+						<div class="popup-exit">
+							<i class="fa-solid fa-xmark exit-icon"></i>
+						</div>
+						<div class="header-popup">
+							<div class="header-content">
+								<i class="fa-solid fa-check"></i>
+							</div>
+						</div>
+						<div class="popup-content">
+							<h3>Đổi mật khẩu thành công!</h3>
+						</div>
+					</div>
+				</div>
+			</td>
+			
+			<div class="popup-changepass-container">
+					<div class="popup">
+						<div class="popup-exit">
+							<i class="fa-solid fa-xmark exit-icon"></i>
+						</div>
+						<div class="header-popup">
+							<div class="header-content">
+								<i class="fa-solid fa-check"></i>
+							</div>
+						</div>
+						<div class="popup-content">
+							<h3>Đổi mật khẩu thành công!</h3>
+						</div>
+					</div>
+				</div>
 		</section>
 	</div>
 </body>

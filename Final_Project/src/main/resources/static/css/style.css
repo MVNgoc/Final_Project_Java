@@ -471,13 +471,10 @@ html {
 
 /* CSS PopUp Send Contact */
 
-.showPopup {
-	display: flex !important;
-}
-
 .popup-contact-container,
-.popup-bookatable-container {
-	display: none;	
+.popup-bookatable-container,
+.popup-changepass-container {
+	display: flex;	
 	position: fixed;
 	z-index: 9999;
 	top: 0;
@@ -490,7 +487,8 @@ html {
 }
 
 .popup-contact-container .popup,
-.popup-bookatable-container .popup {
+.popup-bookatable-container .popup,
+.popup-changepass-container .popup {
 	position: relative;
 	background-color: white;
 	width: 400px;
@@ -526,7 +524,7 @@ html {
 }
 
 .popup .popup-content h3 {
-	font-size: 30px;
+	font-size: 25px;
 }
 
 .popup .popup-exit {

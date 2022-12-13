@@ -92,21 +92,15 @@ $(document).ready(function () {
 	
 	var btn_bookatable = $(".btn-booktable");
 	var btn_contact = $(".btn-contact");
-     
-    btn_bookatable.click(function() {
-	  	$(".popup-bookatable-container").addClass("showPopup");
-	});
-	
-	btn_contact.click(function() {
-	  	$(".popup-contact-container").addClass("showPopup");
-	});
+	var btn_submit = $(".btn-submit");
 	
 	/* Exit Popup Send Contact and Book Table */
 	var exit_icon = $(".exit-icon");
 	
 	exit_icon.click(function() {
-	  	$(".popup-contact-container").removeClass("showPopup");
-	  	$(".popup-bookatable-container").removeClass("showPopup");
+	  	$(".popup-contact-container").css("display", "none");
+	  	$(".popup-bookatable-container").css("display", "none");
+	  	$(".popup-changepass-container").css("display", "none");
 	});
 	/* JS Menu Page */
 	
