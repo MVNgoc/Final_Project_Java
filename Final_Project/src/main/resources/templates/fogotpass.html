@@ -15,7 +15,7 @@
 			<form method="post" th:action="@{/fogotpass}"  id="content-info">
 				<h3>Quên mật khẩu</h3>
 				<div class="form-group">
-					<input name="email"  placeholder="Nhập Email của bạn" required>
+					<input name="email"  placeholder="Nhập email của bạn" required>
 				</div>
 				
 				<td th:if="${errorMsg != null}">
@@ -24,8 +24,14 @@
 					</div>
 				</td>
 				
+				<td th:if="${success != null}">
+					<div class="alert alert-success form-group">
+						<strong th:text="${success}"></strong>
+					</div>
+				</td>
+				
 				<div class="form-group">
-					<button type="submit" class="btn-submit">Đăng nhập</button>
+					<button type="submit" class="btn-submit">Xác nhận</button>
 				</div>
 				<div class="form-group">
 					<div>
