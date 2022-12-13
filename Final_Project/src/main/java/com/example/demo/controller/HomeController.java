@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -120,7 +121,7 @@ public class HomeController {
 	}
 	
 	@PostMapping("/changepass")
-	public String changepassnew(User user,@RequestParam String newpasscf, @RequestParam String newpass
+	public String changepassnew(@RequestParam String newpasscf, @RequestParam String newpass
 			,@RequestParam String password, @AuthenticationPrincipal CustomUserDetails loggedUser,Model model)
 	{
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -142,7 +143,10 @@ public class HomeController {
 		}else {
 			String encodenewPass = encoder.encode(newpass);
 			loggedUser.setPassword(encodenewPass);
-			model.addAttribute("errorMsg", "Đổi mật khẩu thành công");
+			User user = repo.getUserByUsername(loggedUser.getUsername());
+			user.setPassword(encodenewPass);
+			repo.save(user);
+			model.addAttribute("success", "Đổi mật khẩu thành công");
 		}
 		
 		return "/changepass";
