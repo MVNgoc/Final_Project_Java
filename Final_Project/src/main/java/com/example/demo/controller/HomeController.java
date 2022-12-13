@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -174,6 +175,23 @@ public class HomeController {
 	
 	@GetMapping("/fogotpass")
 	public String fogotpass() {
+		return "fogotpass";
+	}
+	
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	@PostMapping("/fogotpass")
+	public String fogot(@RequestParam String email,Model model) {
+		System.out.println(email);
+		if(repo.findbyEmail(email) == null) {
+			model.addAttribute("errorMsg", "Email này không tồn tại");
+			return "/fogotpass";
+		}else {
+			User user = repo.findbyEmail(email);
+			
+		}
+		
 		return "fogotpass";
 	}
 }

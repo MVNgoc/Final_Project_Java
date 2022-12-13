@@ -12,14 +12,18 @@
 <body>
 	<div class="container">
 		<section class="content">
-			<form method="post"  id="content-info">
+			<form method="post" th:action="@{/fogotpass}"  id="content-info">
 				<h3>Quên mật khẩu</h3>
 				<div class="form-group">
 					<input name="email"  placeholder="Nhập Email của bạn" required>
 				</div>
+				
+				<td th:if="${errorMsg != null}">
 					<div class="alert alert-danger form-group">
-						<strong>Error</strong>
+						<strong th:text="${errorMsg}"></strong>
 					</div>
+				</td>
+				
 				<div class="form-group">
 					<button type="submit" class="btn-submit">Đăng nhập</button>
 				</div>
