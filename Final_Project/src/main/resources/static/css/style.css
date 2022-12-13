@@ -614,6 +614,8 @@ html {
 	height: 40px;
 	border-radius: 40px;
 	background-color: #f29c3f;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 #content-info .form-group button:hover {
@@ -695,6 +697,12 @@ html {
 
 .container .modal-footer button:first-child {
 	margin-left: 5px;
+}
+
+.container .error-msg {
+	background-color: #f25755;
+	padding: 10px;
+	border-radius: 12px;
 }
 /* End CSS Login, SignUp and Change Password Page */
 

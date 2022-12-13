@@ -178,6 +178,11 @@ public class HomeController {
 		return "fogotpass";
 	}
 	
+	@GetMapping("/changepasspw")
+	public String changepasspw() {
+		return "changepasspw";
+	}
+	
 	@Autowired
 	private JavaMailSender mailSender;
 	
