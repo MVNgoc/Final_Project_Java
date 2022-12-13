@@ -71,9 +71,7 @@ public class WebSecurityConfig {
 				 
                 public void onLogoutSuccess(HttpServletRequest request,
                             HttpServletResponse response, Authentication authentication)
-                        throws IOException, ServletException {
-                	System.out.println("This user logged out: " + authentication.getName());
-                	
+                        throws IOException, ServletException {              	
                     response.sendRedirect("/logout");
                 }
             })
