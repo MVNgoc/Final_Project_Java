@@ -3,11 +3,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta charset="utf-8" />
-<title>Đổi mật khẩu</title>
+<title>Äá»i máº­t kháº©u</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -26,14 +27,14 @@
 			    <img alt="Logo" src="img/3aelogo.png">
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link" href="/home#contact">Liên hệ</a>
+			    <a class="nav-link" href="/home#contact">Liên hệ</a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link disabled" href="#">Đổi mật khẩu</a>
+			    <a class="nav-link disabled" href="#">Äá»i máº­t kháº©u</a>
 			  </li>
-			  <li class="nav-item">
-			    <button class="nav-link disabled" type="submit">Đăng xuất</button>
-			  </li>
+			  <form th:action="@{/logout}" method="post">
+					<li class="nav-item"><button class="nav-link disabled" type="submit">ÄÄng xuáº¥t</button></li>
+				</form>
 			</ul>
 			<div class="cart-container">
 				<div class="cart-icon">
@@ -43,7 +44,7 @@
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
-							<h4>Giỏ hàng (<span class="num-cart-item">2</span>)</h4>
+							<h4>Giá» hÃ ng (<span class="num-cart-item">2</span>)</h4>
 						</div>
 						<div class="cart-form-body">
 							<div class="cart-item">
@@ -51,7 +52,7 @@
 									<img alt="denuong" src="img/denuong.jpg">
 								</div>
 								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
+									<h4>Thá»t dÃª nÆ°á»ng</h4>
 									<p class="food-price">80000</p>
 								</div>
 								<div class="cart-delete-food">
@@ -63,7 +64,7 @@
 									<img alt="denuong" src="img/denuong.jpg">
 								</div>
 								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
+									<h4>Thá»t dÃª nÆ°á»ng</h4>
 									<p class="food-price">80000</p>
 								</div>
 								<div class="cart-delete-food">
@@ -75,7 +76,7 @@
 									<img alt="denuong" src="img/denuong.jpg">
 								</div>
 								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
+									<h4>Thá»t dÃª nÆ°á»ng</h4>
 									<p class="food-price">80000</p>
 								</div>
 								<div class="cart-delete-food">
@@ -84,23 +85,61 @@
 							</div>
 						</div>
 						<div class="cart-form-footer">
-							<button type="submit">Thanh toán</button>
+							<button type="submit">Thanh toÃ¡n</button>
 						</div>		
 					</form>
+					
+			<td th:object="${user}" th:if="${success != null}">
+				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<i class="fa-solid fa-check"></i>
+								<p>ÄÄng kÃ½ tÃ i khoáº£n thÃ nh cÃ´ng</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-success btn-secondary">
+									<a th:href="@{/login}" style="color: white;">ÄÄng nháº­p</a>
+								</button>
+								<button type="button" class="btn btn-danger btn-primary"
+									data-dismiss="modal">ÄÃ³ng</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+					
 				</div>	
 			</div>
 		</section>
 		<section class="content">
-			<form action=""  id="content-info">
-				<h3>Đổi mật khẩu</h3>
+			<form th:action="@{/changepass}" method="post"  id="content-info">
+				<h3>Äá»i máº­t kháº©u</h3>
 				<div class="form-group">
-					<input id="pass" placeholder="Nhập mật khẩu cũ" required>
+					<input id="password" name="password" type="password" placeholder="Nháº­p máº­t kháº©u cÅ©" required>
 				</div>
 				<div class="form-group">
-					<input id="newpass" type="password" placeholder="Nhập mật khẩu mới" required>
+					<input id="newpass" name="newpass" type="password" placeholder="Nháº­p máº­t kháº©u má»i" required>
 				</div>
 				<div class="form-group">
-					<button type="submit" class="btn-submit">Xác nhận</button>
+					<input id="newpasscf" name="newpasscf" type="password" placeholder="Nháº­p xÃ¡c nháº­n máº­t kháº©u má»i" required>
+				</div>
+				
+				<td th:if="${errorMsg != null}">
+					<div class="alert alert-danger form-group">
+						<strong th:text="${errorMsg}"></strong>
+					</div>
+				</td>
+				
+				<div class="form-group">
+					<button type="submit" class="btn-submit">XÃ¡c nháº­n</button>
 				</div>
 			</form>
 		</section>
