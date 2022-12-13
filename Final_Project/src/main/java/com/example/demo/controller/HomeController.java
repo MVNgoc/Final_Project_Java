@@ -1,10 +1,18 @@
 package com.example.demo.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Objects;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMailMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,10 +29,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.config.Utility;
 import com.example.demo.model.CustomUserDetails;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CustomUserDetailsService;
+
+import net.bytebuddy.utility.RandomString;
 
 @Controller
 public class HomeController {
@@ -178,8 +189,42 @@ public class HomeController {
 		return "fogotpass";
 	}
 	
-	@GetMapping("/changepasspw")
-	public String changepasspw() {
+	@GetMapping("/fail")
+	public String fail() {
+		return "Fail";
+	}
+	
+	@GetMapping("/reset_password")
+	public String changepasspw(@Param(value = "token") String token,Model model) {
+		
+		User user = repo.findByResetPasswordToken(token);
+		if(user == null) {
+			model.addAttribute("message", "Token không hợp lệ");
+			return "Fail";
+		}
+		model.addAttribute("token", token);
+		
+		return "changepasspw";
+	}
+	
+	@PostMapping("/reset_password")
+	public String resetpass(@RequestParam String newpasscf, @RequestParam String newpass
+			,Model model, @RequestParam String token) {
+		User user = repo.findByResetPasswordToken(token);
+		
+		if(user == null) {
+			model.addAttribute("message", "Token không hợp lệ");
+			return "Fail";
+		}else {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String encodePassword = encoder.encode(newpass);
+			
+			user.setPassword(encodePassword);
+			user.setResetPasswordToken(null);
+			repo.save(user);
+			model.addAttribute("success", "Đổi mật khẩu thành công");
+		}
+
 		return "changepasspw";
 	}
 	
@@ -187,16 +232,49 @@ public class HomeController {
 	private JavaMailSender mailSender;
 	
 	@PostMapping("/fogotpass")
-	public String fogot(@RequestParam String email,Model model) {
-		System.out.println(email);
+	public String fogot(@RequestParam String email,Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
 		if(repo.findbyEmail(email) == null) {
 			model.addAttribute("errorMsg", "Email này không tồn tại");
 			return "/fogotpass";
 		}else {
+			String token = RandomString.make(45);
 			User user = repo.findbyEmail(email);
+			try {
+				user.setResetPasswordToken(token);
+				repo.save(user);
+				//generate reset password link
+				String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
+				
+				//send email to user
+				sendEmail(email, resetPasswordLink);
+				model.addAttribute("success", "Đã gửi mail cho bạn, vui lòng kiểm tra mail");
+			}catch(UnsupportedEncodingException | MessagingException e){
+				model.addAttribute("errorMsg", "Lỗi trong việc gửi email");
+			}
+			
 			
 		}
 		
 		return "fogotpass";
+	}
+
+	private void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException{
+		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+		
+		helper.setFrom("contact@3ae.com", "3ae Support");
+		helper.setTo(email);
+		
+		String subject = "Đây là link để reset password của bạn";
+		String content = "<p>Xin chào</p>" + 
+				"<p>Bạn có yêu cầu để tạo mới mật khẩu.</p>" + 
+				"<p>Nhấn vào link dưới đây để tạo mới mật khẩu: </p>" +
+				"<p><b><a href=\"" + resetPasswordLink + "\"> Thay đổi mật khẩu </a><b></p>"
+				+ "<p>Bỏ qua email này nếu bạn nhớ mật khẩu của mình hoặc bạn không tạo yêu cầu đổi mật khẩu</p>";
+		
+		helper.setSubject(subject);
+		helper.setText(content, true);
+		
+		mailSender.send(message);
 	}
 }

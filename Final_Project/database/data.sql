@@ -8,22 +8,14 @@ CREATE TABLE admin_account (
 );
 
 CREATE TABLE user (
-<<<<<<< HEAD
-  id bigint(20) NOT NULL,
+  id varchar(20) NOT NULL,
   email varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   password varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   username varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   phone varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   name varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  address varchar(255) COLLATE utf8_unicode_ci NOT NULL
-=======
-  id varchar(15) NOT NULL,
-  email varchar(64) NOT NULL,
-  pass varchar(255) NOT NULL,
-  username varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  phone_number varchar(15) NOT NULL,
-  user_address varchar(255) COLLATE utf8_unicode_ci NOT NULL
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
+  address varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  reset_password_token varchar(45)
 );
 
 CREATE TABLE category (
@@ -65,15 +57,6 @@ CREATE TABLE contact (
 INSERT INTO admin_account (id, username, pass) VALUES
 ('51900147', 'admin', '$2a$12$iWE1Epee9DVR0idqIriuAus3TkZklYMqEZVX3i2HSne1jeldtYjXO');
 
--- pass: 123456
-<<<<<<< HEAD
-=======
-INSERT INTO user (id, email, pass, username, phone_number, user_address) VALUES 
-('1', 'hungnghia@gmail.com', '$2a$12$ErHOSSX9JOEUWmyT5rnO5OPE1lbJBo.rRQaPC1/h7AU/I90TwlM0S', 'Phạm Hùng Nghĩa', '0312546238', '43/38 Dạ nam'),
-('2', 'maingoc@gmail.com', '$2a$12$VHBTGe65UvUrF/0NPVPIJuZ9pKbFrK8vAgTUH4/JhUU99aB0SVuFW', 'Mai Văn Ngọc', '0337375401', '231 Lộc Điền, Lộc Ninh'),
-('3', 'trunghau@gmail.com', '$2a$12$sVNcC3tGPUpoBqhS5RHsIOEJo6KVjnSKTgQikOn7/6dr5H/ZhWRte', 'Nguyễn Trung Hậu', '0312235438', 'Thành phó Hồ Chí Minh'),
-('4', 'thanhson@gmail.com', '$2a$12$Bbn88F3EkqORDzBdg8VaUe2bltJro0OMqHWWLw05zoHxDpiMEFpIO', 'Nguyễn Thanh Sơn', '0234746238', 'Thành phó Hồ Chí Minh');
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 
 INSERT INTO category (id,title, img_name, featured) VALUES
 ('1','Chay', 'món chay.jpg', 'Thanh đạm và dễ ăn'),
@@ -126,11 +109,7 @@ ALTER TABLE user
   ADD PRIMARY KEY (id);
 
 ALTER TABLE user
-<<<<<<< HEAD
-  MODIFY id bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=20;
-=======
   MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=20;
->>>>>>> 68e359216f359b0d1b18adba896a8ae0f3bd1f5b
 
 ALTER TABLE category
 ADD PRIMARY KEY (id);
