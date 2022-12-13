@@ -53,5 +53,9 @@ public class CustomUserDetails implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	public void setPassword(String password) {
+		this.user.setPassword(password);
+	}
 
 }

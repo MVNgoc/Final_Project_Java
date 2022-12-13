@@ -6,7 +6,9 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.CustomUserDetails;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.CustomUserDetailsService;
 
 @Controller
 public class HomeController {
@@ -101,10 +105,47 @@ public class HomeController {
 		
 		return "/signup";
 	}
+	
 
 	@GetMapping("/changepass")
 	public String changepass() {
-		return "changepass";
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "redirect:/login";
+		}
+		
+		
+		return "/changepass";
+	}
+	
+	@PostMapping("/changepass")
+	public String changepassnew(User user,@RequestParam String newpasscf, @RequestParam String newpass
+			,@RequestParam String password, @AuthenticationPrincipal CustomUserDetails loggedUser,Model model)
+	{
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodePassword = encoder.encode(password);
+		boolean isMatch = encoder.matches(password, loggedUser.getPassword());
+		
+		if(isMatch == false) {
+			model.addAttribute("errorMsg", "Mật khẩu cũ không trùng");
+			return "/changepass";
+		}else if(newpass.length() < 5) {
+			model.addAttribute("errorMsg", "Mật khẩu mới phải lớn hơn 5 kí tự");
+			return "/changepass";
+		}else if(!newpass.equals(newpasscf)) {
+			model.addAttribute("errorMsg", "Mật khẩu xác nhận không trùng khớp");
+			return "/changepass";
+		}else if(newpass.equals(password)) {
+			model.addAttribute("errorMsg", "Mật khẩu mới không được trùng với mật khẩu cũ");
+			return "/changepass";
+		}else {
+			String encodenewPass = encoder.encode(newpass);
+			loggedUser.setPassword(encodenewPass);
+			model.addAttribute("errorMsg", "Đổi mật khẩu thành công");
+		}
+		
+		return "/changepass";
 	}
 
 	@GetMapping("/cart")
