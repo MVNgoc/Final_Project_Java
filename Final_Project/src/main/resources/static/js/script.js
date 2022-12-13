@@ -131,6 +131,7 @@ $(document).ready(function () {
 	}
 	
 	num_cart_item.text(num);
+	
 	/* Slide show Home Page */
 	
 	var myIndex = 0;

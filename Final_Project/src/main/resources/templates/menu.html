@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
 	<div class="container-home">
@@ -31,10 +30,10 @@
 						<div class="cart-form-header">
 							<h4>Giỏ hàng (<span class="num-cart-item">2</span>)</h4>
 						</div>
-						<div class="cart-form-body">
+						<div class="cart-form-body" id="cart-form-body">
 							<div class="cart-item">
 								<div class="cart-image">
-									<img alt="denuong" src="img/denuong.jpg">
+									<img src="img/denuong.jpg">
 								</div>
 								<div class="cart-food-item">
 									<h4>Thịt dê nướng</h4>
@@ -46,7 +45,7 @@
 							</div>
 							<div class="cart-item">
 								<div class="cart-image">
-									<img alt="denuong" src="img/denuong.jpg">
+									<img src="img/denuong.jpg">
 								</div>
 								<div class="cart-food-item">
 									<h4>Thịt dê nướng</h4>
@@ -58,7 +57,7 @@
 							</div>
 							<div class="cart-item">
 								<div class="cart-image">
-									<img alt="denuong" src="img/denuong.jpg">
+									<img src="img/denuong.jpg">
 								</div>
 								<div class="cart-food-item">
 									<h4>Thịt dê nướng</h4>
@@ -92,7 +91,7 @@
 				</div>
 				<div class="body-category">
 					<div class="food-item">
-						<img alt="denuong" src="img/denuong.jpg">
+						<img class="food-img" alt="denuong.jpg" src="img/denuong.jpg">
 						<h3 class="food-name">Thịt dê nướng</h3>
 						<p class="food-price">80000</p>
 						<div class="buy-icon">
@@ -100,7 +99,7 @@
 						</div>
 					</div>
 					<div class="food-item">
-						<img alt="denuong" src="img/hotdog.jpg">
+						<img class="food-img" alt="hotdog.jpg" src="img/hotdog.jpg">
 						<h3 class="food-name">Xúc xích nướng</h3>
 						<p class="food-price">50000</p>
 						<div class="buy-icon">
@@ -108,7 +107,7 @@
 						</div>
 					</div>
 					<div class="food-item">
-						<img alt="denuong" src="img/suongheonuong.jpg">
+						<img class="food-img" alt="suongheonuong.jpg" src="img/suongheonuong.jpg">
 						<h3 class="food-name">Sường heo nướng</h3>
 						<p class="food-price">70000</p>
 						<div class="buy-icon">
@@ -123,7 +122,7 @@
 				</div>
 				<div class="body-category">
 					<div class="food-item">
-						<img alt="denuong" src="img/lauga.png">
+						<img class="food-img" alt="lauga.png" src="img/lauga.png">
 						<h3 class="food-name">Lẩu gà</h3>
 						<p class="food-price">100000</p>
 						<div class="buy-icon">
@@ -131,7 +130,7 @@
 						</div>
 					</div>
 					<div class="food-item">
-						<img alt="denuong" src="img/laumam.jpg">
+						<img class="food-img" alt="laumam.jpg" src="img/laumam.jpg">
 						<h3 class="food-name">Lẩu mắm</h3>
 						<p class="food-price">150000</p>
 						<div class="buy-icon">
@@ -139,7 +138,7 @@
 						</div>
 					</div>
 					<div class="food-item">
-						<img alt="denuong" src="img/laubo.jpg">
+						<img class="food-img" alt="laubo.jpg" src="img/laubo.jpg">
 						<h3 class="food-name">Lẩu bò</h3>
 						<p class="food-price">200000</p>
 						<div class="buy-icon">
@@ -192,5 +191,7 @@
 			</div>
 		</section>
 	</div>
+	
+	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
