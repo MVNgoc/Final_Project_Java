@@ -171,4 +171,9 @@ public class HomeController {
 	public String lougout() {
 		return "redirect:/login";
 	}
+	
+	@GetMapping("/fogotpass")
+	public String fogotpass() {
+		return "fogotpass";
+	}
 }
