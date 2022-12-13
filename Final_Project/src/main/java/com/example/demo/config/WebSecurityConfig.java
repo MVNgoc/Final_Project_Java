@@ -66,6 +66,7 @@ public class WebSecurityConfig {
 				.permitAll()
 				.failureForwardUrl("/fail_login")
 			.and()
+			//Custom logout
 			.logout().logoutSuccessHandler(new LogoutSuccessHandler() {
 				 
                 public void onLogoutSuccess(HttpServletRequest request,
@@ -76,7 +77,10 @@ public class WebSecurityConfig {
                     response.sendRedirect("/logout");
                 }
             })
-            .permitAll();
+            .permitAll()
+            .and()
+            .rememberMe().key("ANVUUGnjshdaygdsa967643242")
+            .tokenValiditySeconds(3 * 24 * 60 * 60);
 		
 		return http.build();
 	}
