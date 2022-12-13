@@ -6,70 +6,154 @@
 <title>Giỏ hàng</title>
 <link rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
-  <main>
-    <div class="basket">
-      <div class="basket-labels">
-        <ul>
-          <li class="item item-heading">Món</li>
-          <li class="price">Giá</li>
-          <li class="quantity">Số lượng</li>
-          <li class="subtotal">Tổng tiền</li>
-        </ul>
-      </div>
-      <div class="basket-product">
-        <div class="item">
-          <div class="product-image">
-            <img src="img/food-placeholder.png" alt="Placholder Image 2" class="product-frame">
-          </div>
-          <div class="product-details">
-            <h1><strong><span class="item-quantity">4</span> x Pizza</strong></h1>
-            <p><strong>Vừa nhanh vừa ngon</strong></p>
-          </div>
-        </div>
-        <div class="price">26.000</div>
-        <div class="quantity">
-          <input type="number" value="4" min="1" class="quantity-field">
-        </div>
-        <div class="subtotal">104.000</div>
-        <div class="remove">
-          <button>Xóa</button>
-        </div>
-      </div>
-      <div class="basket-product">
-        <div class="item">
-          <div class="product-image">
-            <img src="img/food-placeholder.png" alt="Placholder Image 2" class="product-frame">
-          </div>
-          <div class="product-details">
-            <h1><strong><span class="item-quantity">1</span> x Lẩu bò</strong></h1>
-            <p><strong>Nóng hổi vừa thổi vừa húp</strong></p>
-          </div>
-        </div>
-        <div class="price">26.000</div>
-        <div class="quantity">
-          <input type="number" value="1" min="1" class="quantity-field">
-        </div>
-        <div class="subtotal">26.000</div>
-        <div class="remove">
-          <button>Xóa</button>
-        </div>
-      </div>
-    </div>
-    <aside>
-      <div class="summary">
-        <div class="summary-total-items"><span class="total-items"></span> Món ăn cần thanh toán</div>
-        <div class="summary-total">
-          <div class="total-title">Tổng thanh toán</div>
-          <div class="total-value final-value" id="basket-total">130.000</div>
-        </div>
-        <div class="summary-checkout">
-          <button class="checkout-cta">Đặt món</button>
-        </div>
-      </div>
-    </aside>
-  </main>
+	<main class="container-home">
+		<section class="navbar">
+			<ul class="nav justify-content-center">
+				<li class="nav-item"><a class="nav-link active"
+					href="home#content-home">Trang chủ</a></li>
+				<li class="nav-item"><a class="nav-link" href="menu">Thưc đơn</a></li>
+				<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
+						bàn</a></li>
+				<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
+				<li class="nav-item"><a class="nav-link" href="home#contact">Liên
+						hệ</a></li>
+				<li class="nav-item"><a class="nav-link disabled"
+					href="changepass">Đổi mật khẩu</a></li>
+				<form th:action="@{/logout}" method="post">
+					<li class="nav-item"><button class="nav-link disabled"
+							type="submit">Đăng xuất</button></li>
+				</form>
+			</ul>
+			<div class="cart-container">
+				<div class="cart-icon">
+					<div class="num-cart-item-top">
+						<h4>3</h4>
+					</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>
+								Giỏ hàng (<span class="num-cart-item">2</span>)
+							</h4>
+						</div>
+						<div class="cart-form-body" id="cart-form-body">
+							<div class="cart-item">
+								<div class="cart-image">
+									<img src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+						</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+		<div class="basket">
+			<div class="basket-labels">
+				<ul>
+					<li class="item item-heading">Món</li>
+					<li class="price-tag">Giá</li>
+					<li class="subtotal-tag">Tổng tiền</li>
+				</ul>
+			</div>
+			<div class="basket-product">
+				<div class="item">
+					<div class="product-image">
+						<img src="img/food-placeholder.png" alt="Placholder Image 2"
+							class="product-frame">
+					</div>
+					<div class="product-details">
+						<h1>
+							<strong><span class="item-quantity">4</span> x Thịt dê nướng</strong>
+						</h1>
+					</div>
+				</div>
+				<div class="price-temp hide">80000</div>
+				<div class="price">80000</div>
+				<div class="quantity">
+					<input type="number" value="1" min="1" class="quantity-field">
+				</div>
+				<div class="subtotal-temp hide">80000</div>
+				<div class="subtotal">80000</div>
+				<div class="remove">
+					<button>Xóa</button>
+				</div>
+			</div>
+			<div class="basket-product">
+				<div class="item">
+					<div class="product-image">
+						<img src="img/food-placeholder.png" alt="Placholder Image 2"
+							class="product-frame">
+					</div>
+					<div class="product-details">
+						<h1>
+							<strong><span class="item-quantity">1</span> x Xúc xích nướng</strong>
+						</h1>
+					</div>
+				</div>
+				<div class="price-temp hide">50000</div>
+				<div class="price">50000</div>
+				<div class="quantity">
+					<input type="number" value="1" min="1" class="quantity-field">
+				</div>
+				<div class="subtotal-temp hide">50000</div>
+				<div class="subtotal">50000</div>
+				<div class="remove">
+					<button>Xóa</button>
+				</div>
+			</div>
+		</div>
+		<aside>
+			<div class="summary">
+				<div class="summary-total-items">
+					<span class="total-items"></span> Món ăn cần thanh toán
+				</div>
+				<div class="summary-total">
+					<div class="total-title">Tổng thanh toán</div>
+					<div class="total-value final-value" id="basket-total">50000</div>
+				</div>
+				<div class="summary-checkout">
+					<button class="checkout-cta">Đặt món</button>
+				</div>
+			</div>
+		</aside>
+	</main>
 </body>
 </html>

@@ -16,28 +16,39 @@ $(document).ready(function () {
 	});
 	
 	/* Recalculate cart */
+	var subtotal_temp = document.getElementsByClassName("subtotal-temp");
+	var basket_total = document.getElementById("basket-total");
+	var sum = 0;
+	
+	for(var i = 0; i < subtotal_temp.length; i++) {
+		sum += parseInt(subtotal_temp[i].innerHTML);
+	}
+	
+	basket_total.innerHTML = sum;
+	
 	function recalculateCart(onlyTotal) {
 	  var subtotal = 0;
 	
 	  /* Sum up row totals */
 	  $('.basket-product').each(function() {
-	    subtotal += parseFloat($(this).children('.subtotal').text());
+	    subtotal += parseFloat($(this).children('.subtotal-temp').text());
 	  });
 	
 	  /* Calculate totals */
 	  var total = subtotal;
-	
+	console.log(total);
 	  /*If switch for update only total, update only total display*/
+	  console.log();
 	  if (onlyTotal) {
 	    /* Update total display */
 	    $('.total-value').fadeOut(fadeTime, function() {
-	      $('#basket-total').html(total.toFixed(2));
+	      $('#basket-total').html(total.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
 	      $('.total-value').fadeIn(fadeTime);
 	    });
 	  } else {
 	    /* Update summary display. */
 	    $('.final-value').fadeOut(fadeTime, function() {
-	      $('#basket-total').html(total.toFixed(3));
+	      $('#basket-total').html(total.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
 	      if (total == 0) {
 	        $('.checkout-cta').fadeOut(fadeTime);
 	      } else {
@@ -48,18 +59,40 @@ $(document).ready(function () {
 	  }
 	}
 	
+	/* Format price */
+	var price_tag = document.getElementsByClassName("price");
+	var subtotal = document.getElementsByClassName("subtotal");	
+
+	for(var i = 0; i < price_tag.length; i++) {
+		var num_price = parseInt(price_tag[i].innerHTML);
+		num_price = num_price.toLocaleString('it-IT', {style : 'currency', currency : 'vnd'});
+		price_tag[i].innerHTML = num_price;
+		
+		var num_subtotal = parseInt(subtotal[i].innerHTML);
+		num_subtotal = num_subtotal.toLocaleString('it-IT', {style : 'currency', currency : 'vnd'});
+		subtotal[i].innerHTML = num_subtotal;
+	}
+	
+	var basket_total_text = $("#basket-total").text()
+	var fomat_basket_total = parseInt(basket_total_text).toLocaleString('it-IT', {style : 'currency', currency : 'vnd'});
+	$("#basket-total").html(fomat_basket_total);
+	
 	/* Update quantity */
 	function updateQuantity(quantityInput) {
 	  /* Calculate line price */
 	  var productRow = $(quantityInput).parent().parent();
-	  var price = parseFloat(productRow.children('.price').text());
+	  var price = parseInt(productRow.children('.price-temp').text());
 	  var quantity = $(quantityInput).val();
 	  var linePrice = price * quantity;
-	
+	 
 	  /* Update line price display and recalc cart totals */
 	  productRow.children('.subtotal').each(function() {
 	    $(this).fadeOut(fadeTime, function() {
-	      $(this).text(linePrice.toFixed(3));
+	      $(this).text(linePrice.toLocaleString('it-IT', {style : 'currency', currency : 'vnd'}));
+	      var temp = linePrice;
+	      productRow.children('.subtotal-temp').each(function() {
+			  $(this).text(temp);
+		  });
 	      recalculateCart();
 	      $(this).fadeIn(fadeTime);
 	    });
@@ -87,12 +120,6 @@ $(document).ready(function () {
 	    updateSumItems();
 	  });
 	}
-	
-	/* Show Popup Send Contact and Book Table */
-	
-	var btn_bookatable = $(".btn-booktable");
-	var btn_contact = $(".btn-contact");
-	var btn_submit = $(".btn-submit");
 	
 	/* Exit Popup Send Contact and Book Table */
 	var exit_icon = $(".exit-icon");
