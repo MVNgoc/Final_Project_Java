@@ -187,7 +187,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/menu")
-	public String menu(Model model) {
+	public String menu(Model model) {		
 		List<Product> listProduct = repoProduct.findAll();
 		List<Product> listProductNuong = new ArrayList<Product>();
 		List<Product> listProductLau = new ArrayList<Product>();
@@ -221,12 +221,24 @@ public class HomeController {
 	
 	@GetMapping("/fogotpass")
 	public String fogotpass() {
-		return "fogotpass";
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "fogotpass";
+		}
+		
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/fail")
 	public String fail() {
-		return "Fail";
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "/fail";
+		}
+		
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/reset_password")
