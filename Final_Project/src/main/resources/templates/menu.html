@@ -108,34 +108,10 @@
 					<h2>MÓN NƯỚNG</h2>
 				</div>
 				<div class="body-category">
-<<<<<<< HEAD
-					<div class="food-item">
-						<img class="food-img" alt="denuong.jpg" src="img/denuong.jpg">
-						<h3 class="food-name">Thịt dê nướng</h3>
-						<p class="food-price">80000</p>
-						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
-						</div>
-					</div>
-					<div class="food-item">
-						<img class="food-img" alt="hotdog.jpg" src="img/hotdog.jpg">
-						<h3 class="food-name">Xúc xích nướng</h3>
-						<p class="food-price">50000</p>
-						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
-						</div>
-					</div>
-					<div class="food-item">
-						<img class="food-img" alt="suongheonuong.jpg"
-							src="img/suongheonuong.jpg">
-						<h3 class="food-name">Sường heo nướng</h3>
-						<p class="food-price">70000</p>
-=======
 					<div class="food-item" th:each="product: ${listProductsNuong}">
 						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}"/>
->>>>>>> 8785467da657cd4995b1b857b00919c1a574b7bd
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
