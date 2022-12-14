@@ -38,9 +38,7 @@ $(document).ready(function() {
 
 		/* Calculate totals */
 		var total = subtotal;
-		console.log(total);
 		/*If switch for update only total, update only total display*/
-		console.log();
 		if (onlyTotal) {
 			/* Update total display */
 			$('.total-value').fadeOut(fadeTime, function() {
