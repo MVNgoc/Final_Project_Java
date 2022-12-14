@@ -231,9 +231,18 @@ html {
 }
 
 .container-home .booktable .booktable-form {
-	display: flex;	
-	flex-wrap: wrap;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 64px 64px 126px 60px;
+}
+
+.container-home .booktable-form .form-item:nth-child(8),
+.container-home .booktable-form .form-item:nth-child(9) {
+	grid-column: 1/4;
+}
+
+.container-home .booktable-form .form-item:nth-child(9) {
+	margin: auto;
 }
 
 .container-home .contact #contact-form {
@@ -1391,6 +1400,7 @@ aside {
 	min-height: 100vh;
 }
 
+
 /* End CSS Cart Page */
 
 /* CSS Responsive */
@@ -1422,7 +1432,6 @@ aside {
     }
 }
 
-<<<<<<< HEAD
 @keyframes modalslipDownCart {
     from {
     	top: 50px;
@@ -1445,6 +1454,3 @@ aside {
     }
 }
 /* End Animation */
-=======
-/* End Animation */
->>>>>>> 8785467da657cd4995b1b857b00919c1a574b7bd
