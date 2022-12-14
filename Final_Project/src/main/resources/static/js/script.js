@@ -16,8 +16,8 @@ $(document).ready(function() {
 	});
 
 	/* Recalculate cart */
-	function recalculateCart(onlyTotal) {	
-		var subtotal = 0;	
+	function recalculateCart(onlyTotal) {
+		var subtotal = 0;
 		var subtotal_temp = document.getElementsByClassName("subtotal-temp");
 		var basket_total = document.getElementById("basket-total");
 		var sum = 0;
@@ -152,10 +152,33 @@ $(document).ready(function() {
 
 	num_cart_item.text(num);
 
+	$(".add-food-icon").click(function() {
+		$(".popup-addfood-container").removeClass("hide");
+	})
+
+	$("#cancel-btn").click(function() {
+		$(".popup-addfood-container").addClass("hide");
+	})
+
+
+	/* Preview an image before it is uploaded */
+
+	var img_food_input = document.getElementById("img-food-input");
+	var img_food_add = document.getElementById("img-food-add");
+
+	if (img_food_input != null) {
+		img_food_input.onchange = e => {
+			const [file] = img_food_input.files;
+			if (file) {
+				img_food_add.src = URL.createObjectURL(file);
+			}
+		}
+	}
+
 	/* Slide show Home Page */
 
 	var myIndex = 0;
-	carousel();
+	carousel()
 
 	function carousel() {
 		var i;
@@ -166,6 +189,6 @@ $(document).ready(function() {
 		myIndex++;
 		if (myIndex > x.length) { myIndex = 1 }
 		x[myIndex - 1].style.display = "block";
-		setTimeout(carousel, 4000); // Change image every 4 seconds
+		setTimeout(carousel, 3000); // Change image every 4 seconds
 	}
 });
