@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,8 +33,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.config.Utility;
+import com.example.demo.model.Contact;
 import com.example.demo.model.CustomUserDetails;
 import com.example.demo.model.User;
+import com.example.demo.repository.ContactRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CustomUserDetailsService;
 
@@ -184,6 +189,8 @@ public class HomeController {
 		return "redirect:/login";
 	}
 	
+	//Xử lý quên password
+	
 	@GetMapping("/fogotpass")
 	public String fogotpass() {
 		return "fogotpass";
@@ -276,5 +283,33 @@ public class HomeController {
 		helper.setText(content, true);
 		
 		mailSender.send(message);
+	}
+	
+	//post contact
+	
+	@Autowired
+	ContactRepository contactRepo;
+	
+	@PostMapping("/home")
+	public String contact(Contact contact,HttpServletRequest request,Model model) {	
+		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		LocalDate localDate = LocalDate.now();
+		
+		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
+		LocalTime localTime = LocalTime.now();
+
+		contact.setUsername(request.getParameter("username"));
+		contact.setUseremail(request.getParameter("email"));
+		contact.setSubject(request.getParameter("subject"));
+		contact.setContributions(request.getParameter("content"));
+		contact.setDaycreate(date.format(localDate));
+		contact.setTimecreate(time.format(localTime));
+		
+		contactRepo.save(contact);
+		
+		model.addAttribute("success", "Gửi phản hồi thành công");
+		
+		return "/home";
+		
 	}
 }
