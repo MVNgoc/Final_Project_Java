@@ -50,7 +50,11 @@ CREATE TABLE contact (
   id varchar(15) NOT NULL,
   username varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   useremail varchar(225) COLLATE utf8_unicode_ci NOT NULL,
-  contributions varchar(225) COLLATE utf8_unicode_ci NOT NULL
+  subject varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  contributions varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  timecreate TIME NOT NULL,
+  daycreate DATE NOT NULL
+
 );
 
 -- pass: 123456

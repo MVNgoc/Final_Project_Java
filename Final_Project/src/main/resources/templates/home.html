@@ -263,23 +263,42 @@
 						</div>
 					</div>
 					<div class="contact-form-container">
-						<form action="#" id="contact-form">
+						<form th:action="@{/home}" method="post" id="contact-form">
 							<div class="form-item">
-								<input type="text" placeholder="Họ tên" required></input>
+								<input name="username" type="text" placeholder="Họ tên" required></input>
 							</div>
 							<div class="form-item">
-								<input type="email" placeholder="Email" required></input>
+								<input name="email" type="email" placeholder="Email" required></input>
 							</div>
 							<div class="form-item">
-								<input type="text" placeholder="Chủ đề" required></input>
+								<input name="subject" type="text" placeholder="Chủ đề" required></input>
 							</div>
 							<div class="form-item">
-								<textarea rows="5" placeholder="Nội dung" required></textarea>
+								<textarea name="content" rows="5" placeholder="Nội dung" required></textarea>
 							</div>
 							<div class="form-item">
 								<button type="submit" class="btn-contact">Gửi phản hồi</button>
 							</div>
 						</form>
+						
+						<td th:object="${user}" th:if="${success != null}">
+							<div class="popup-changepass-container">
+									<div class="popup">
+										<div class="popup-exit">
+											<i class="fa-solid fa-xmark exit-icon"></i>
+										</div>
+										<div class="header-popup">
+											<div class="header-content">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</div>
+										<div class="popup-content">
+											<h3>[[${success}]]</h3>
+										</div>
+									</div>
+								</div>
+						</td>
+						
 					</div>
 				</div>
 			</div>
