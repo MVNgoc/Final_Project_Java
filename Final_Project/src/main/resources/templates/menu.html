@@ -92,26 +92,10 @@
 					<h2>MÓN NƯỚNG</h2>
 				</div>
 				<div class="body-category">
-					<div class="food-item">
-						<img class="food-img" alt="denuong.jpg" src="img/denuong.jpg">
-						<h3 class="food-name">Thịt dê nướng</h3>
-						<p class="food-price">80000</p>
-						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
-						</div>
-					</div>
-					<div class="food-item">
-						<img class="food-img" alt="hotdog.jpg" src="img/hotdog.jpg">
-						<h3 class="food-name">Xúc xích nướng</h3>
-						<p class="food-price">50000</p>
-						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
-						</div>
-					</div>
-					<div class="food-item">
-						<img class="food-img" alt="suongheonuong.jpg" src="img/suongheonuong.jpg">
-						<h3 class="food-name">Sường heo nướng</h3>
-						<p class="food-price">70000</p>
+					<div class="food-item" th:each="product: ${listProductsNuong}">
+						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
+						<h3 class="food-name" th:text="${product.title}"></h3>
+						<p class="food-price" th:text="${product.price}"/>
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
@@ -123,26 +107,40 @@
 					<h2>MÓN LẨU</h2>
 				</div>
 				<div class="body-category">
-					<div class="food-item">
-						<img class="food-img" alt="lauga.png" src="img/lauga.png">
-						<h3 class="food-name">Lẩu gà</h3>
-						<p class="food-price">100000</p>
+					<div class="food-item" th:each="product: ${listProductsLau}">
+						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
+						<h3 class="food-name" th:text="${product.title}"></h3>
+						<p class="food-price" th:text="${product.price}"/>
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
 					</div>
-					<div class="food-item">
-						<img class="food-img" alt="laumam.jpg" src="img/laumam.jpg">
-						<h3 class="food-name">Lẩu mắm</h3>
-						<p class="food-price">150000</p>
+				</div>
+			</div>
+			<div class="category-item">
+				<div class="header-category">
+					<h2>MÓN CHAY</h2>
+				</div>
+				<div class="body-category">
+					<div class="food-item" th:each="product: ${listProductsChay}">
+						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
+						<h3 class="food-name" th:text="${product.title}"></h3>
+						<p class="food-price" th:text="${product.price}"/>
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
 					</div>
-					<div class="food-item">
-						<img class="food-img" alt="laubo.jpg" src="img/laubo.jpg">
-						<h3 class="food-name">Lẩu bò</h3>
-						<p class="food-price">200000</p>
+				</div>
+			</div>
+			<div class="category-item">
+				<div class="header-category">
+					<h2>FASTFOOD</h2>
+				</div>
+				<div class="body-category">
+					<div class="food-item" th:each="product: ${listProductsFastfood}">
+						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
+						<h3 class="food-name" th:text="${product.title}"></h3>
+						<p class="food-price" th:text="${product.price}"/>
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
