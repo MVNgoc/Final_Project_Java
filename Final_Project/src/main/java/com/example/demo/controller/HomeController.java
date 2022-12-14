@@ -140,7 +140,6 @@ public class HomeController {
 			return "redirect:/login";
 		}
 		
-		
 		return "/changepass";
 	}
 	
@@ -187,7 +186,12 @@ public class HomeController {
 	}
 	
 	@GetMapping("/menu")
-	public String menu(Model model) {		
+	public String menu(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "/login";
+		}
+		
 		List<Product> listProduct = repoProduct.findAll();
 		List<Product> listProductNuong = new ArrayList<Product>();
 		List<Product> listProductLau = new ArrayList<Product>();
