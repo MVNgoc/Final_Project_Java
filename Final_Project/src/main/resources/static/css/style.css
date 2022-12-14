@@ -242,6 +242,10 @@ html {
     grid-template-rows: auto auto auto auto;
 }
 
+<<<<<<< HEAD
+=======
+.container-home .contact #contact-form .form-item:nth-child(3),
+>>>>>>> fb62b0cc2e4602425ba29ad8d7017c394f145095
 .container-home .contact #contact-form .form-item:nth-child(4),
 .container-home .contact #contact-form .form-item:nth-child(5) {
 	grid-column: 1 / 3;
@@ -472,8 +476,12 @@ html {
 
 .popup-contact-container,
 .popup-bookatable-container,
+<<<<<<< HEAD
 .popup-changepass-container,
 .popup-addfood-container {
+=======
+.popup-changepass-container {
+>>>>>>> fb62b0cc2e4602425ba29ad8d7017c394f145095
 	display: flex;	
 	position: fixed;
 	z-index: 9999;
@@ -488,8 +496,12 @@ html {
 
 .popup-contact-container .popup,
 .popup-bookatable-container .popup,
+<<<<<<< HEAD
 .popup-changepass-container .popup,
 .popup-addfood-container .popup {
+=======
+.popup-changepass-container .popup {
+>>>>>>> fb62b0cc2e4602425ba29ad8d7017c394f145095
 	position: relative;
 	background-color: white;
 	width: 400px;
@@ -965,6 +977,7 @@ html {
 	font-size: 15px;
 }
 
+<<<<<<< HEAD
 .body-menu .add-food-icon {
 	background-color: #cda45e;
 	width: 80px;
@@ -978,6 +991,8 @@ html {
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
+=======
+>>>>>>> fb62b0cc2e4602425ba29ad8d7017c394f145095
 @keyframes modalslipDown {
     from {
     	top: 50px;
@@ -988,6 +1003,7 @@ html {
     	opacity: 1;
     }
 }
+<<<<<<< HEAD
 
 .popup-addfood-container .popup {
 	display: flex;
@@ -1038,6 +1054,8 @@ html {
 	width: 70px;
 	margin-right: 15px;
 }
+=======
+>>>>>>> fb62b0cc2e4602425ba29ad8d7017c394f145095
 /* End CSS Menu Page */
 
 /* Start CSS Cart Page */
