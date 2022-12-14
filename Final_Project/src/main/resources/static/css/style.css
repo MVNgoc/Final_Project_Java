@@ -1422,6 +1422,7 @@ aside {
     }
 }
 
+<<<<<<< HEAD
 @keyframes modalslipDownCart {
     from {
     	top: 50px;
@@ -1444,3 +1445,6 @@ aside {
     }
 }
 /* End Animation */
+=======
+/* End Animation */
+>>>>>>> 8785467da657cd4995b1b857b00919c1a574b7bd

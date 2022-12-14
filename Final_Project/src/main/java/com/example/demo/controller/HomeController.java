@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,8 +36,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.config.Utility;
 import com.example.demo.model.Contact;
 import com.example.demo.model.CustomUserDetails;
+import com.example.demo.model.Product;
 import com.example.demo.model.User;
 import com.example.demo.repository.ContactRepository;
+import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CustomUserDetailsService;
 
@@ -48,6 +51,8 @@ public class HomeController {
 	// http://127.0.0.1:8081
 	@Autowired
 	private UserRepository repo;
+	@Autowired
+	private ProductRepository repoProduct;
 	
 	@GetMapping("/login")
     public String login() {
@@ -180,7 +185,28 @@ public class HomeController {
 	}
 	
 	@GetMapping("/menu")
-	public String menu() {
+	public String menu(Model model) {
+		List<Product> listProduct = repoProduct.findAll();
+		List<Product> listProductNuong = new ArrayList<Product>();
+		List<Product> listProductLau = new ArrayList<Product>();
+		List<Product> listProductChay = new ArrayList<Product>();
+		List<Product> listProductFastfood = new ArrayList<Product>();
+		model.addAttribute("listProducts",listProduct);
+		for (int i = 0 ; i < listProduct.size() ; i++) {
+			if (listProduct.get(i).getCategory_name().equals("Nướng")) {
+				listProductNuong.add(listProduct.get(i));
+			}else if (listProduct.get(i).getCategory_name().equals("Lẩu")) {
+				listProductLau.add(listProduct.get(i));
+			}else if (listProduct.get(i).getCategory_name().equals("Chay")) {
+				listProductChay.add(listProduct.get(i));
+			}else if (listProduct.get(i).getCategory_name().equals("Fastfood")) {
+				listProductFastfood.add(listProduct.get(i));
+			}
+		}
+		model.addAttribute("listProductsNuong",listProductNuong);
+		model.addAttribute("listProductsLau",listProductLau);
+		model.addAttribute("listProductsChay",listProductChay);
+		model.addAttribute("listProductsFastfood",listProductFastfood);
 		return "menu";
 	}
 	
