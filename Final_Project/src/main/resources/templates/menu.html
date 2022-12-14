@@ -5,27 +5,21 @@
 <meta charset="utf-8" />
 <title>Thực đơn</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 	<div class="container-home">
 		<section class="navbar">
 			<ul class="nav justify-content-center">
-				<li class="nav-item"><a class="nav-link active"
-					href="home#content-home">Trang chủ</a></li>
+				<li class="nav-item"><a class="nav-link active" href="home#content-home">Trang chủ</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Thưc đơn</a></li>
-				<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
-						bàn</a></li>
+				<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt bàn</a></li>
 				<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
-				<li class="nav-item"><a class="nav-link" href="home#contact">Liên
-						hệ</a></li>
-				<li class="nav-item"><a class="nav-link disabled"
-					href="changepass">Đổi mật khẩu</a></li>
+				<li class="nav-item"><a class="nav-link" href="home#contact">Liên hệ</a></li>
+				<li class="nav-item"><a class="nav-link disabled" href="changepass">Đổi mật khẩu</a></li>
 				<form th:action="@{/logout}" method="post">
-					<li class="nav-item"><button class="nav-link disabled"
-							type="submit">Đăng xuất</button></li>
+					<li class="nav-item"><button class="nav-link disabled" type="submit">Đăng xuất</button></li>
 				</form>
 			</ul>
 			<div class="cart-container">
@@ -36,9 +30,7 @@
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
-							<h4>
-								Giỏ hàng (<span class="num-cart-item">2</span>)
-							</h4>
+							<h4>Giỏ hàng (<span class="num-cart-item">2</span>)</h4>
 						</div>
 						<div class="cart-form-body" id="cart-form-body">
 							<div class="cart-item">
@@ -80,62 +72,30 @@
 						</div>
 						<div class="cart-form-footer">
 							<button type="submit">Thanh toán</button>
-						</div>
+						</div>		
 					</form>
-				</div>
+				</div>	
 			</div>
 		</section>
 		<section id="content-menu" class="content-menu">
 			<div class="introduce">
-				<h1>THỰC ĐƠN</h1>
+				<h1>
+					THỰC ĐƠN
+				</h1>
 				<h2>Mang đến cho bạn những món ăn đa dạng và ngon miệng</h2>
 			</div>
 		</section>
-
+		
 		<section class="body-menu">
-			<div class="category-item">
-				<div class="header-category">
-					<h2>THÊM MÓN</h2>
-				</div>
-				<div class="body-category">
-					<div class="add-food-icon">
-						<i class="fa-solid fa-plus"></i>
-					</div>
-				</div>
-			</div>
 			<div class="category-item">
 				<div class="header-category">
 					<h2>MÓN NƯỚNG</h2>
 				</div>
 				<div class="body-category">
-<<<<<<< HEAD
-					<div class="food-item">
-						<img class="food-img" alt="denuong.jpg" src="img/denuong.jpg">
-						<h3 class="food-name">Thịt dê nướng</h3>
-						<p class="food-price">80000</p>
-						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
-						</div>
-					</div>
-					<div class="food-item">
-						<img class="food-img" alt="hotdog.jpg" src="img/hotdog.jpg">
-						<h3 class="food-name">Xúc xích nướng</h3>
-						<p class="food-price">50000</p>
-						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
-						</div>
-					</div>
-					<div class="food-item">
-						<img class="food-img" alt="suongheonuong.jpg"
-							src="img/suongheonuong.jpg">
-						<h3 class="food-name">Sường heo nướng</h3>
-						<p class="food-price">70000</p>
-=======
 					<div class="food-item" th:each="product: ${listProductsNuong}">
 						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}"/>
->>>>>>> 8785467da657cd4995b1b857b00919c1a574b7bd
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
@@ -188,7 +148,7 @@
 				</div>
 			</div>
 		</section>
-
+		
 		<section class="footer">
 			<div class="footer-content">
 				<div class="info">
@@ -231,41 +191,7 @@
 			</div>
 		</section>
 	</div>
-
-	<div class="popup-addfood-container hide">
-		<form action="#" class="popup">
-			<div class="form-item">
-				<h3>Thêm món</h3>
-			</div>
-			<div class="form-item">
-				<input type="text" placeholder="Tên món" required>
-			</div>
-			<div class="form-item">
-				<input accept="image/*" type="file" id="img-food-input" required>
-				<img alt="Your food image" src="img/food-placeholder.png" id="img-food-add">
-			</div>
-			<div class="form-item">
-				<textarea rows="2" placeholder="Mô tả" required></textarea>
-			</div>
-			<div class="form-item">
-				<input type="number" placeholder="Giá" required>
-			</div>
-			<div class="form-item">
-				<select id="category">
-				  <option value="">Chọn loại món</option>
-				  <option value="nuong">Nướng</option>
-				  <option value="lau">Lẩu</option>
-				  <option value="chay">Chay</option>
-				  <option value="fastfood">Fast Food</option>
-				</select>
-			</div>
-			<div class="form-item">
-				<button type="submit" id="add-food-btn">Thêm</button>
-				<button type="submit" id="cancel-btn">Hủy</button>
-			</div>
-		</form>
-	</div>
-
+	
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
