@@ -128,6 +128,7 @@ $(document).ready(function() {
 		$(".popup-contact-container").css("display", "none");
 		$(".popup-bookatable-container").css("display", "none");
 		$(".popup-changepass-container").css("display", "none");
+		$(".popup-deletefood-container").css("display", "none");
 	});
 	/* JS Menu Page */
 
@@ -160,7 +161,28 @@ $(document).ready(function() {
 	$("#cancel-btn").click(function() {
 		$(".popup-addfood-container").addClass("hide");
 	})
-
+	
+	$("#cancel-edit-btn").click(function() {
+		$(".popup-editfood-container").addClass("hide");
+	})
+	
+	$("#cancel-delete-btn").click(function() {
+		$(".popup-confirmdeletefood-container").addClass("hide");
+	})
+	
+	var edit_icon = document.getElementsByClassName("edit-icon");
+	var remove_icon = document.getElementsByClassName("remove-icon");
+	
+	for (var i = 0; i < edit_icon.length; i++) {
+		(function(i){ 
+		  edit_icon[i].onclick = function() {
+		      $(".popup-editfood-container").removeClass("hide");
+		  }
+		  remove_icon[i].onclick = function() {
+		      $(".popup-confirmdeletefood-container").removeClass("hide");
+		  }
+		})(i);
+	}
 
 	/* Preview an image before it is uploaded */
 

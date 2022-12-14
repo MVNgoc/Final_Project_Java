@@ -456,9 +456,10 @@ html {
 
 /* CSS PopUp Send Contact */
 .popup-contact-container, .popup-bookatable-container,
-	.popup-changepass-container, .popup-addfood-container {
+	.popup-changepass-container, .popup-addfood-container, .popup-editfood-container,
+	.popup-deletefood-container, .popup-confirmdeletefood-container {
 	display: flex;
-	position: fixed;
+	position: fixed;	
 	z-index: 9999;
 	top: 0;
 	left: 0;
@@ -470,7 +471,9 @@ html {
 }
 
 .popup-contact-container .popup, .popup-bookatable-container .popup,
-	.popup-changepass-container .popup, .popup-addfood-container .popup {
+	.popup-changepass-container .popup, .popup-addfood-container .popup,
+	.popup-editfood-container .popup, .popup-deletefood-container .popup,
+	.popup-confirmdeletefood-container .popup {
 	position: relative;
 	background-color: white;
 	width: 400px;
@@ -521,6 +524,7 @@ html {
 
 .popup .popup-exit i:hover {
 	background: red;
+	cursor: pointer;
 }
 /* End CSS PopUp Send Contact */
 
@@ -755,7 +759,7 @@ html {
 	padding: 16px 0;
 	border-top: 1px solid rgba(255, 255, 255, 0.2);
 	display: grid;
-	grid-template-columns: 10% 80% 10%;
+	grid-template-columns: 10% 75% 5% 5% 5%;
 	grid-template-rows: 50% 50%;
 }
 
@@ -781,7 +785,9 @@ html {
 	margin-left: 60px;
 }
 
-.body-menu .food-item .buy-icon {
+.body-menu .food-item .buy-icon,
+.body-menu .food-item .edit-icon,
+.body-menu .food-item .remove-icon {
 	float: right;
 	display: block;
 	margin: auto;
@@ -790,12 +796,16 @@ html {
 	border-radius: 12px;
 }
 
-.body-menu .food-item .buy-icon:hover {
+.body-menu .food-item .buy-icon:hover,
+.body-menu .food-item .edit-icon:hover,
+.body-menu .food-item .remove-icon:hover {
 	cursor: pointer;
 	background: #cda45e;
 }
 
-.body-menu .food-item .buy-icon:hover>i {
+.body-menu .food-item .buy-icon:hover>i,
+.body-menu .food-item .edit-icon:hover>i,
+.body-menu .food-item .remove-icon:hover>i {
 	color: white;
 }
 
@@ -952,13 +962,15 @@ html {
 		rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
-.popup-addfood-container .popup {
+.popup-addfood-container .popup,
+.popup-editfood-container .popup {
 	display: flex;
 	flex-direction: column;
 	padding: 10px 20px;
 }
 
-.popup-addfood-container .popup .form-item {
+.popup-addfood-container .popup .form-item,
+.popup-editfood-container .popup .form-item {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -966,38 +978,49 @@ html {
 	padding: 10px;
 }
 
-.popup-addfood-container .popup .form-item:first-child {
+.popup-addfood-container .popup .form-item:first-child,
+.popup-editfood-container .popup .form-item:first-child {
 	margin-bottom: 12px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.popup-addfood-container .popup .form-item:last-child {
+.popup-addfood-container .popup .form-item:last-child,
+.popup-editfood-container .popup .form-item:last-child,
+.popup-confirmdeletefood-container .footer-popup {
 	margin-top: 12px;
 	border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.popup-addfood-container .popup .form-item:nth-child(3) {
+.popup-addfood-container .popup .form-item:nth-child(3),
+.popup-editfood-container .popup .form-item:nth-child(3) {
 	flex-direction: column;
 }
 
-.popup-addfood-container .form-item:nth-child(3) input {
+.popup-addfood-container .form-item:nth-child(3) input,
+.popup-editfood-container .form-item:nth-child(3) input {
 	border: none;
 	margin-bottom: 12px;
 }
 
-.popup-addfood-container img {
+.popup-addfood-container img,
+.popup-editfood-container img {
 	width: 50%;
 	border-radius: 4px;
 }
 
-.popup-addfood-container .popup input, .popup-addfood-container .popup textarea
+.popup-addfood-container .popup input, 
+.popup-addfood-container .popup textarea,
+.popup-editfood-container .popup input, 
+.popup-editfood-container .popup textarea
 	{
 	padding: 6px 10px;
 	border: 1px solid black;
 	width: 80%;
 }
 
-.popup-addfood-container .form-item button {
+.popup-addfood-container .form-item button,
+.popup-editfood-container .form-item button,
+.popup-confirmdeletefood-container .footer-popup button {
 	height: 30px;
 	width: 70px;
 	margin-right: 15px;
@@ -1005,14 +1028,39 @@ html {
 	transition: 0.4s;
 }
 
-.popup-addfood-container #add-food-btn:hover {
+.popup-confirmdeletefood-container #delete-food-btn {
+	margin-right: 0;
+}
+
+.popup-confirmdeletefood-container .footer-popup button {
+	float: right;
+}
+
+.popup-addfood-container #add-food-btn:hover,
+.popup-editfood-container #save-foodedit-btn:hover,
+.popup-confirmdeletefood-container #cancel-delete-btn:hover {
 	cursor: pointer;
 	background-color: #cda45e;
 }
 
-.popup-addfood-container #cancel-btn:hover {
+.popup-addfood-container #cancel-btn:hover,
+.popup-editfood-container #cancel-edit-btn:hover,
+.popup-confirmdeletefood-container #delete-food-btn:hover {
 	cursor: pointer;
 	background-color: rgba(255, 0, 0, 0.6);
+}
+
+.popup-confirmdeletefood-container .popup {
+	padding: 15px 10px;
+}
+
+.popup-confirmdeletefood-container .popup .header-popup {
+	margin-bottom: 10px;
+	padding: 15px 4px;
+}
+
+.popup-confirmdeletefood-container .popup .footer-popup {
+	padding: 10px 4px;
 }
 /* End CSS Menu Page */
 
@@ -1058,7 +1106,7 @@ img, .basket-labels, .basket-product {
 
 input, button, .basket, .basket-labels, .item, .price-tag, .quantity,
 	.subtotal, .subtotal-tag, .basket-product, .product-image,
-	.product-details {
+	.product-details, .price {
 	float: left;
 }
 
@@ -1137,12 +1185,17 @@ li.price-tag:before, li.subtotal:before, li.subtotal-tag:before {
 	width: 55%;
 }
 
-.price-tag, .quantity, .subtotal, .subtotal-tag {
+.price-tag, .quantity, .subtotal, .subtotal-tag, .price {
 	width: 15%;
 }
 
-.quantity {
+.price,
+.subtotal {
 	margin-top: 10px;
+}
+
+.quantity {
+	margin-top: 8px;
 }
 
 .subtotal, .subtotal-tag {
@@ -1316,7 +1369,8 @@ aside {
 	.price-tag, .subtotal {
 		width: 33%;
 	}
-	.quantity {
+	.quantity,
+	.price {
 		text-align: center;
 		width: 34%;
 	}
