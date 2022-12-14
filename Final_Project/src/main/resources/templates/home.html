@@ -170,26 +170,29 @@
 			<div class="body-booktable">
 				<form action="#" class="booktable-form">
 					<div class="form-item">
-						<input type="text" placeholder="Họ Tên" required></input>
+						<input name="username" type="text" placeholder="Họ Tên" required></input>
 					</div>
 					<div class="form-item">
-						<input type="email" placeholder="Email" required></input>
+						<input name="email" type="email" placeholder="Email" required></input>
 					</div>
 					<div class="form-item">
-						<input type="tel" placeholder="Số điện thoại" required></input>
+						<input name="phone" type="tel" placeholder="Số điện thoại" required></input>
 					</div>
 					<div class="form-item">
-						<input id="datebook" type="date" required></input>
+						<input name="datereser" id="datebook" type="date" oninput="checkdate(this);" required></input>
 					</div>
 					<div class="form-item">
-						<input id="timebook" type="time" required></input>
+						<input name="time" id="timebook" type="time" oninput="checktime(this);" required></input>
 					</div>
 					<div class="form-item">
-						<input type="number" placeholder="Số người" required></input>
+						<input name="people" type="number" placeholder="Số người" required></input>
 					</div>
 					<div class="form-item">
 						<textarea rows="5" placeholder="Ghi chú" required></textarea>
 					</div>
+					
+
+					
 					<div class="form-item">
 						<button type="submit" class="btn-booktable">Đặt bàn</button>
 					</div>
@@ -382,4 +385,34 @@
 		</div>	
 	</div>
 </body>
+<script>
+function checkdate(fielddate){
+	const today = new Date();
+	var date = fielddate.value;
+
+
+	if(new Date(date).valueOf() <= new Date().valueOf()){
+		fielddate.setCustomValidity("Date has to larger than Date Now");
+	}
+	else{
+		fielddate.setCustomValidity("");
+	}
+	
+}
+
+function checktime(fieldtime){
+	var time = fieldtime.value;
+	var text = time.split(":");
+
+	if(text[0] < 11 || text[0] > 23){
+		fieldtime.setCustomValidity("Restaurant not open at this time");
+	}
+	else{
+		fieldtime.setCustomValidity("");
+	}
+	
+}
+
+</script>
+
 </html>
