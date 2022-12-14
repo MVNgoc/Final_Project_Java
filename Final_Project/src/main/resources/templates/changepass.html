@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Đổi mật khẩu</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<section class="navbar">
+			<ul class="nav justify-content-center">
+			  <li class="nav-item">
+			    <a class="nav-link active" href="home">Trang chủ</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="menu">Thực đơn</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="/home#booktable">Đặt bàn</a>
+			  </li>
+			  <li class="nav-item">
+			    <img alt="Logo" src="img/3aelogo.png">
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="/home#contact">Liên hệ</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link disabled" href="#">Đổi mật khẩu</a>
+			  </li>
+			  <form th:action="@{/logout}" method="post">
+					<li class="nav-item"><button class="nav-link disabled" type="submit">Đăng xuất</button></li>
+				</form>
+			</ul>
+			<div class="cart-container">
+				<div class="cart-icon">
+					<div class="num-cart-item-top">
+						<h4>3</h4>
+					</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>Giỏ hàng (<span class="num-cart-item">2</span>)</h4>
+						</div>
+						<div class="cart-form-body" id="cart-form-body">
+							<div class="cart-item">
+								<div class="cart-image">
+									<img src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+						</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>		
+					</form>		
+				</div>	
+			</div>
+		</section>
+		<section class="content">
+			<form th:action="@{/changepass}" method="post"  id="content-info">
+				<h3>Đổi mật khẩu</h3>
+				<div class="form-group">
+					<input id="password" name="password" type="password" placeholder="Nhập mật khẩu cũ" required>
+				</div>
+				<div class="form-group">
+					<input id="newpass" name="newpass" type="password" placeholder="Nhập mật khẩu mới" required>
+				</div>
+				<div class="form-group">
+					<input id="newpasscf" name="newpasscf" type="password" placeholder="Xác nhận mật khẩu mới" required>
+				</div>
+				
+				<td th:if="${errorMsg != null}">
+					<div class="error-msg form-group">
+						<strong th:text="${errorMsg}"></strong>
+					</div>
+				</td>
+				
+				<div class="form-group">
+					<button type="submit" class="btn-submit">Xác nhận</button>
+				</div>
+			</form>
+			
+			<td th:object="${user}" th:if="${success != null}">
+				<div class="popup-changepass-container">
+						<div class="popup">
+							<div class="popup-exit">
+								<i class="fa-solid fa-xmark exit-icon"></i>
+							</div>
+							<div class="header-popup">
+								<div class="header-content">
+									<i class="fa-solid fa-check"></i>
+								</div>
+							</div>
+							<div class="popup-content">
+								<h3>Đổi mật khẩu thành công!</h3>
+							</div>
+						</div>
+					</div>
+			</td>
+		</section>
+	</div>
+</body>
+</html>

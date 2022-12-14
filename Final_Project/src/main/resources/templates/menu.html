@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Thực đơn</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+	<div class="container-home">
+		<section class="navbar">
+			<ul class="nav justify-content-center">
+				<li class="nav-item"><a class="nav-link active"
+					href="home#content-home">Trang chủ</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Thưc đơn</a></li>
+				<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
+						bàn</a></li>
+				<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
+				<li class="nav-item"><a class="nav-link" href="home#contact">Liên
+						hệ</a></li>
+				<li class="nav-item"><a class="nav-link disabled"
+					href="changepass">Đổi mật khẩu</a></li>
+				<form th:action="@{/logout}" method="post">
+					<li class="nav-item"><button class="nav-link disabled"
+							type="submit">Đăng xuất</button></li>
+				</form>
+			</ul>
+			<div class="cart-container">
+				<div class="cart-icon">
+					<div class="num-cart-item-top">
+						<h4>3</h4>
+					</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>
+								Giỏ hàng (<span class="num-cart-item">2</span>)
+							</h4>
+						</div>
+						<div class="cart-form-body" id="cart-form-body">
+							<div class="cart-item">
+								<div class="cart-image">
+									<img src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img src="img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+						</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+		<section id="content-menu" class="content-menu">
+			<div class="introduce">
+				<h1>THỰC ĐƠN</h1>
+				<h2>Mang đến cho bạn những món ăn đa dạng và ngon miệng</h2>
+			</div>
+		</section>
+
+		<section class="body-menu">
+			<div class="category-item">
+				<div class="header-category">
+					<h2>THÊM MÓN</h2>
+				</div>
+				<div class="body-category">
+					<div class="add-food-icon">
+						<i class="fa-solid fa-plus"></i>
+					</div>
+				</div>
+			</div>
+			<div class="category-item">
+				<div class="header-category">
+					<h2>MÓN NƯỚNG</h2>
+				</div>
+				<div class="body-category">
+					<div class="food-item">
+						<img class="food-img" alt="denuong.jpg" src="img/denuong.jpg">
+						<h3 class="food-name">Thịt dê nướng</h3>
+						<p class="food-price">80000</p>
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</div>
+					</div>
+					<div class="food-item">
+						<img class="food-img" alt="hotdog.jpg" src="img/hotdog.jpg">
+						<h3 class="food-name">Xúc xích nướng</h3>
+						<p class="food-price">50000</p>
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</div>
+					</div>
+					<div class="food-item">
+						<img class="food-img" alt="suongheonuong.jpg"
+							src="img/suongheonuong.jpg">
+						<h3 class="food-name">Sường heo nướng</h3>
+						<p class="food-price">70000</p>
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="category-item">
+				<div class="header-category">
+					<h2>MÓN LẨU</h2>
+				</div>
+				<div class="body-category">
+					<div class="food-item">
+						<img class="food-img" alt="lauga.png" src="img/lauga.png">
+						<h3 class="food-name">Lẩu gà</h3>
+						<p class="food-price">100000</p>
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</div>
+					</div>
+					<div class="food-item">
+						<img class="food-img" alt="laumam.jpg" src="img/laumam.jpg">
+						<h3 class="food-name">Lẩu mắm</h3>
+						<p class="food-price">150000</p>
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</div>
+					</div>
+					<div class="food-item">
+						<img class="food-img" alt="laubo.jpg" src="img/laubo.jpg">
+						<h3 class="food-name">Lẩu bò</h3>
+						<p class="food-price">200000</p>
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="footer">
+			<div class="footer-content">
+				<div class="info">
+					<h3>3AE</h3>
+					<p>
+						19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành phố Hồ Chí
+						Minh <br> <br> <strong>Số điện thoại: </strong>0337375409
+						<br> <strong>Email: </strong>email@gmail.com
+					</p>
+					<div class="social-link">
+						<a href="#" class="twitter"> <i class="fa-brands fa-twitter"></i>
+						</a> <a href="#" class="facebook"> <i
+							class="fa-brands fa-facebook-f"></i>
+						</a> <a href="#" class="instagram"> <i
+							class="fa-brands fa-instagram"></i>
+						</a> <a href="#" class="youtube"> <i class="fa-brands fa-youtube"></i>
+						</a>
+					</div>
+				</div>
+				<div class="link-shortcuts">
+					<h4>Xem thêm</h4>
+					<ul>
+						<li><a href="home#content-home">Trang chủ</a></li>
+						<li><a href="#">Thực đơn</a></li>
+						<li><a href="home#booktable">Đặt bàn</a></li>
+						<li><a href="home#contact">Liên hệ</a></li>
+						<li><a href="changepass">Đổi mật khẩu</a></li>
+					</ul>
+				</div>
+				<div class="logo-restaurant">
+					<img alt="logo" src="img/3aelogo.png">
+				</div>
+			</div>
+			<div class="footer-info">
+				<ul>
+					<li>51900147 - Mai Văn Ngọc</li>
+					<li>51900145 - Phạm Hùng Nghĩa</li>
+					<li>51900200 - Nguyễn Thanh Sơn</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+
+	<div class="popup-addfood-container">
+		<form action="#" class="popup">
+			<div class="form-item">
+				<h3>Thêm món</h3>
+			</div>
+			<div class="form-item">
+				<input type="text" placeholder="Tên món" required>
+			</div>
+			<div class="form-item">
+				<input accept="image/*" type="file" id="img-food-input" required>
+				<img alt="Your food image" src="img/food-placeholder.png" id="img-food-add">
+			</div>
+			<div class="form-item">
+				<textarea rows="2" placeholder="Mô tả" required></textarea>
+			</div>
+			<div class="form-item">
+				<input type="number" placeholder="Giá" required>
+			</div>
+			<div class="form-item">
+				<select id="category">
+				  <option value="">Chọn loại món</option>
+				  <option value="nuong">Nướng</option>
+				  <option value="lau">Lẩu</option>
+				  <option value="chay">Chay</option>
+				  <option value="fastfood">Fast Food</option>
+				</select>
+			</div>
+			<div class="form-item">
+				<button type="submit" id="add-food-btn">Thêm</button>
+				<button type="submit" id="cancel-btn">Hủy</button>
+			</div>
+		</form>
+	</div>
+
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

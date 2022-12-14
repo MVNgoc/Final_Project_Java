@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Quên mật khẩu</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" th:href= "@{css/style.css}">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<section class="content">
+			<form method="post" th:action="@{/fogotpass}"  id="content-info">
+				<h3>Quên mật khẩu</h3>
+				<div class="form-group">
+					<input name="email"  placeholder="Nhập email của bạn" required>
+				</div>
+				
+				<td th:if="${errorMsg != null}">
+					<div class="alert alert-danger form-group">
+						<strong th:text="${errorMsg}"></strong>
+					</div>
+				</td>
+				
+				<td th:if="${success != null}">
+					<div class="alert alert-success form-group">
+						<strong th:text="${success}"></strong>
+					</div>
+				</td>
+				
+				<div class="form-group">
+					<button type="submit" class="btn-submit">Xác nhận</button>
+				</div>
+				<div class="form-group">
+					<div>
+						<a th:href="@{/login}">Đăng nhập</a>
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+</body>
+</html>
