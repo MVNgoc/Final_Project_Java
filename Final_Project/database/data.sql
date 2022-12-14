@@ -57,6 +57,20 @@ CREATE TABLE contact (
 
 );
 
+CREATE TABLE reservation (
+  id varchar(15) NOT NULL,
+  username varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  useremail varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  phone_number varchar(15) NOT NULL,
+  timereservation TIME NOT NULL,
+  dayreservation DATE NOT NULL,
+  people varchar(3),
+  contributions varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  timecreate TIME NOT NULL,
+  daycreate DATE NOT NULL
+
+);
+
 -- pass: 123456
 INSERT INTO admin_account (id, username, pass) VALUES
 ('51900147', 'admin', '$2a$12$iWE1Epee9DVR0idqIriuAus3TkZklYMqEZVX3i2HSne1jeldtYjXO');
@@ -137,4 +151,10 @@ ALTER TABLE contact
 ADD PRIMARY KEY (id);
 
 ALTER TABLE contact
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=20;
+
+ALTER TABLE reservation
+ADD PRIMARY KEY (id);
+
+ALTER TABLE reservation
   MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=20;

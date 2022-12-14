@@ -65,10 +65,6 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
 							</div>
 							<div class="modal-body">
 								<i class="fa-solid fa-check"></i>
@@ -78,8 +74,9 @@
 								<button type="button" class="btn btn-success btn-secondary">
 									<a th:href="@{/login}" style="color: white;">Đăng nhập</a>
 								</button>
-								<button type="button" class="btn btn-danger btn-primary"
-									data-dismiss="modal">Đóng</button>
+								<button type="button" class="btn btn-danger btn-primary">
+									<a th:href="@{/signup}" style="color: white;">Đóng</a>
+									</button>
 							</div>
 						</div>
 					</div>

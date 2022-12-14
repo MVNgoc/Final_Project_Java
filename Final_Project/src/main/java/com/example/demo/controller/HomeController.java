@@ -37,9 +37,11 @@ import com.example.demo.config.Utility;
 import com.example.demo.model.Contact;
 import com.example.demo.model.CustomUserDetails;
 import com.example.demo.model.Product;
+import com.example.demo.model.Reservation;
 import com.example.demo.model.User;
 import com.example.demo.repository.ContactRepository;
 import com.example.demo.repository.ProductRepository;
+import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CustomUserDetailsService;
 
@@ -334,6 +336,37 @@ public class HomeController {
 		contactRepo.save(contact);
 		
 		model.addAttribute("success", "Gửi phản hồi thành công");
+		
+		return "/home";
+		
+	}
+	
+	//post reservation
+	@Autowired
+	ReservationRepository reserRepo;
+	
+	@PostMapping("/home_process")
+	public String Reser(Reservation reser,HttpServletRequest request,Model model) {
+		
+		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		LocalDate localDate = LocalDate.now();
+		
+		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
+		LocalTime localTime = LocalTime.now();
+		
+		reser.setUsername(request.getParameter("username"));
+		reser.setUseremail(request.getParameter("email"));
+		reser.setPeople(request.getParameter("people"));
+		reser.setDayreservation(request.getParameter("datereser"));
+		reser.setPhone_number(request.getParameter("phone"));
+		reser.setTimereservation(request.getParameter("time"));
+		reser.setContributions(request.getParameter("content"));
+		reser.setDaycreate(date.format(localDate));
+		reser.setTimecreate(time.format(localTime));
+		
+		reserRepo.save(reser);
+		
+		model.addAttribute("success", "Gửi form đặt bàn thành công");
 		
 		return "/home";
 		
