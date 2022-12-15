@@ -452,4 +452,9 @@ public class HomeController {
 	public String book_table() {
 		return "admin/book_table";
 	}
+	
+	@GetMapping("/contact")
+	public String contact() {
+		return "admin/contact";
+	}
 }

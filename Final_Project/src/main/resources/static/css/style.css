@@ -1691,14 +1691,11 @@ aside {
 		opacity:0.2;
 	}
 
-<<<<<<< HEAD
-=======
 	to {
 		opacity: 1;
 	}
 
 }
->>>>>>> 65d631bc44a1bd01119ede95fdc97dc89ceda59e
 @keyframes modalslipDownCart {
 	from { 
 		top:50px;
@@ -1711,9 +1708,7 @@ aside {
 	}
 
 }
-<<<<<<< HEAD
 
-=======
 @keyframes modalslipDownPopup {
 	from { top:-100px;
 		opacity: 0.5;
@@ -1724,5 +1719,4 @@ aside {
 		opacity: 1;
 	}
 }
->>>>>>> 65d631bc44a1bd01119ede95fdc97dc89ceda59e
 /* End Animation */
