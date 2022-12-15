@@ -20,7 +20,7 @@ public class Product {
 	@Column(nullable = false, length = 225)
 	private String description_food;
 	@Column(nullable = false, length = 225)
-	private int price;
+	private long price;
 	@Column(nullable = false, length = 64)
 	private String category_name;
 
@@ -67,12 +67,12 @@ public class Product {
 		this.description_food = description_food;
 	}
 
-	public int getPrice() {
+	public Long getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(long l) {
+		this.price = l;
 	}
 
 	public String getCategory_name() {

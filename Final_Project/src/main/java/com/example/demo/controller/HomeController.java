@@ -244,7 +244,7 @@ public class HomeController {
 		product.setImg_food(fileName);
 		product.setCategory_name(typeV);
 		product.setDescription_food(request.getParameter("description"));
-		product.setPrice((Integer.parseInt(request.getParameter("price"))));
+		product.setPrice((Long.parseLong(request.getParameter("price"))));
 		product.setTitle(request.getParameter("namefood"));
 		
 		repoProduct.save(product);
