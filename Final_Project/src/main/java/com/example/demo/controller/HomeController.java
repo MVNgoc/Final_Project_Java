@@ -398,4 +398,9 @@ public class HomeController {
 	public String error() {
 		return "error";
 	}
+	
+	@GetMapping("/book_table")
+	public String book_table() {
+		return "admin/book_table";
+	}
 }
