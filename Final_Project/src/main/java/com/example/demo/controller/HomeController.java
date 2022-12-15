@@ -250,27 +250,35 @@ public class HomeController {
 		}else {
 			typeV = "Fastfood";
 		}
-		product.setImg_food(fileName);
-		product.setCategory_name(typeV);
-		product.setDescription_food(request.getParameter("description"));
-		product.setPrice((Long.parseLong(request.getParameter("price"))));
-		product.setTitle(request.getParameter("namefood"));
 		
-		repoProduct.save(product);
-		
-		
-		String uploadDir = "./src/main/upload/food/";
-		  
-		Path uploadPath = Paths.get(uploadDir);
-		  
-		try (InputStream inputStream = multipartFile.getInputStream()){ 
-			Path filePath = uploadPath.resolve(fileName); 
-			Files.copy(inputStream, filePath ,StandardCopyOption.REPLACE_EXISTING); 
-		} catch (IOException e) { 
-			throw new IOException("Could not save uploaded file: " + fileName); 
+		if(repoProduct.findbytitle(request.getParameter("namefood")) != null) {
+			model.addAttribute("error", "Tên món ăn bị trùng"); 
+			return "/menu";
+		}else if(repoProduct.findbyimgfood(fileName) != null){
+			model.addAttribute("error", "Tên ảnh bị trùng"); 
+			return "/menu";
+		}else {
+			product.setImg_food(fileName);
+			product.setCategory_name(typeV);
+			product.setDescription_food(request.getParameter("description"));
+			product.setPrice((Long.parseLong(request.getParameter("price"))));
+			product.setTitle(request.getParameter("namefood"));
+			
+			repoProduct.save(product);
+			
+			
+			String uploadDir = "./src/main/upload/food/";
+			  
+			Path uploadPath = Paths.get(uploadDir);
+			  
+			try (InputStream inputStream = multipartFile.getInputStream()){ 
+				Path filePath = uploadPath.resolve(fileName); 
+				Files.copy(inputStream, filePath ,StandardCopyOption.REPLACE_EXISTING); 
+			} catch (IOException e) { 
+				throw new IOException("Could not save uploaded file: " + fileName); 
+			}
+			model.addAttribute("success", "Thêm món thành công"); 
 		}
-		model.addAttribute("success", "Thêm món thành công"); 
-		
 
 		return "/menu";
 	}
