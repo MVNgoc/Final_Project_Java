@@ -461,7 +461,8 @@ html {
 	.popup-changepass-container, .popup-addfood-container, .popup-editfood-container,
 	.popup-deletefood-container, .popup-confirmdeletefood-container,
 	.popup-orderfood-container,
-	.popup-booktable-container {
+	.popup-booktable-container,
+	.popup-contact-container {
 	display: flex;
 	position: fixed;	
 	z-index: 9999;
@@ -478,7 +479,8 @@ html {
 	.popup-changepass-container .popup, .popup-addfood-container .popup,
 	.popup-editfood-container .popup, .popup-deletefood-container .popup,
 	.popup-confirmdeletefood-container .popup, 	.popup-orderfood-container .popup,
-	.popup-booktable-container .popup {
+	.popup-booktable-container .popup,
+	.popup-contact-container .popup {
 	position: relative;
 	background-color: white;
 	width: 400px;
@@ -523,7 +525,8 @@ html {
 
 .popup .popup-exit i,
 .popup-exit-order i,
-.popup-exit-booktable i {
+.popup-exit-booktable i,
+.popup-exit-contact i {
 	float: right;
 	padding: 10px 16px;
 	transition: 0.3s;
@@ -531,7 +534,8 @@ html {
 
 .popup .popup-exit i:hover,
 .popup-exit-order i:hover,
-.popup-exit-booktable i:hover {
+.popup-exit-booktable i:hover,
+.popup-exit-contact i:hover {
 	background: red;
 	cursor: pointer;
 }
@@ -1020,7 +1024,8 @@ html {
 .popup-addfood-container .popup .form-item,
 .popup-editfood-container .popup .form-item,
 .popup-orderfood-container .popup .form-item,
-.popup-booktable-container .popup .form-item {
+.popup-booktable-container .popup .form-item, 
+.popup-contact-container .popup .form-item{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1031,7 +1036,8 @@ html {
 .popup-addfood-container .popup .form-item:first-child,
 .popup-editfood-container .popup .form-item:first-child,
 .popup-orderfood-container .popup .form-item:first-child,
-.popup-booktable-container .popup .form-item:first-child {
+.popup-booktable-container .popup .form-item:first-child,
+.popup-contact-container .popup .form-item:first-child {
 	margin-bottom: 12px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -1040,7 +1046,8 @@ html {
 .popup-editfood-container .popup .form-item:last-child,
 .popup-confirmdeletefood-container .footer-popup,
 .popup-orderfood-container .popup .form-item:last-child,
-.popup-booktable-container .popup .form-item:last-child {
+.popup-booktable-container .popup .form-item:last-child,
+.popup-contact-container .popup .form-item:last-child {
 	margin-top: 12px;
 	border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -1078,7 +1085,9 @@ html {
 .container-home .food-order-footer button,
 .popup-orderfood-container .form-item button,
 .book-table .book-table-footer button,
-.popup-booktable-container .form-item button {
+.popup-booktable-container .form-item button,
+.contact .contact-footer button,
+.popup-contact-container .form-item button {
 	height: 30px;
 	width: 70px;
 	margin-right: 15px;
@@ -1100,7 +1109,8 @@ html {
 .container-home .food-order-footer button:hover,
 .popup-orderfood-container #accept-order-btn:hover,
 .popup-booktable-container #accept-booktable-btn:hover,
-.book-table .book-table-footer button:hover {
+.book-table .book-table-footer button:hover,
+.contact .contact-footer button:hover {
 	cursor: pointer;
 	background-color: #cda45e;
 }
@@ -1109,7 +1119,8 @@ html {
 .popup-editfood-container #cancel-edit-btn:hover,
 .popup-confirmdeletefood-container #delete-food-btn:hover,
 .popup-orderfood-container #cancel-order-btn:hover,
-.popup-booktable-container #cancel-booktable-btn:hover {
+.popup-booktable-container #cancel-booktable-btn:hover,
+.popup-contact-container #cancel-contact-btn:hover {
 	cursor: pointer;
 	background-color: rgba(255, 0, 0, 0.6);
 }
@@ -1496,7 +1507,8 @@ aside {
 /* Start CSS food_orders Page */
 
 .container-home .food-order,
-.container-home .book-table {
+.container-home .book-table,
+.container-home .contact {
 	margin-top: 40px;
 	background-color: white;
 	padding: 0 10px;
@@ -1508,8 +1520,13 @@ aside {
 	border-radius: 6px;
 }
 
+.container-home .food-order {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
 .container-home .food-order .food-order-header,
-.container-home .book-table .book-table-header {
+.container-home .book-table .book-table-header,
+.container-home .contact .contact-header {
 	width: 100%;
 	padding: 10px 10px;
 	text-align: center;	
@@ -1517,13 +1534,15 @@ aside {
 }
 
 .food-order .food-order-body .food-order-body-child,
-.book-table .book-table-body .book-table-body-child {
+.book-table .book-table-body .book-table-body-child,
+.contact .contact-body .contact-body-child {
 	margin-top: 10px;
 	text-align: center;
 }
 
 .food-order .food-order-footer,
-.book-table .book-table-footer {
+.book-table .book-table-footer,
+.contact .contact-footer {
 	margin-top: 10px;
 	border-top: 1px solid rgba(0, 0, 0, 0.2);
 	width: 100%;
@@ -1533,12 +1552,14 @@ aside {
 }
 
 .food-order .food-order-footer button,
-.book-table .book-table-footer button {
+.book-table .book-table-footer button,
+.contact .contact-footer button {
 	margin-right: 0;
 }
 
 .food-order-container,
-.book-table-container {
+.book-table-container,
+.contact-container {
 	width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -1546,7 +1567,8 @@ aside {
 }
 
 .popup-orderfood-container .popup-exit-order,
-.popup-booktable-container .popup-exit-booktable {
+.popup-booktable-container .popup-exit-booktable,
+.popup-contact-container .popup-exit-contact {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -1559,7 +1581,8 @@ aside {
 }
 
 .popup-orderfood-container .popup .form-item:first-child,
-.popup-booktable-container .popup .form-item:first-child {
+.popup-booktable-container .popup .form-item:first-child,
+.popup-contact-container .popup .form-item:first-child {
 	margin-top: 20px;
 }
 
@@ -1603,13 +1626,15 @@ aside {
 }
 
 .popup-orderfood-container .order-info p,
-.popup-booktable-container .booktable-content p {
+.popup-booktable-container .booktable-content p,
+.popup-contact-container .contact-content p {
 	margin-top: 0;
 }
 
 .popup-orderfood-container .order-info p,
 .popup-orderfood-container .order-info h4,
-.popup-booktable-container .booktable-content h4 {
+.popup-booktable-container .booktable-content h4,
+.popup-contact-container .contact-content h4 {
 	padding: 6px 6px;
 }
 
@@ -1644,43 +1669,71 @@ aside {
 	background-image: url("../img/restaurant4.jpg");
 }
 
-.popup-booktable-container .booktable-content {
+.popup-booktable-container .booktable-content,
+.popup-contact-container .contact-content {
 	padding: 10px;
 }
 
-.popup-booktable-container .booktable-content .booktable-content-item {
+.popup-booktable-container .booktable-content .booktable-content-item,
+.popup-contact-container .contact-content .contact-content-item {
 	display: flex;
 }
 
-.popup-booktable-container .booktable-content-item p {
+.popup-booktable-container .booktable-content-item p,
+.popup-contact-container .contact-content-item p {
 	width: 50%;
 	border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.popup-booktable-container .booktable-content-item 	.note-content {
+.popup-booktable-container .booktable-content-item 	.note-content,
+.popup-contact-container .contact-content-item 	.note-content {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }	
 
-.popup-booktable-container .booktable-content-item h4 {
+.popup-booktable-container .booktable-content-item h4,
+.popup-contact-container .contact-content-item h4 {
 	width: 50%;
 	border-bottom: 2px solid white;
 	border-right: 2px solid white;
 	background-color: #ccc;
 }
 
-.popup-booktable-container .popup {
+.popup-booktable-container .popup,
+.popup-contact-container .popup {
 	width: 530px;
 }
 
-.popup-booktable-container .booktable-content p {
+.popup-booktable-container .booktable-content p,
+.popup-contact-container .contact-content p {
 	padding: 6px 14px;
+}
+
+.container-home .book-table {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 /* End CSS Book Table Page */
 
 /* Start CSS Contact Page */
 
+.container-contact .content-home {
+	background-image: url(../img/dinner.jpg);
+}
 
+.contact-container .contact-body p {
+	color: black;
+	font-size: 16px;
+	margin-top: 0.75rem;
+	font-weight: normal;
+}
 
+.contact-container .contact {
+	width: 270px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.contact-container .contact .contact-header {
+	padding: 16px 10px;
+}
 /* End CSS Contact Page */
 
 /* CSS Responsive */

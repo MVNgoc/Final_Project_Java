@@ -492,13 +492,16 @@ public class HomeController {
 	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
 	public String deletefood(Long id) throws IOException {
 		Product product = repoProduct.findbytestId(id);
-		System.out.println(product.getTitle());		
+		System.out.println(product.getTitle());	
+		System.out.println(product.getImg_food());	
 		
-		String DeleteDir = "./src/main/upload/food/";
-		Path DeletePath = Paths.get(DeleteDir);
-		Path filePath = DeletePath.resolve(product.getImg_food());
-		
-		Files.delete(filePath);
+		/*
+		 * String DeleteDir = "./src/main/upload/food/"; Path DeletePath =
+		 * Paths.get(DeleteDir); Path filePath =
+		 * DeletePath.resolve(product.getImg_food());
+		 * 
+		 * Files.delete(filePath);
+		 */
 
 		
 		return "redirect:/menu";

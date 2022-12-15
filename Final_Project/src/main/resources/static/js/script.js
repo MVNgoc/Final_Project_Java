@@ -125,8 +125,6 @@ $(document).ready(function() {
 	var exit_icon = $(".exit-icon");
 
 	exit_icon.click(function() {
-		$(".popup-contact-container").css("display", "none");
-		$(".popup-bookatable-container").css("display", "none");
 		$(".popup-changepass-container").css("display", "none");
 		$(".popup-deletefood-container").css("display", "none");
 	});
@@ -227,7 +225,22 @@ $(document).ready(function() {
 	$(".popup-exit-booktable").click(function() {
 			$(".popup-booktable-container").addClass("hide");
 	})
-
+	
+	/* JS Contact Page */
+	
+	var edit_contact = document.getElementsByClassName("edit_contact");
+	for (var i = 0; i < edit_contact.length; i++) {
+		(function(i){ 
+		  edit_contact[i].onclick = function() {
+		      $(".popup-contact-container").removeClass("hide");
+		  }
+		})(i);
+	}
+	
+	$(".popup-exit-contact").click(function() {
+			$(".popup-contact-container").addClass("hide");
+	})
+	
 	/* Slide show Home Page */
 
 	var myIndex = 0;
