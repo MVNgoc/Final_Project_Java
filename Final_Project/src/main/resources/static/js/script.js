@@ -211,6 +211,20 @@ $(document).ready(function() {
 	$(".popup-exit-order").click(function() {
 			$(".popup-orderfood-container").addClass("hide");
 	})
+	
+	/* JS Book Table Page */
+	var edit_book_table = document.getElementsByClassName("edit_book_table");
+	for (var i = 0; i < edit_book_table.length; i++) {
+		(function(i){ 
+		  edit_book_table[i].onclick = function() {
+		      $(".popup-booktable-container").removeClass("hide");
+		  }
+		})(i);
+	}
+	
+	$(".popup-exit-booktable").click(function() {
+			$(".popup-booktable-container").addClass("hide");
+	})
 
 	/* Slide show Home Page */
 

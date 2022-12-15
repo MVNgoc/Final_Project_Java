@@ -226,28 +226,29 @@
 			</div>
 		</section>
 	</div>
-
+	
+	
 	<div class="popup-addfood-container hide">
-		<form action="#" class="popup">
+		<form th:action="@{/menu_add}" method="post" class="popup" enctype="multipart/form-data">
 			<div class="form-item">
 				<h3>Thêm món</h3>
 			</div>
 			<div class="form-item">
-				<input type="text" placeholder="Tên món" required>
+				<input name="namefood" type="text" placeholder="Tên món" required>
 			</div>
 			<div class="form-item">
-				<input accept="image/*" type="file" id="img-food-input" required>
+				<input accept="image/*" name="img-food-input" type="file" id="img-food-input">
 				<img alt="Your food image" src="img/food-placeholder.png"
 					id="img-food-add">
 			</div>
 			<div class="form-item">
-				<textarea rows="2" placeholder="Mô tả" required></textarea>
+				<textarea name="description" rows="2" placeholder="Mô tả" required></textarea>
 			</div>
 			<div class="form-item">
-				<input type="number" placeholder="Giá" required>
+				<input name="price" type="number" placeholder="Giá" required>
 			</div>
 			<div class="form-item">
-				<select id="category">
+				<select name="type" id="category">
 					<option value="">Chọn loại món</option>
 					<option value="nuong">Nướng</option>
 					<option value="lau">Lẩu</option>
