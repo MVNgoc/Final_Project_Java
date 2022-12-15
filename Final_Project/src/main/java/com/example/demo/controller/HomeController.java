@@ -517,4 +517,19 @@ public class HomeController {
 	public Optional<Product> view(Long id){
 		return repoProduct.findById(id);
 	}
+	
+	@PostMapping(value="/update")
+	public String update(HttpServletRequest request,@RequestParam("img-food-input") MultipartFile multipartFile) {
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		System.out.println(request.getParameter("name"));
+		System.out.println(fileName);
+		if(fileName.isEmpty()) {
+			System.out.println("no change");
+		}
+		System.out.println(request.getParameter("description"));
+		System.out.println(request.getParameter("price"));
+		System.out.println(request.getParameter("category"));
+		return "redirect:/menu";
+		
+	}
 }

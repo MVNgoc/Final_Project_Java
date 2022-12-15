@@ -302,7 +302,7 @@
 	</div>
 
 	<div class="popup-editfood-container hide">
-		<form th:action="@{/update}"  method="put" class="popup">
+		<form th:action="@{/update}" method="post" class="popup" enctype="multipart/form-data">
 			<div class="form-item">
 				<h3>Chỉnh sửa</h3>
 			</div>
@@ -310,7 +310,7 @@
 				<input id="name" name="name" type="text" placeholder="Tên món" required>
 			</div>
 			<div class="form-item">
-				<input accept="image/*" type="file" name="img-food-input" id="img-food-input" required>
+				<input accept="image/*" type="file" name="img-food-input" id="img-food-input">
 				<img alt="Your food image" src="img/food-placeholder.png"
 					id="img-food-edit" name="img-food-edit">
 			</div>
