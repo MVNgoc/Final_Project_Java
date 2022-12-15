@@ -217,6 +217,17 @@ public class HomeController {
 		return "menu";
 	}
 	
+	//xử lý thêm món
+	@PostMapping("/menu_add")
+	public String addFood(HttpServletRequest request) {
+		System.out.println(request.getParameter("namefood"));
+		System.out.println(request.getParameter("description"));
+		System.out.println(request.getParameter("price"));
+		System.out.println(request.getParameter("type"));
+
+		return "redirect:/menu";
+	}
+	
 	@GetMapping("/logout")
 	public String lougout() {
 		return "redirect:/login";
