@@ -264,7 +264,7 @@ public class HomeController {
 		model.addAttribute("success", "Thêm món thành công"); 
 		
 
-		return "menu";
+		return "/menu";
 	}
 	
 	@GetMapping("/logout")
