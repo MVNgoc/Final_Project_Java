@@ -4,7 +4,7 @@ public class Cart {
 		private long id;
 		private String title;
 		private String img_food;
-		private long price;
+		private Long price;
 		private int quantity;
 
 		public Cart() {
@@ -34,11 +34,11 @@ public class Cart {
 			this.img_food = img_food;
 		}
 
-		public long getPrice() {
+		public Long getPrice() {
 			return price;
 		}
 
-		public void setPrice(long price) {
+		public void setPrice(Long price) {
 			this.price = price;
 		}
 

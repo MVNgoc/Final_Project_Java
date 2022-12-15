@@ -49,7 +49,7 @@
 			</div>
 
 			<div class="cart-container" th:if="${carts != null} ">
-				<div class="cart-icon" th:each="${cart: ${carts}>
+				<div class="cart-icon">
 					<div class="num-cart-item-top" id="cartCounter">0</div>
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
@@ -58,14 +58,14 @@
 								Giỏ hàng (<span class="num-cart-item">2</span>)
 							</h4>
 						</div>
-						<div class="cart-form-body" id="cart-form-body">
+						<div class="cart-form-body" id="cart-form-body" th:each="cart: ${carts}">
 							<div class="cart-item">
 								<div class="cart-image">
-									<img th:src="@{'img/food/' + ${cart.img_food}}">
+									<img th:src="@{'src/main/upload/food/' + ${cart.img_food}}">
 								</div>
 								<div class="cart-food-item">
 									<h4 th:text="${cart.title}"></h4>
-									<p class="food-price" th:text="${cart.price}">80000</p>
+									<p class="food-price" th:text="${cart.price}"></p>
 								</div>
 								<div class="cart-delete-food">
 									<i class="fa-solid fa-xmark"></i>
@@ -108,12 +108,12 @@
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsNuong}">
 						<img class="food-img"
-							th:src="@{'img/food/' + ${product.img_food}}" />
+							th:src="@{'src/main/upload/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"
-								th:attr="onclick=|addToCart(${product.id},'${title}','${img_food}',${price})|"></i>
+								th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 						<td
 							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
@@ -134,7 +134,7 @@
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsLau}">
 						<img class="food-img"
-							th:src="@{'/img/food/' + ${product.img_food}}" />
+							th:src="@{'src/main/upload/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
@@ -160,7 +160,7 @@
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsChay}">
 						<img class="food-img"
-							th:src="@{'/img/food/' + ${product.img_food}}" />
+							th:src="@{'src/main/upload/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
@@ -187,7 +187,7 @@
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsFastfood}">
 						<img class="food-img"
-							th:src="@{'/img/food/' + ${product.img_food}}" />
+							th:src="@{'src/main/upload/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
@@ -351,9 +351,6 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-
-=======
 	
 	<td th:if="${error != null}">
 				<div class="popup-changepass-container">
@@ -373,7 +370,7 @@
 					</div>
 	</td>
 	
->>>>>>> a9720f1a9b3534f0cbce98d3888d5f66ed2bb1cb
+
 	<td th:if="${success != null}">
 		<div class="popup-changepass-container">
 			<div class="popup">

@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import javax.mail.MessagingException;
+import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,6 +38,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,8 +60,10 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CustomUserDetailsService;
 
 import net.bytebuddy.utility.RandomString;
+import utils.Utils;
 
 @Controller
+@ControllerAdvice
 public class HomeController {
 
 	// http://127.0.0.1:8081
@@ -67,6 +71,12 @@ public class HomeController {
 	private UserRepository repo;
 	@Autowired
 	private ProductRepository repoProduct;
+	
+	@SuppressWarnings("unchecked")
+	@ModelAttribute
+	public void commonAttrs(Model model , HttpSession http) {
+		model.addAttribute("cartCouter",Utils.countCart((Map<Long, Cart>) http.getAttribute("cartSession")));
+	}
 	
 	@GetMapping("/login")
     public String login() {
