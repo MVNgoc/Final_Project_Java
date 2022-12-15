@@ -11,12 +11,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -42,6 +45,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.config.Utility;
+import com.example.demo.model.Cart;
 import com.example.demo.model.Contact;
 import com.example.demo.model.CustomUserDetails;
 import com.example.demo.model.Product;
@@ -190,8 +194,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@SuppressWarnings("null")
 	@GetMapping("/menu")
-	public String menu(Model model) {
+	public String menu(Model model,HttpSession session) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "/login";
@@ -218,6 +223,13 @@ public class HomeController {
 		model.addAttribute("listProductsLau",listProductLau);
 		model.addAttribute("listProductsChay",listProductChay);
 		model.addAttribute("listProductsFastfood",listProductFastfood);
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cart");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "menu";
 	}
 	
@@ -439,10 +451,10 @@ public class HomeController {
 		return "admin/food_orders";
 	}
 	
-	@GetMapping("/error")
-	public String error() {
-		return "error";
-	}
+//	@GetMapping("/error")
+//	public String error() {
+//		return "error";
+//	}
 	
 	@GetMapping("/book_table")
 	public String book_table() {
