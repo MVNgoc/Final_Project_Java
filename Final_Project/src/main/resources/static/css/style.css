@@ -1506,6 +1506,10 @@ aside {
 
 /* Start CSS food_orders Page */
 
+.popup-orderfood-container .popup {
+	box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset, rgb(0 0 0 / 30%) 0px 18px 36px -18px inset;
+}
+
 .container-home .food-order,
 .container-home .book-table,
 .container-home .contact {
@@ -1700,6 +1704,7 @@ aside {
 
 .popup-booktable-container .popup,
 .popup-contact-container .popup {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 	width: 530px;
 }
 
