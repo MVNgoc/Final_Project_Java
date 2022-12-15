@@ -11,12 +11,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.mail.MessagingException;
+import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -34,14 +38,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.config.Utility;
+import com.example.demo.model.Cart;
 import com.example.demo.model.Contact;
 import com.example.demo.model.CustomUserDetails;
 import com.example.demo.model.Product;
@@ -54,8 +63,10 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CustomUserDetailsService;
 
 import net.bytebuddy.utility.RandomString;
+import utils.Utils;
 
 @Controller
+@ControllerAdvice
 public class HomeController {
 
 	// http://127.0.0.1:8081
@@ -184,18 +195,22 @@ public class HomeController {
 		return "/changepass";
 	}
 
-	@GetMapping("/cart")
-	public String cart() {
-		return "cart";
-	}
 
 	@GetMapping("/home")
-	public String home() {
+	public String home(Model model,HttpSession session) {
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "home";
 	}
 	
+	@SuppressWarnings("null")
 	@GetMapping("/menu")
-	public String menu(Model model) {
+	public String menu(Model model,HttpSession session) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "/login";
@@ -222,6 +237,13 @@ public class HomeController {
 		model.addAttribute("listProductsLau",listProductLau);
 		model.addAttribute("listProductsChay",listProductChay);
 		model.addAttribute("listProductsFastfood",listProductFastfood);
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "menu";
 	}
 	
@@ -452,10 +474,10 @@ public class HomeController {
 		return "admin/food_orders";
 	}
 	
-	@GetMapping("/error")
-	public String error() {
-		return "error";
-	}
+//	@GetMapping("/error")
+//	public String error() {
+//		return "error";
+//	}
 	
 	@GetMapping("/book_table")
 	public String book_table() {
@@ -465,5 +487,23 @@ public class HomeController {
 	@GetMapping("/contact")
 	public String contact() {
 		return "admin/contact";
+	}
+	
+	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
+	public String deletefood(Long id) throws IOException {
+		Product product = repoProduct.findbytestId(id);
+		System.out.println(product.getTitle());	
+		System.out.println(product.getImg_food());	
+		
+		/*
+		 * String DeleteDir = "./src/main/upload/food/"; Path DeletePath =
+		 * Paths.get(DeleteDir); Path filePath =
+		 * DeletePath.resolve(product.getImg_food());
+		 * 
+		 * Files.delete(filePath);
+		 */
+
+		
+		return "redirect:/menu";
 	}
 }
