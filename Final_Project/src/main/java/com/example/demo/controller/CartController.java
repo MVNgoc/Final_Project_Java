@@ -14,7 +14,7 @@ import com.example.demo.model.Cart;
 public class CartController {
 	@GetMapping("/cart")
 	public String cart(Model model,HttpSession session) {
-		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cart");
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
     	if (cart != null) {
     		model.addAttribute("carts",cart.values());
     	}else {

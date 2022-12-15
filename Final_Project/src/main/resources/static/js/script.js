@@ -244,24 +244,21 @@ $(document).ready(function() {
 	}
 });
 
-function addToCart(product) {
+function addToCart(id,title,img_food,price) {
 	fetch("/api/cart", {
 		method: "Post",
 		body: JSON.stringify({
-			"product": {
-				"id": product.id,
-				"title": product.title,
-				"img_food": product.img_food,
-				"description_food": product.description_food,
-				"price": product.price,
-				"catetogry_name": product.catetogry_name
-			},
+			"id": id,
+			"title": title,
+			"img_food": img_food,
+			"price": price,
 			"quantity": 1
 		}),
 		headers: {
 			"content-Type": "application/json;charset=utf-8"
 		}
 	}).then(function(res) {
+		console.log(res.json)
 		return res.json()
 	}).then(function(data) {
 		let counter = document.getElementById("cartCounter")

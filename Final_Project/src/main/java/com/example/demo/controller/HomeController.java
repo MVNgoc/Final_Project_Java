@@ -224,7 +224,7 @@ public class HomeController {
 		model.addAttribute("listProductsChay",listProductChay);
 		model.addAttribute("listProductsFastfood",listProductFastfood);
 		@SuppressWarnings("unchecked")
-		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cart");
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
     	if (cart != null) {
     		model.addAttribute("carts",cart.values());
     	}else {

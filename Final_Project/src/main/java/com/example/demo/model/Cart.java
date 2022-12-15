@@ -1,30 +1,52 @@
 package com.example.demo.model;
 
 public class Cart {
-	private Product product;
-	private int quantity;
+		private long id;
+		private String title;
+		private String img_food;
+		private long price;
+		private int quantity;
 
-	public Cart() {
-	}
+		public Cart() {
+		}
 
-	public Cart(Product product, int quantity) {
-		this.product = product;
-		this.quantity = quantity;
-	}
+		public Long getId() {
+			return id;
+		}
 
-	public Product getProduct() {
-		return product;
-	}
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+		public String getTitle() {
+			return title;
+		}
 
-	public int getQuantity() {
-		return quantity;
-	}
+		public void setTitle(String title) {
+			this.title = title;
+		}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+		public String getImg_food() {
+			return img_food;
+		}
+
+		public void setImg_food(String img_food) {
+			this.img_food = img_food;
+		}
+
+		public long getPrice() {
+			return price;
+		}
+
+		public void setPrice(long price) {
+			this.price = price;
+		}
+
+		public int getQuantity() {
+			return quantity;
+		}
+
+		public void setQuantity(int quantity) {
+			this.quantity = quantity;
+		}
 }

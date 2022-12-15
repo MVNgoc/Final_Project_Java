@@ -28,42 +28,31 @@
 							type="submit">Đăng xuất</button></li>
 				</form>
 			</ul>
-			
+
 			<div class="cart-container" th:if="${carts == null}">
 				<div class="cart-icon">
 					<div class="num-cart-item-top" id="cartCounter">0</div>
 					<i class="fa-solid fa-cart-shopping"></i>
-					<form action="/cart" class="cart-form" >
+					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
 							<h4>
 								Giỏ hàng (<span class="num-cart-item">2</span>)
 							</h4>
 						</div>
-						<div class="cart-form-body" id="cart-form-body">
-							<div class="cart-item">
-								<div class="cart-image">
-								
-							</div>
-							<div class="cart-food-item">
-								<h4 >0</h4>
-								<p class="food-price" >80000</p>
-							</div>
-							<div class="cart-delete-food">
-								<i class="fa-solid fa-xmark"></i>
-							</div>
+						<div class="cart-form-body" id="cart-form-body">Chưa có sản
+							phẩm</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
 						</div>
+					</form>
 				</div>
-				<div class="cart-form-footer">
-					<button type="submit">Thanh toán</button>
-				</div>
-				</form>
 			</div>
-			
-			<div class="cart-container" th:unless="${carts != null}" th:each="cart: ${carts}">
-				<div class="cart-icon">
+
+			<div class="cart-container" th:if="${carts != null} ">
+				<div class="cart-icon" th:each="${cart: ${carts}>
 					<div class="num-cart-item-top" id="cartCounter">0</div>
 					<i class="fa-solid fa-cart-shopping"></i>
-					<form action="/cart" class="cart-form" >
+					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
 							<h4>
 								Giỏ hàng (<span class="num-cart-item">2</span>)
@@ -72,196 +61,195 @@
 						<div class="cart-form-body" id="cart-form-body">
 							<div class="cart-item">
 								<div class="cart-image">
-								<img th:src="@{'img/food/' + ${cart.product.img_food}}">
-							</div>
-							<div class="cart-food-item">
-								<h4 th:text="${cart.product.title}"></h4>
-								<p class="food-price" th:text="${cart.product.price}">80000</p>
-							</div>
-							<div class="cart-delete-food">
-								<i class="fa-solid fa-xmark"></i>
+									<img th:src="@{'img/food/' + ${cart.img_food}}">
+								</div>
+								<div class="cart-food-item">
+									<h4 th:text="${cart.title}"></h4>
+									<p class="food-price" th:text="${cart.price}">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
 							</div>
 						</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>
+					</form>
 				</div>
-				<div class="cart-form-footer">
-					<button type="submit">Thanh toán</button>
-				</div>
-				</form>
 			</div>
-			
-			
-	</div>
-	</section>
-	<section id="content-menu" class="content-menu">
-		<div class="introduce">
-			<h1>THỰC ĐƠN</h1>
-			<h2>Mang đến cho bạn những món ăn đa dạng và ngon miệng</h2>
-		</div>
-	</section>
+		</section>
+		<section id="content-menu" class="content-menu">
+			<div class="introduce">
+				<h1>THỰC ĐƠN</h1>
+				<h2>Mang đến cho bạn những món ăn đa dạng và ngon miệng</h2>
+			</div>
+		</section>
 
-	<section class="body-menu">
-		<div
-			th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+		<section class="body-menu">
+			<div
+				th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+				<div class="category-item">
+					<div class="header-category">
+						<h2>THÊM MÓN</h2>
+					</div>
+					<div class="body-category">
+						<div class="add-food-icon">
+							<i class="fa-solid fa-plus"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="category-item">
 				<div class="header-category">
-					<h2>THÊM MÓN</h2>
+					<h2>MÓN NƯỚNG</h2>
 				</div>
 				<div class="body-category">
-					<div class="add-food-icon">
-						<i class="fa-solid fa-plus"></i>
+					<div class="food-item" th:each="product: ${listProductsNuong}">
+						<img class="food-img"
+							th:src="@{'img/food/' + ${product.img_food}}" />
+						<h3 class="food-name" th:text="${product.title}"></h3>
+						<p class="food-price" th:text="${product.price}" />
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"
+								th:attr="onclick=|addToCart(${product.id},'${title}','${img_food}',${price})|"></i>
+						</div>
+						<td
+							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+							<div class="edit-icon">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</div>
+							<div class="remove-icon">
+								<i class="fa-solid fa-trash"></i>
+							</div>
+						</td>
 					</div>
 				</div>
 			</div>
-		</div>
+			<div class="category-item">
+				<div class="header-category">
+					<h2>MÓN LẨU</h2>
+				</div>
+				<div class="body-category">
+					<div class="food-item" th:each="product: ${listProductsLau}">
+						<img class="food-img"
+							th:src="@{'/img/food/' + ${product.img_food}}" />
+						<h3 class="food-name" th:text="${product.title}"></h3>
+						<p class="food-price" th:text="${product.price}" />
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</div>
 
-		<div class="category-item">
-			<div class="header-category">
-				<h2>MÓN NƯỚNG</h2>
-			</div>
-			<div class="body-category">
-				<div class="food-item" th:each="product: ${listProductsNuong}">
-					<img class="food-img" th:src="@{'img/food/' + ${product.img_food}}" />
-					<h3 class="food-name" th:text="${product.title}"></h3>
-					<p class="food-price" th:text="${product.price}" />
-					<div class="buy-icon">
-						<i class="fa-solid fa-cart-shopping"
-							th:attr="onclick=|addToCart('${product}')|"></i>
+						<td
+							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+							<div class="edit-icon">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</div>
+							<div class="remove-icon">
+								<i class="fa-solid fa-trash"></i>
+							</div>
+						</td>
 					</div>
-					<td
-						th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-						<div class="edit-icon">
-							<i class="fa-solid fa-pen-to-square"></i>
-						</div>
-						<div class="remove-icon">
-							<i class="fa-solid fa-trash"></i>
-						</div>
-					</td>
 				</div>
 			</div>
-		</div>
-		<div class="category-item">
-			<div class="header-category">
-				<h2>MÓN LẨU</h2>
-			</div>
-			<div class="body-category">
-				<div class="food-item" th:each="product: ${listProductsLau}">
-					<img class="food-img"
-						th:src="@{'/img/food/' + ${product.img_food}}" />
-					<h3 class="food-name" th:text="${product.title}"></h3>
-					<p class="food-price" th:text="${product.price}" />
-					<div class="buy-icon">
-						<i class="fa-solid fa-cart-shopping"></i>
+			<div class="category-item">
+				<div class="header-category">
+					<h2>MÓN CHAY</h2>
+				</div>
+				<div class="body-category">
+					<div class="food-item" th:each="product: ${listProductsChay}">
+						<img class="food-img"
+							th:src="@{'/img/food/' + ${product.img_food}}" />
+						<h3 class="food-name" th:text="${product.title}"></h3>
+						<p class="food-price" th:text="${product.price}" />
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</div>
+
+						<td
+							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+							<div class="edit-icon">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</div>
+							<div class="remove-icon">
+								<i class="fa-solid fa-trash"></i>
+							</div>
+						</td>
+
 					</div>
-
-					<td
-						th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-						<div class="edit-icon">
-							<i class="fa-solid fa-pen-to-square"></i>
-						</div>
-						<div class="remove-icon">
-							<i class="fa-solid fa-trash"></i>
-						</div>
-					</td>
 				</div>
 			</div>
-		</div>
-		<div class="category-item">
-			<div class="header-category">
-				<h2>MÓN CHAY</h2>
-			</div>
-			<div class="body-category">
-				<div class="food-item" th:each="product: ${listProductsChay}">
-					<img class="food-img"
-						th:src="@{'/img/food/' + ${product.img_food}}" />
-					<h3 class="food-name" th:text="${product.title}"></h3>
-					<p class="food-price" th:text="${product.price}" />
-					<div class="buy-icon">
-						<i class="fa-solid fa-cart-shopping"></i>
+			<div class="category-item">
+				<div class="header-category">
+					<h2>FASTFOOD</h2>
+				</div>
+				<div class="body-category">
+					<div class="food-item" th:each="product: ${listProductsFastfood}">
+						<img class="food-img"
+							th:src="@{'/img/food/' + ${product.img_food}}" />
+						<h3 class="food-name" th:text="${product.title}"></h3>
+						<p class="food-price" th:text="${product.price}" />
+						<div class="buy-icon">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</div>
+
+						<td
+							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+							<div class="edit-icon">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</div>
+							<div class="remove-icon">
+								<i class="fa-solid fa-trash"></i>
+							</div>
+						</td>
+
 					</div>
-
-					<td
-						th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-						<div class="edit-icon">
-							<i class="fa-solid fa-pen-to-square"></i>
-						</div>
-						<div class="remove-icon">
-							<i class="fa-solid fa-trash"></i>
-						</div>
-					</td>
-
 				</div>
 			</div>
-		</div>
-		<div class="category-item">
-			<div class="header-category">
-				<h2>FASTFOOD</h2>
-			</div>
-			<div class="body-category">
-				<div class="food-item" th:each="product: ${listProductsFastfood}">
-					<img class="food-img"
-						th:src="@{'/img/food/' + ${product.img_food}}" />
-					<h3 class="food-name" th:text="${product.title}"></h3>
-					<p class="food-price" th:text="${product.price}" />
-					<div class="buy-icon">
-						<i class="fa-solid fa-cart-shopping"></i>
+		</section>
+
+		<section class="footer">
+			<div class="footer-content">
+				<div class="info">
+					<h3>3AE</h3>
+					<p>
+						19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành phố Hồ Chí
+						Minh <br> <br> <strong>Số điện thoại: </strong>0337375409
+						<br> <strong>Email: </strong>email@gmail.com
+					</p>
+					<div class="social-link">
+						<a href="#" class="twitter"> <i class="fa-brands fa-twitter"></i>
+						</a> <a href="#" class="facebook"> <i
+							class="fa-brands fa-facebook-f"></i>
+						</a> <a href="#" class="instagram"> <i
+							class="fa-brands fa-instagram"></i>
+						</a> <a href="#" class="youtube"> <i class="fa-brands fa-youtube"></i>
+						</a>
 					</div>
-
-					<td
-						th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-						<div class="edit-icon">
-							<i class="fa-solid fa-pen-to-square"></i>
-						</div>
-						<div class="remove-icon">
-							<i class="fa-solid fa-trash"></i>
-						</div>
-					</td>
-
+				</div>
+				<div class="link-shortcuts">
+					<h4>Xem thêm</h4>
+					<ul>
+						<li><a href="home#content-home">Trang chủ</a></li>
+						<li><a href="#">Thực đơn</a></li>
+						<li><a href="home#booktable">Đặt bàn</a></li>
+						<li><a href="home#contact">Liên hệ</a></li>
+						<li><a href="changepass">Đổi mật khẩu</a></li>
+					</ul>
+				</div>
+				<div class="logo-restaurant">
+					<img alt="logo" src="img/3aelogo.png">
 				</div>
 			</div>
-		</div>
-	</section>
-
-	<section class="footer">
-		<div class="footer-content">
-			<div class="info">
-				<h3>3AE</h3>
-				<p>
-					19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành phố Hồ Chí
-					Minh <br> <br> <strong>Số điện thoại: </strong>0337375409
-					<br> <strong>Email: </strong>email@gmail.com
-				</p>
-				<div class="social-link">
-					<a href="#" class="twitter"> <i class="fa-brands fa-twitter"></i>
-					</a> <a href="#" class="facebook"> <i
-						class="fa-brands fa-facebook-f"></i>
-					</a> <a href="#" class="instagram"> <i
-						class="fa-brands fa-instagram"></i>
-					</a> <a href="#" class="youtube"> <i class="fa-brands fa-youtube"></i>
-					</a>
-				</div>
-			</div>
-			<div class="link-shortcuts">
-				<h4>Xem thêm</h4>
+			<div class="footer-info">
 				<ul>
-					<li><a href="home#content-home">Trang chủ</a></li>
-					<li><a href="#">Thực đơn</a></li>
-					<li><a href="home#booktable">Đặt bàn</a></li>
-					<li><a href="home#contact">Liên hệ</a></li>
-					<li><a href="changepass">Đổi mật khẩu</a></li>
+					<li>51900147 - Mai Văn Ngọc</li>
+					<li>51900145 - Phạm Hùng Nghĩa</li>
+					<li>51900200 - Nguyễn Thanh Sơn</li>
 				</ul>
 			</div>
-			<div class="logo-restaurant">
-				<img alt="logo" src="img/3aelogo.png">
-			</div>
-		</div>
-		<div class="footer-info">
-			<ul>
-				<li>51900147 - Mai Văn Ngọc</li>
-				<li>51900145 - Phạm Hùng Nghĩa</li>
-				<li>51900200 - Nguyễn Thanh Sơn</li>
-			</ul>
-		</div>
-	</section>
+		</section>
 	</div>
 
 
@@ -363,25 +351,25 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<td th:if="${success != null}">
-				<div class="popup-changepass-container">
-						<div class="popup">
-							<div class="popup-exit">
-								<a th:href="@{/menu}"><i class="fa-solid fa-xmark exit-icon"></i></a>
-							</div>
-							<div class="header-popup">
-								<div class="header-content">
-									<i class="fa-solid fa-check"></i>
-								</div>
-							</div>
-							<div class="popup-content">
-								<h3>[[${success}]]</h3>
-							</div>
-						</div>
+		<div class="popup-changepass-container">
+			<div class="popup">
+				<div class="popup-exit">
+					<a th:href="@{/menu}"><i class="fa-solid fa-xmark exit-icon"></i></a>
+				</div>
+				<div class="header-popup">
+					<div class="header-content">
+						<i class="fa-solid fa-check"></i>
 					</div>
+				</div>
+				<div class="popup-content">
+					<h3>[[${success}]]</h3>
+				</div>
+			</div>
+		</div>
 	</td>
-			
+
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
