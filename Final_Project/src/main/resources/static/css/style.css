@@ -233,11 +233,13 @@ html {
 }
 
 .container-home .contact #contact-form .form-item:nth-child(4),
-	.container-home .contact #contact-form .form-item:nth-child(5) {
+.container-home .contact #contact-form .form-item:nth-child(5),
+.container-home .contact #contact-form .form-item:nth-child(6) {
 	grid-column: 1/3;
 }
 
-.container-home .contact #contact-form .form-item:nth-child(5) {
+.container-home .contact #contact-form .form-item:nth-child(5),
+.container-home .contact #contact-form .form-item:nth-child(6) {
 	display: flex;
 	justify-content: center;
 }
@@ -528,6 +530,32 @@ html {
 }
 /* End CSS PopUp Send Contact */
 
+
+.navbar .nav-child {
+	display: none;
+	position: absolute;
+	background-color: black;
+	width: 231px;
+	top: 93px;
+	right: -63px;
+}
+
+.navbar .nav-child li {
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.navbar .nav-child li > a {
+	padding: 26px 40px;
+	text-align: center;
+	width: 100%;
+}
+
+.navbar ul .nav-item:first-child:hover > .nav-child {
+	display: block;
+}
 /* End CSS Home Page */
 
 /* Start CSS Login, SignUp and Change Password Page */
@@ -704,15 +732,27 @@ html {
 	z-index: 999;
 }
 
-.navbar ul {
+.navbar > ul {
 	display: flex;
 	align-items: center;
 	list-style: none;
 }
 
 .navbar ul li {
-	display: inline-block;
+	display: flex;
 	padding: 0;
+}
+
+.navbar ul .nav-item:first-child {
+	position: relative;
+}
+
+.navbar ul .nav-item:first-child > a:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar ul .nav-item:first-child:hover {
+	background-color: rgba(255, 255, 255, 0.6);
 }
 
 .navbar ul li img {

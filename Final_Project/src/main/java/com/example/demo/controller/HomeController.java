@@ -387,4 +387,9 @@ public class HomeController {
 		return "/home";
 		
 	}
+	
+	@GetMapping("/food_orders")
+	public String food_orders() {
+		return "admin/food_orders";
+	}
 }
