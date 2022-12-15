@@ -15,11 +15,11 @@ public class ConfigResource implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		
-		Path brandUploadDir = Paths.get("./src/main/resources/static/img/food/");
+		Path brandUploadDir = Paths.get("./src/main/upload/food/");
 		
 		String brandUploadPath = brandUploadDir.toFile().getAbsolutePath();
 		
-		registry.addResourceHandler("/src/main/resources/static/img/food/**")
+		registry.addResourceHandler("/src/main/upload/food/**")
 		.addResourceLocations("file:/" + brandUploadPath + "/");
 		
 	}

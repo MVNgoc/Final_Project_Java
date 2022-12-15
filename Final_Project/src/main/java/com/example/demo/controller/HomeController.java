@@ -246,7 +246,7 @@ public class HomeController {
 		repoProduct.save(product);
 		
 		
-		String uploadDir = "./src/main/resources/static/img/food/";
+		String uploadDir = "./src/main/upload/food/";
 		  
 		Path uploadPath = Paths.get(uploadDir);
 		  
