@@ -23,9 +23,10 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 
 import com.example.demo.service.CustomUserDetailsService;
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig {
+public class WebSecurityConfig{
 
 	@Autowired
 	private DataSource dataSource;
@@ -56,7 +57,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+		http.csrf().disable().authorizeRequests()
 			.antMatchers("/home").authenticated()
 			.anyRequest().permitAll()
 			.and()

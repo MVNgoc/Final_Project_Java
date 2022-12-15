@@ -15,7 +15,8 @@ CREATE TABLE user (
   phone varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   name varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   address varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  reset_password_token varchar(45)
+  reset_password_token varchar(45),
+  role varchar(10) NOT NULL
 );
 
 CREATE TABLE category (
@@ -52,8 +53,8 @@ CREATE TABLE contact (
   useremail varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   subject varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   contributions varchar(225) COLLATE utf8_unicode_ci NOT NULL,
-  timecreate TIME NOT NULL,
-  daycreate DATE NOT NULL
+  timecreate varchar(225) NOT NULL,
+  daycreate varchar(225) NOT NULL
 
 );
 
@@ -62,16 +63,19 @@ CREATE TABLE reservation (
   username varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   useremail varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   phone_number varchar(15) NOT NULL,
-  timereservation TIME NOT NULL,
-  dayreservation DATE NOT NULL,
+  timereservation varchar(225) NOT NULL,
+  dayreservation varchar(225) NOT NULL,
   people varchar(3),
   contributions varchar(225) COLLATE utf8_unicode_ci NOT NULL,
-  timecreate TIME NOT NULL,
-  daycreate DATE NOT NULL
+  timecreate varchar(225) NOT NULL,
+  daycreate varchar(225) NOT NULL
 
 );
 
 -- pass: 123456
+INSERT INTO user (email, password, username, phone, name, address, role) VALUES 
+('admin@gmail.com', '$2a$10$J.2rANIWG/IB2I9uNl/fI.bvU0s0Ct3z8rPHvM.KHDtXdBGbi1xo.', 'admin', '43242626', 'ADMIN', '43/38 Dạ Nam, P2', 'ADMIN');
+
 INSERT INTO admin_account (id, username, pass) VALUES
 ('51900147', 'admin', '$2a$12$iWE1Epee9DVR0idqIriuAus3TkZklYMqEZVX3i2HSne1jeldtYjXO');
 

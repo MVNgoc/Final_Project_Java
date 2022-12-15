@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmln:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="ISO-8859-1">
 <meta charset="utf-8" />
@@ -13,6 +13,20 @@
 	<div class="container-home">
 		<section class="navbar">
 			<ul class="nav justify-content-center">
+				<li class="nav-item">
+					<a class="nav-link active" href="#">Admin</a>
+					<ul class="nav-child">
+						<li class="nav-child-item">
+							<a class="nav-link active" href="food_orders">Đơn đặt món</a>
+						</li>
+						<li class="nav-child-item">
+							<a class="nav-link active" href="#">Đơn đặt bàn</a>
+						</li>
+						<li class="nav-child-item">
+							<a class="nav-link active" href="#">Phản hồi khách hàng</a>
+						</li>
+					</ul>
+				</li>
 				<li class="nav-item"><a class="nav-link active" href="#content-home">Trang chủ</a></li>
 				<li class="nav-item"><a class="nav-link" href="menu">Thực đơn</a></li>
 				<li class="nav-item"><a class="nav-link" href="#booktable">Đặt bàn</a></li>
@@ -86,7 +100,7 @@
 				<h2>Cung cấp những món ăn tuyệt vời trong hơn 5 năm qua!</h2>
 			</div>
 			<div class="btns">
-				<a href="#">Thực đơn</a> <a href="#booktable">Đặt bàn</a>
+				<a href="menu">Thực đơn</a> <a href="#booktable">Đặt bàn</a>
 			</div>
 		</section>
 		<section class="about">

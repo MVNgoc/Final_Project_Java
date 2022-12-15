@@ -116,6 +116,7 @@ public class HomeController {
 			return "/signup";
 		}else {
 			user.setPassword(encodePassword);
+			user.setRole("USER");
 			repo.save(user);
 			model.addAttribute("success", "Register success");
 			user.setAddress("");
@@ -139,7 +140,6 @@ public class HomeController {
 		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "redirect:/login";
 		}
-		
 		
 		return "/changepass";
 	}
@@ -188,6 +188,11 @@ public class HomeController {
 	
 	@GetMapping("/menu")
 	public String menu(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "/login";
+		}
+		
 		List<Product> listProduct = repoProduct.findAll();
 		List<Product> listProductNuong = new ArrayList<Product>();
 		List<Product> listProductLau = new ArrayList<Product>();
@@ -221,12 +226,24 @@ public class HomeController {
 	
 	@GetMapping("/fogotpass")
 	public String fogotpass() {
-		return "fogotpass";
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "fogotpass";
+		}
+		
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/fail")
 	public String fail() {
-		return "Fail";
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "/fail";
+		}
+		
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/reset_password")
@@ -370,5 +387,15 @@ public class HomeController {
 		
 		return "/home";
 		
+	}
+	
+	@GetMapping("/food_orders")
+	public String food_orders() {
+		return "admin/food_orders";
+	}
+	
+	@GetMapping("/error")
+	public String error() {
+		return "error";
 	}
 }

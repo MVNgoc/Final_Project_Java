@@ -38,9 +38,7 @@ $(document).ready(function() {
 
 		/* Calculate totals */
 		var total = subtotal;
-		console.log(total);
 		/*If switch for update only total, update only total display*/
-		console.log();
 		if (onlyTotal) {
 			/* Update total display */
 			$('.total-value').fadeOut(fadeTime, function() {
@@ -130,6 +128,7 @@ $(document).ready(function() {
 		$(".popup-contact-container").css("display", "none");
 		$(".popup-bookatable-container").css("display", "none");
 		$(".popup-changepass-container").css("display", "none");
+		$(".popup-deletefood-container").css("display", "none");
 	});
 	/* JS Menu Page */
 
@@ -162,7 +161,28 @@ $(document).ready(function() {
 	$("#cancel-btn").click(function() {
 		$(".popup-addfood-container").addClass("hide");
 	})
-
+	
+	$("#cancel-edit-btn").click(function() {
+		$(".popup-editfood-container").addClass("hide");
+	})
+	
+	$("#cancel-delete-btn").click(function() {
+		$(".popup-confirmdeletefood-container").addClass("hide");
+	})
+	
+	var edit_icon = document.getElementsByClassName("edit-icon");
+	var remove_icon = document.getElementsByClassName("remove-icon");
+	
+	for (var i = 0; i < edit_icon.length; i++) {
+		(function(i){ 
+		  edit_icon[i].onclick = function() {
+		      $(".popup-editfood-container").removeClass("hide");
+		  }
+		  remove_icon[i].onclick = function() {
+		      $(".popup-confirmdeletefood-container").removeClass("hide");
+		  }
+		})(i);
+	}
 
 	/* Preview an image before it is uploaded */
 
@@ -177,6 +197,20 @@ $(document).ready(function() {
 			}
 		}
 	}
+	
+	/* JS Food Orders Page */
+	var edit_order = document.getElementsByClassName("edit_order");
+	for (var i = 0; i < edit_order.length; i++) {
+		(function(i){ 
+		  edit_order[i].onclick = function() {
+		      $(".popup-orderfood-container").removeClass("hide");
+		  }
+		})(i);
+	}
+	
+	$(".popup-exit-order").click(function() {
+			$(".popup-orderfood-container").addClass("hide");
+	})
 
 	/* Slide show Home Page */
 
@@ -214,7 +248,6 @@ function addToCart(product) {
 			"content-Type": "application/json;charset=utf-8"
 		}
 	}).then(function(res) {
-		console.log(res.json)
 		return res.json()
 	}).then(function(data) {
 		let counter = document.getElementById("cartCounter")
