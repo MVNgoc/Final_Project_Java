@@ -1,6 +1,12 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -27,10 +33,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.config.Utility;
@@ -219,11 +227,41 @@ public class HomeController {
 	
 	//xử lý thêm món
 	@PostMapping("/menu_add")
-	public String addFood(HttpServletRequest request) {
-		System.out.println(request.getParameter("namefood"));
-		System.out.println(request.getParameter("description"));
-		System.out.println(request.getParameter("price"));
-		System.out.println(request.getParameter("type"));
+	public String addFood(HttpServletRequest request,@RequestParam("img-food-input") MultipartFile multipartFile) throws IOException {
+		Product product = new Product();
+		String type = request.getParameter("type");
+		String typeV;
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		if(type.equals("nuong")) {
+			typeV = "Nướng";
+		}else if(type.equals("nau")) {
+			typeV = "Lẩu";
+		}else if(type.equals("chay")) {
+			typeV = "Chay";
+		}else {
+			typeV = "Fastfood";
+		}
+		product.setImg_food(fileName);
+		product.setCategory_name(typeV);
+		product.setDescription_food(request.getParameter("description"));
+		product.setPrice((Integer.parseInt(request.getParameter("price"))));
+		product.setTitle(request.getParameter("namefood"));
+		
+		repoProduct.save(product);
+		
+		
+		String uploadDir = "./src/main/resources/static/img/food/";
+		  
+		Path uploadPath = Paths.get(uploadDir);
+		  
+		try (InputStream inputStream = multipartFile.getInputStream()){ 
+			Path filePath = uploadPath.resolve(fileName); 
+			Files.copy(inputStream, filePath ,StandardCopyOption.REPLACE_EXISTING); 
+		} catch (IOException e) { 
+			throw new IOException("Could not save uploaded file: " + fileName); 
+		}
+		 
+		
 
 		return "redirect:/menu";
 	}
