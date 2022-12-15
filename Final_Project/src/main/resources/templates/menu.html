@@ -87,7 +87,7 @@
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsNuong}">
 						<img class="food-img"
-							th:src="@{'img/food/' + ${product.img_food}}" />
+							th:src="@{'/src/main/upload/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
@@ -112,7 +112,7 @@
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsLau}">
 						<img class="food-img"
-							th:src="@{'/img/food/' + ${product.img_food}}" />
+							th:src="@{'/src/main/upload/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
@@ -137,7 +137,7 @@
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsChay}">
 						<img class="food-img"
-							th:src="@{'/img/food/' + ${product.img_food}}" />
+							th:src="@{'/src/main/upload/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
@@ -163,7 +163,7 @@
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsFastfood}">
 						<img class="food-img"
-							th:src="@{'/img/food/' + ${product.img_food}}" />
+							th:src="@{'/src/main/upload/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
@@ -237,7 +237,7 @@
 				<input name="namefood" type="text" placeholder="Tên món" required>
 			</div>
 			<div class="form-item">
-				<input accept="image/*" name="img-food-input" type="file" id="img-food-input">
+				<input accept="image/*" name="img-food-input" type="file" id="img-food-input" required>
 				<img alt="Your food image" src="img/food-placeholder.png"
 					id="img-food-add">
 			</div>
