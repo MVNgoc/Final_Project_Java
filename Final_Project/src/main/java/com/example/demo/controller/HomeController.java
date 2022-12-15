@@ -235,7 +235,8 @@ public class HomeController {
 	
 	//xử lý thêm món
 	@PostMapping("/menu_add")
-	public String addFood(HttpServletRequest request,@RequestParam("img-food-input") MultipartFile multipartFile) throws IOException {
+	public String addFood(HttpServletRequest request,@RequestParam("img-food-input") MultipartFile multipartFile
+			,Model model) throws IOException {
 		Product product = new Product();
 		String type = request.getParameter("type");
 		String typeV;
@@ -268,10 +269,10 @@ public class HomeController {
 		} catch (IOException e) { 
 			throw new IOException("Could not save uploaded file: " + fileName); 
 		}
-		 
+		model.addAttribute("success", "Thêm món thành công"); 
 		
 
-		return "redirect:/menu";
+		return "/menu";
 	}
 	
 	@GetMapping("/logout")
@@ -459,5 +460,10 @@ public class HomeController {
 	@GetMapping("/book_table")
 	public String book_table() {
 		return "admin/book_table";
+	}
+	
+	@GetMapping("/contact")
+	public String contact() {
+		return "admin/contact";
 	}
 }
