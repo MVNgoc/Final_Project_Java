@@ -129,7 +129,7 @@
 						</div>
 						<td
 							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-							<div class="edit-icon">
+							<div class="edit-icon" th:href="@{/view/(id=${product.id})}">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
 							<div class="remove-icon" th:href="@{/delete/(id=${product.id})}">
@@ -155,7 +155,7 @@
 
 						<td
 							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-							<div class="edit-icon">
+							<div class="edit-icon" th:href="@{/view/(id=${product.id})}">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
 							<div class="remove-icon" th:href="@{/delete/(id=${product.id})}">
@@ -181,7 +181,7 @@
 
 						<td
 							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-							<div class="edit-icon">
+							<div class="edit-icon" th:href="@{/view/(id=${product.id})}">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
 							<div class="remove-icon" th:href="@{/delete/(id=${product.id})}">
@@ -208,7 +208,7 @@
 
 						<td
 							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-							<div class="edit-icon">
+							<div class="edit-icon" th:href="@{/view/(id=${product.id})}">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
 							<div class="remove-icon" th:href="@{/delete/(id=${product.id})}">
@@ -302,27 +302,27 @@
 	</div>
 
 	<div class="popup-editfood-container hide">
-		<form action="#" class="popup">
+		<form th:action="@{/update}"  method="put" class="popup">
 			<div class="form-item">
 				<h3>Chỉnh sửa</h3>
 			</div>
 			<div class="form-item">
-				<input type="text" placeholder="Tên món" required>
+				<input id="name" name="name" type="text" placeholder="Tên món" required>
 			</div>
 			<div class="form-item">
-				<input accept="image/*" type="file" id="img-food-input" required>
+				<input accept="image/*" type="file" name="img-food-input" id="img-food-input" required>
 				<img alt="Your food image" src="img/food-placeholder.png"
-					id="img-food-add">
+					id="img-food-edit" name="img-food-edit">
 			</div>
 			<div class="form-item">
-				<textarea rows="2" placeholder="Mô tả" required></textarea>
+				<textarea id="description" name="description" rows="2" placeholder="Mô tả" required></textarea>
 			</div>
 			<div class="form-item">
-				<input type="number" placeholder="Giá" required>
+				<input id="price" name="price" type="number" placeholder="Giá" required>
 			</div>
 			<div class="form-item">
-				<select id="category">
-					<option value="">Chọn loại món</option>
+				<select name="category" id="category">
+					<option value="" name="loai" id="loai" >Chọn loại món</option>
 					<option value="nuong">Nướng</option>
 					<option value="lau">Lẩu</option>
 					<option value="chay">Chay</option>
