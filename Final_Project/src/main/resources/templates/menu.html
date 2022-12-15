@@ -93,16 +93,19 @@
 		</section>
 
 		<section class="body-menu">
-			<div class="category-item">
-				<div class="header-category">
-					<h2>THÊM MÓN</h2>
-				</div>
-				<div class="body-category">
-					<div class="add-food-icon">
-						<i class="fa-solid fa-plus"></i>
+			<div th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+				<div class="category-item">
+					<div class="header-category">
+						<h2>THÊM MÓN</h2>
+					</div>
+					<div class="body-category">
+						<div class="add-food-icon">
+							<i class="fa-solid fa-plus"></i>
+						</div>
 					</div>
 				</div>
 			</div>
+			
 			<div class="category-item">
 				<div class="header-category">
 					<h2>MÓN NƯỚNG</h2>
@@ -116,12 +119,14 @@
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
-						<div class="edit-icon">
-							<i class="fa-solid fa-pen-to-square"></i>
-						</div>
-						<div class="remove-icon">
-							<i class="fa-solid fa-trash"></i>
-						</div>
+						<td th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+							<div class="edit-icon">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</div>
+							<div class="remove-icon">
+								<i class="fa-solid fa-trash"></i>
+							</div>
+						</td>
 					</div>
 				</div>
 			</div>
@@ -138,12 +143,15 @@
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
-						<div class="edit-icon">
-							<i class="fa-solid fa-pen-to-square"></i>
-						</div>
-						<div class="remove-icon">
-							<i class="fa-solid fa-trash"></i>
-						</div>
+						
+						<td th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+							<div class="edit-icon">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</div>
+							<div class="remove-icon">
+								<i class="fa-solid fa-trash"></i>
+							</div>
+						</td>
 					</div>
 				</div>
 			</div>
@@ -160,12 +168,16 @@
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
-						<div class="edit-icon">
-							<i class="fa-solid fa-pen-to-square"></i>
-						</div>
-						<div class="remove-icon">
-							<i class="fa-solid fa-trash"></i>
-						</div>
+						
+						<td th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+							<div class="edit-icon">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</div>
+							<div class="remove-icon">
+								<i class="fa-solid fa-trash"></i>
+							</div>
+						</td>
+						
 					</div>
 				</div>
 			</div>
@@ -182,12 +194,16 @@
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
-						<div class="edit-icon">
-							<i class="fa-solid fa-pen-to-square"></i>
-						</div>
-						<div class="remove-icon">
-							<i class="fa-solid fa-trash"></i>
-						</div>
+						
+						<td th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+							<div class="edit-icon">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</div>
+							<div class="remove-icon">
+								<i class="fa-solid fa-trash"></i>
+							</div>
+						</td>
+						
 					</div>
 				</div>
 			</div>
