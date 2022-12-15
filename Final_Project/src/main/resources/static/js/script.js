@@ -180,6 +180,8 @@ $(document).ready(function() {
 		  }
 		  remove_icon[i].onclick = function() {
 		      $(".popup-confirmdeletefood-container").removeClass("hide");
+		      var href = $('#deletefoodbutton').attr('href');
+		      $('#delete-food-btn').attr('href',href);
 		  }
 		})(i);
 	}
