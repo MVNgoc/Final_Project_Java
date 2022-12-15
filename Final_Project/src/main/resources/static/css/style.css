@@ -1591,6 +1591,22 @@ aside {
 }
 /* End CSS food_orders Page */
 
+/* Start CSS Error Page */
+
+.container-error .content-home .error-icon {
+	text-align: center;
+	color: red;
+	font-size: 150px;
+	margin-bottom: 20px;
+}
+
+.container-error .content-home {
+	background-color: #183153;
+	background-image: none;
+}
+
+/* End CSS Error Page */
+
 /* CSS Responsive */
 @media screen and (min-width: 641px) and (max-width: 960px) {
 	aside {
