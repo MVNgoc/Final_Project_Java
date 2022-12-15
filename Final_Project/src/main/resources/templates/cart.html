@@ -28,11 +28,9 @@
 							type="submit">Đăng xuất</button></li>
 				</form>
 			</ul>
-			<div class="cart-container">
+			<div class="cart-container" th:if="${carts == null}">
 				<div class="cart-icon">
-					<div class="num-cart-item-top">
-						<h4>3</h4>
-					</div>
+					<div class="num-cart-item-top" id="cartCounter">0</div>
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
@@ -40,38 +38,33 @@
 								Giỏ hàng (<span class="num-cart-item">2</span>)
 							</h4>
 						</div>
-						<div class="cart-form-body" id="cart-form-body">
+						<div class="cart-form-body" id="cart-form-body">Chưa có sản
+							phẩm</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="cart-container" th:if="${carts != null} ">
+				<div class="cart-icon">
+					<div class="num-cart-item-top" id="cartCounter">(<span class="num-cart-item">2</span>)</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>
+								Giỏ hàng (<span class="num-cart-item">2</span>)
+							</h4>
+						</div>
+						<div class="cart-form-body" id="cart-form-body" th:each="cart: ${carts}">
 							<div class="cart-item">
 								<div class="cart-image">
-									<img src="img/denuong.jpg">
+									<img th:src="@{'src/main/upload/food/' + ${cart.img_food}}">
 								</div>
 								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
-									<p class="food-price">80000</p>
-								</div>
-								<div class="cart-delete-food">
-									<i class="fa-solid fa-xmark"></i>
-								</div>
-							</div>
-							<div class="cart-item">
-								<div class="cart-image">
-									<img src="img/denuong.jpg">
-								</div>
-								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
-									<p class="food-price">80000</p>
-								</div>
-								<div class="cart-delete-food">
-									<i class="fa-solid fa-xmark"></i>
-								</div>
-							</div>
-							<div class="cart-item">
-								<div class="cart-image">
-									<img src="img/denuong.jpg">
-								</div>
-								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
-									<p class="food-price">80000</p>
+									<h4 th:text="${cart.title}"></h4>
+									<p class="food-price" th:text="${cart.price}"></p>
 								</div>
 								<div class="cart-delete-food">
 									<i class="fa-solid fa-xmark"></i>
