@@ -72,12 +72,6 @@ public class HomeController {
 	@Autowired
 	private ProductRepository repoProduct;
 	
-	@SuppressWarnings("unchecked")
-	@ModelAttribute
-	public void commonAttrs(Model model , HttpSession http) {
-		model.addAttribute("cartCouter",Utils.countCart((Map<Long, Cart>) http.getAttribute("cartSession")));
-	}
-	
 	@GetMapping("/login")
     public String login() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -200,7 +194,14 @@ public class HomeController {
 
 
 	@GetMapping("/home")
-	public String home() {
+	public String home(Model model,HttpSession session) {
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "home";
 	}
 	
