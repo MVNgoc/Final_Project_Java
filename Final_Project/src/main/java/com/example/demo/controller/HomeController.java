@@ -116,6 +116,7 @@ public class HomeController {
 			return "/signup";
 		}else {
 			user.setPassword(encodePassword);
+			user.setRole("USER");
 			repo.save(user);
 			model.addAttribute("success", "Register success");
 			user.setAddress("");
