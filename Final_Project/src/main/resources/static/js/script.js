@@ -23,7 +23,7 @@ $(document).ready(function() {
 		sum += parseInt(subtotal_temp[i].innerHTML);
 	}
 
-	if(sum != 0) {
+	if (sum != 0) {
 		basket_total.innerHTML = sum;
 	}
 
@@ -195,3 +195,30 @@ $(document).ready(function() {
 		setTimeout(carousel, 3000); // Change image every 3 seconds
 	}
 });
+
+function addToCart(product) {
+	fetch("/api/cart", {
+		method: "Post",
+		body: JSON.stringify({
+			"product": {
+				"id": product.id,
+				"title": product.title,
+				"img_food": product.img_food,
+				"description_food": product.description_food,
+				"price": product.price,
+				"catetogry_name": product.catetogry_name
+			},
+			"quantity": 1
+		}),
+		headers: {
+			"content-Type": "application/json;charset=utf-8"
+		}
+	}).then(function(res) {
+		console.log(res.json)
+		return res.json()
+	}).then(function(data) {
+		let counter = document.getElementById("cartCounter")
+		counter.innerText = data
+	})
+
+}

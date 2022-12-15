@@ -30,9 +30,7 @@
 			</ul>
 			<div class="cart-container">
 				<div class="cart-icon">
-					<div class="num-cart-item-top">
-						<h4>3</h4>
-					</div>
+					<div class="num-cart-item-top" id="cartCounter">0</div>
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
@@ -41,30 +39,6 @@
 							</h4>
 						</div>
 						<div class="cart-form-body" id="cart-form-body">
-							<div class="cart-item">
-								<div class="cart-image">
-									<img src="img/denuong.jpg">
-								</div>
-								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
-									<p class="food-price">80000</p>
-								</div>
-								<div class="cart-delete-food">
-									<i class="fa-solid fa-xmark"></i>
-								</div>
-							</div>
-							<div class="cart-item">
-								<div class="cart-image">
-									<img src="img/denuong.jpg">
-								</div>
-								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
-									<p class="food-price">80000</p>
-								</div>
-								<div class="cart-delete-food">
-									<i class="fa-solid fa-xmark"></i>
-								</div>
-							</div>
 							<div class="cart-item">
 								<div class="cart-image">
 									<img src="img/denuong.jpg">
@@ -109,11 +83,13 @@
 				</div>
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsNuong}">
-						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
+						<img class="food-img"
+							th:src="@{'/img/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
-						<p class="food-price" th:text="${product.price}"/>
+						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
+							<i class="fa-solid fa-cart-shopping"
+								th:attr="onclick=|addToCart('${product}')|"></i>
 						</div>
 					</div>
 				</div>
@@ -124,9 +100,10 @@
 				</div>
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsLau}">
-						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
+						<img class="food-img"
+							th:src="@{'/img/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
-						<p class="food-price" th:text="${product.price}"/>
+						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
@@ -139,9 +116,10 @@
 				</div>
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsChay}">
-						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
+						<img class="food-img"
+							th:src="@{'/img/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
-						<p class="food-price" th:text="${product.price}"/>
+						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
@@ -154,9 +132,10 @@
 				</div>
 				<div class="body-category">
 					<div class="food-item" th:each="product: ${listProductsFastfood}">
-						<img class="food-img" th:src="@{'/img/food/' + ${product.img_food}}"/>
+						<img class="food-img"
+							th:src="@{'/img/food/' + ${product.img_food}}" />
 						<h3 class="food-name" th:text="${product.title}"></h3>
-						<p class="food-price" th:text="${product.price}"/>
+						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
@@ -218,7 +197,8 @@
 			</div>
 			<div class="form-item">
 				<input accept="image/*" type="file" id="img-food-input" required>
-				<img alt="Your food image" src="img/food-placeholder.png" id="img-food-add">
+				<img alt="Your food image" src="img/food-placeholder.png"
+					id="img-food-add">
 			</div>
 			<div class="form-item">
 				<textarea rows="2" placeholder="Mô tả" required></textarea>
@@ -228,11 +208,11 @@
 			</div>
 			<div class="form-item">
 				<select id="category">
-				  <option value="">Chọn loại món</option>
-				  <option value="nuong">Nướng</option>
-				  <option value="lau">Lẩu</option>
-				  <option value="chay">Chay</option>
-				  <option value="fastfood">Fast Food</option>
+					<option value="">Chọn loại món</option>
+					<option value="nuong">Nướng</option>
+					<option value="lau">Lẩu</option>
+					<option value="chay">Chay</option>
+					<option value="fastfood">Fast Food</option>
 				</select>
 			</div>
 			<div class="form-item">
