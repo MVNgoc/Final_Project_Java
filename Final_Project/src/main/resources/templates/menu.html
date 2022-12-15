@@ -67,7 +67,8 @@
 		</section>
 
 		<section class="body-menu">
-			<div th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+			<div
+				th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
 				<div class="category-item">
 					<div class="header-category">
 						<h2>THÊM MÓN</h2>
@@ -79,7 +80,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="category-item">
 				<div class="header-category">
 					<h2>MÓN NƯỚNG</h2>
@@ -94,7 +95,8 @@
 							<i class="fa-solid fa-cart-shopping"
 								th:attr="onclick=|addToCart('${product}')|"></i>
 						</div>
-						<td th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+						<td
+							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
 							<div class="edit-icon">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
@@ -118,8 +120,9 @@
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
-						
-						<td th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+
+						<td
+							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
 							<div class="edit-icon">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
@@ -143,8 +146,9 @@
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
-						
-						<td th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+
+						<td
+							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
 							<div class="edit-icon">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
@@ -152,7 +156,7 @@
 								<i class="fa-solid fa-trash"></i>
 							</div>
 						</td>
-						
+
 					</div>
 				</div>
 			</div>
@@ -169,8 +173,9 @@
 						<div class="buy-icon">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</div>
-						
-						<td th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+
+						<td
+							th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
 							<div class="edit-icon">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
@@ -178,7 +183,7 @@
 								<i class="fa-solid fa-trash"></i>
 							</div>
 						</td>
-						
+
 					</div>
 				</div>
 			</div>
@@ -226,10 +231,11 @@
 			</div>
 		</section>
 	</div>
-	
-	
+
+
 	<div class="popup-addfood-container hide">
-		<form th:action="@{/menu_add}" method="post" class="popup" enctype="multipart/form-data">
+		<form th:action="@{/menu_add}" method="post" class="popup"
+			enctype="multipart/form-data">
 			<div class="form-item">
 				<h3>Thêm món</h3>
 			</div>
@@ -237,9 +243,9 @@
 				<input name="namefood" type="text" placeholder="Tên món" required>
 			</div>
 			<div class="form-item">
-				<input accept="image/*" name="img-food-input" type="file" id="img-food-input" required>
-				<img alt="Your food image" src="img/food-placeholder.png"
-					id="img-food-add">
+				<input accept="image/*" name="img-food-input" type="file"
+					id="img-food-input" required> <img alt="Your food image"
+					src="img/food-placeholder.png" id="img-food-add">
 			</div>
 			<div class="form-item">
 				<textarea name="description" rows="2" placeholder="Mô tả" required></textarea>
@@ -297,7 +303,7 @@
 			</div>
 		</form>
 	</div>
-	
+
 	<div class="popup-confirmdeletefood-container hide">
 		<form action="#" class="popup">
 			<div class="header-popup">
@@ -309,7 +315,7 @@
 			</div>
 		</form>
 	</div>
-	
+
 	<div class="popup-deletefood-container hide">
 		<div class="popup">
 			<div class="popup-exit">
@@ -325,43 +331,43 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<td th:if="${error != null}">
-				<div class="popup-changepass-container">
-						<div class="popup">
-							<div class="popup-exit">
-								<a th:href="@{/menu}"><i class="fa-solid fa-xmark exit-icon"></i></a>
-							</div>
-							<div class="header-popup">
-								<div class="header-content">
-									<i class="fa-solid fa-xmark"></i>
-								</div>
-							</div>
-							<div class="popup-content">
-								<h3>[[${error}]]</h3>
-							</div>
-						</div>
+		<div class="popup-changepass-container error-img">
+			<div class="popup">
+				<div class="popup-exit">
+					<a th:href="@{/menu}"><i class="fa-solid fa-xmark exit-icon"></i></a>
+				</div>
+				<div class="header-popup">
+					<div class="header-content">
+						<i class="fa-solid fa-xmark"></i>
 					</div>
+				</div>
+				<div class="popup-content">
+					<h3>[[${error}]]</h3>
+				</div>
+			</div>
+		</div>
 	</td>
 	
 	<td th:if="${success != null}">
-				<div class="popup-changepass-container">
-						<div class="popup">
-							<div class="popup-exit">
-								<a th:href="@{/menu}"><i class="fa-solid fa-xmark exit-icon"></i></a>
-							</div>
-							<div class="header-popup">
-								<div class="header-content">
-									<i class="fa-solid fa-check"></i>
-								</div>
-							</div>
-							<div class="popup-content">
-								<h3>[[${success}]]</h3>
-							</div>
-						</div>
+		<div class="popup-changepass-container">
+			<div class="popup">
+				<div class="popup-exit">
+					<a th:href="@{/menu}"><i class="fa-solid fa-xmark exit-icon"></i></a>
+				</div>
+				<div class="header-popup">
+					<div class="header-content">
+						<i class="fa-solid fa-check"></i>
 					</div>
+				</div>
+				<div class="popup-content">
+					<h3>[[${success}]]</h3>
+				</div>
+			</div>
+		</div>
 	</td>
-			
+
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
