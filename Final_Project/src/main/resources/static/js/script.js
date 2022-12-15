@@ -197,6 +197,20 @@ $(document).ready(function() {
 			}
 		}
 	}
+	
+	/* JS Food Orders Page */
+	var edit_order = document.getElementsByClassName("edit_order");
+	for (var i = 0; i < edit_order.length; i++) {
+		(function(i){ 
+		  edit_order[i].onclick = function() {
+		      $(".popup-orderfood-container").removeClass("hide");
+		  }
+		})(i);
+	}
+	
+	$(".popup-exit-order").click(function() {
+			$(".popup-orderfood-container").addClass("hide");
+	})
 
 	/* Slide show Home Page */
 

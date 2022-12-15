@@ -459,7 +459,8 @@ html {
 /* CSS PopUp Send Contact */
 .popup-contact-container, .popup-bookatable-container,
 	.popup-changepass-container, .popup-addfood-container, .popup-editfood-container,
-	.popup-deletefood-container, .popup-confirmdeletefood-container {
+	.popup-deletefood-container, .popup-confirmdeletefood-container,
+	.popup-orderfood-container {
 	display: flex;
 	position: fixed;	
 	z-index: 9999;
@@ -475,7 +476,7 @@ html {
 .popup-contact-container .popup, .popup-bookatable-container .popup,
 	.popup-changepass-container .popup, .popup-addfood-container .popup,
 	.popup-editfood-container .popup, .popup-deletefood-container .popup,
-	.popup-confirmdeletefood-container .popup {
+	.popup-confirmdeletefood-container .popup, 	.popup-orderfood-container .popup {
 	position: relative;
 	background-color: white;
 	width: 400px;
@@ -518,13 +519,15 @@ html {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.popup .popup-exit i {
+.popup .popup-exit i,
+.popup-exit-order i {
 	float: right;
 	padding: 10px 16px;
 	transition: 0.3s;
 }
 
-.popup .popup-exit i:hover {
+.popup .popup-exit i:hover,
+.popup-exit-order i:hover {
 	background: red;
 	cursor: pointer;
 }
@@ -1003,14 +1006,16 @@ html {
 }
 
 .popup-addfood-container .popup,
-.popup-editfood-container .popup {
+.popup-editfood-container .popup,
+.popup-orderfood-container .popup {
 	display: flex;
 	flex-direction: column;
 	padding: 10px 20px;
 }
 
 .popup-addfood-container .popup .form-item,
-.popup-editfood-container .popup .form-item {
+.popup-editfood-container .popup .form-item,
+.popup-orderfood-container .popup .form-item {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1019,14 +1024,16 @@ html {
 }
 
 .popup-addfood-container .popup .form-item:first-child,
-.popup-editfood-container .popup .form-item:first-child {
+.popup-editfood-container .popup .form-item:first-child,
+.popup-orderfood-container .popup .form-item:first-child {
 	margin-bottom: 12px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .popup-addfood-container .popup .form-item:last-child,
 .popup-editfood-container .popup .form-item:last-child,
-.popup-confirmdeletefood-container .footer-popup {
+.popup-confirmdeletefood-container .footer-popup,
+.popup-orderfood-container .popup .form-item:last-child {
 	margin-top: 12px;
 	border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -1060,7 +1067,9 @@ html {
 
 .popup-addfood-container .form-item button,
 .popup-editfood-container .form-item button,
-.popup-confirmdeletefood-container .footer-popup button {
+.popup-confirmdeletefood-container .footer-popup button,
+.container-home .food-order-footer button,
+.popup-orderfood-container .form-item button {
 	height: 30px;
 	width: 70px;
 	margin-right: 15px;
@@ -1078,14 +1087,17 @@ html {
 
 .popup-addfood-container #add-food-btn:hover,
 .popup-editfood-container #save-foodedit-btn:hover,
-.popup-confirmdeletefood-container #cancel-delete-btn:hover {
+.popup-confirmdeletefood-container #cancel-delete-btn:hover,
+.container-home .food-order-footer button:hover,
+.popup-orderfood-container #accept-order-btn:hover {
 	cursor: pointer;
 	background-color: #cda45e;
 }
 
 .popup-addfood-container #cancel-btn:hover,
 .popup-editfood-container #cancel-edit-btn:hover,
-.popup-confirmdeletefood-container #delete-food-btn:hover {
+.popup-confirmdeletefood-container #delete-food-btn:hover,
+.popup-orderfood-container #cancel-order-btn:hover {
 	cursor: pointer;
 	background-color: rgba(255, 0, 0, 0.6);
 }
@@ -1459,6 +1471,125 @@ aside {
 }
 
 /* End CSS Cart Page */
+
+/* Start CSS food_orders Page */
+
+.container-home .food-order {
+	margin-top: 40px;
+	background-color: white;
+	padding: 0 10px;
+	width: 200px;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 6px;
+}
+
+.container-home .food-order .food-order-header {
+	width: 100%;
+	padding: 10px 10px;
+	text-align: center;	
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.food-order .food-order-body .food-order-body-child {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.food-order .food-order-footer {
+	margin-top: 10px;
+	border-top: 1px solid rgba(0, 0, 0, 0.2);
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 10px 10px;
+}
+
+.food-order .food-order-footer button {
+	margin-right: 0;
+}
+
+.food-order-container {
+	width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.popup-orderfood-container .popup-exit-order {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-top-right-radius: 6px; 
+}
+
+.popup-exit-order i {
+	border-top-right-radius: 6px; 
+}
+
+.popup-orderfood-container .popup .form-item:first-child {
+	margin-top: 20px;
+}
+
+.popup-orderfood-container .order-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.popup-orderfood-container .order-content table {
+	width: 100%;
+	border-collapse: collapse;	
+}
+
+.popup-orderfood-container .order-content tbody {
+	text-align: center;
+	border-spacing: 0;	
+}
+
+.popup-orderfood-container .order-content th,
+.popup-orderfood-container .order-content td {
+	padding: 10px 10px;
+	border: 1px solid black;
+}
+
+.popup-orderfood-container .order-content th {
+	background-color: #ccc;
+}
+
+.popup-orderfood-container .order-info {
+	width: 100%;
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: 50% 50%;
+    grid-template-rows: 33.33% 33.33% 33.33%;
+    text-align: center;
+}
+
+.popup-orderfood-container .order-info h4:first-child {
+	grid-column: 1 / 2;
+}
+
+.popup-orderfood-container .order-info p {
+	margin-top: 0;
+}
+
+.popup-orderfood-container .order-info p,
+.popup-orderfood-container .order-info h4 {
+	padding: 6px 6px;
+}
+
+.popup-orderfood-container .order-info h3 {
+	border-top: 1px solid rgba(0, 0, 0, 0.3);
+	padding: 12px 6px 6px 6px;
+}
+
+.container-order .content-home {
+	background-image: url("../img/restaurant4.jpg");
+}
+/* End CSS food_orders Page */
 
 /* CSS Responsive */
 @media screen and (min-width: 641px) and (max-width: 960px) {
