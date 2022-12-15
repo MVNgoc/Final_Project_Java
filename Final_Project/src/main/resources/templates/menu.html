@@ -326,6 +326,24 @@
 		</div>
 	</div>
 	
+	<td th:if="${error != null}">
+				<div class="popup-changepass-container">
+						<div class="popup">
+							<div class="popup-exit">
+								<a th:href="@{/menu}"><i class="fa-solid fa-xmark exit-icon"></i></a>
+							</div>
+							<div class="header-popup">
+								<div class="header-content">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="popup-content">
+								<h3>[[${error}]]</h3>
+							</div>
+						</div>
+					</div>
+	</td>
+	
 	<td th:if="${success != null}">
 				<div class="popup-changepass-container">
 						<div class="popup">

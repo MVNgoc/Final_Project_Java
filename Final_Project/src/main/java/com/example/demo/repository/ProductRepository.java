@@ -10,4 +10,10 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	
 	@Query("SELECT u FROM Product u WHERE u.id = ?1")
 	public Product findbyId(Long id);
+	
+	@Query("SELECT u FROM Product u WHERE u.img_food = ?1")
+	Product findbyimgfood(String img_name);
+	
+	@Query("SELECT u FROM Product u WHERE u.title = ?1")
+	Product findbytitle(String title);
 }
