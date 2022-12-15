@@ -34,9 +34,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -465,5 +468,20 @@ public class HomeController {
 	@GetMapping("/contact")
 	public String contact() {
 		return "admin/contact";
+	}
+	
+	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
+	public String deletefood(Long id) throws IOException {
+		Product product = repoProduct.findbytestId(id);
+		System.out.println(product.getTitle());		
+		
+		String DeleteDir = "./src/main/upload/food/";
+		Path DeletePath = Paths.get(DeleteDir);
+		Path filePath = DeletePath.resolve(product.getImg_food());
+		
+		Files.delete(filePath);
+
+		
+		return "redirect:/menu";
 	}
 }

@@ -99,7 +99,7 @@
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
 							<div class="remove-icon">
-								<i class="fa-solid fa-trash"></i>
+								<i class="fa-solid fa-trash"><a id="deletefoodbutton" th:href="@{/delete/(id=${product.id})}"></a></i>
 							</div>
 						</td>
 					</div>
@@ -304,7 +304,7 @@
 				<h4>Bạn có chắc chắn muốn xóa món ăn này không?</h4>
 			</div>
 			<div class="footer-popup">
-				<button type="submit" id="delete-food-btn">Xóa</button>
+				<a href="" type="submit" id="delete-food-btn">Xóa</a>
 				<button type="button" id="cancel-delete-btn">Hủy</button>
 			</div>
 		</form>
