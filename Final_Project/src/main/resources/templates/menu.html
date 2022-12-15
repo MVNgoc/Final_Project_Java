@@ -39,13 +39,13 @@
 							</h4>
 						</div>
 						<div class="cart-form-body" id="cart-form-body">
-							<div class="cart-item">
+							<div class="cart-item" th:each="cart: ${cart}>
 								<div class="cart-image">
-									<img src="img/denuong.jpg">
+									<img th:src="@{'img/food/' + ${cart.product.img_food}}">
 								</div>
 								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
-									<p class="food-price">80000</p>
+									<h4 th:text="${cart.product.title}"></h4>
+									<p class="food-price" th:text="${cart.product.price}"></p>
 								</div>
 								<div class="cart-delete-food">
 									<i class="fa-solid fa-xmark"></i>

@@ -184,10 +184,6 @@ public class HomeController {
 		return "/changepass";
 	}
 
-	@GetMapping("/cart")
-	public String cart() {
-		return "cart";
-	}
 
 	@GetMapping("/home")
 	public String home() {
