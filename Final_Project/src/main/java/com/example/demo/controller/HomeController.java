@@ -490,20 +490,26 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
-	public String deletefood(Long id) throws IOException {
-		Product product = repoProduct.findbytestId(id);
-		System.out.println(product.getTitle());	
-		System.out.println(product.getImg_food());	
+	public String deletefood(Long id, Model model) throws IOException {
+		try {
+			Product product = repoProduct.findbytestId(id);
+			System.out.println(product.getTitle());	
+			System.out.println(product.getImg_food());	
 		
-		/*
-		 * String DeleteDir = "./src/main/upload/food/"; Path DeletePath =
-		 * Paths.get(DeleteDir); Path filePath =
-		 * DeletePath.resolve(product.getImg_food());
-		 * 
-		 * Files.delete(filePath);
-		 */
+			String DeleteDir = "./src/main/upload/food/"; Path DeletePath =
+			Paths.get(DeleteDir); Path filePath =
+			DeletePath.resolve(product.getImg_food());
+			  
+			Files.delete(filePath);
+			
+			repoProduct.delete(product) ;
+			
+			
+			return "redirect:/menu";
+		}catch (IOException e) {
+			throw new IOException("Could not delete this: "); 
+		}
 
 		
-		return "redirect:/menu";
 	}
 }
