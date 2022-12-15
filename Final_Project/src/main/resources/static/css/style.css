@@ -1082,6 +1082,7 @@ html {
 .popup-addfood-container .form-item button,
 .popup-editfood-container .form-item button,
 .popup-confirmdeletefood-container .footer-popup button,
+.popup-confirmdeletefood-container .footer-popup a,
 .container-home .food-order-footer button,
 .popup-orderfood-container .form-item button,
 .book-table .book-table-footer button,
@@ -1099,8 +1100,18 @@ html {
 	margin-right: 0;
 }
 
-.popup-confirmdeletefood-container .footer-popup button {
+.popup-confirmdeletefood-container .footer-popup button,
+.popup-confirmdeletefood-container .footer-popup a {
 	float: right;
+}
+
+.popup-confirmdeletefood-container .footer-popup a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	background-color: #666;
+	font-size: 13.333px;
 }
 
 .popup-addfood-container #add-food-btn:hover,
@@ -1512,7 +1523,7 @@ aside {
 
 .container-home .food-order,
 .container-home .book-table,
-.container-home .contact {
+.container-home .contact-item {
 	margin-top: 40px;
 	background-color: white;
 	padding: 0 10px;
