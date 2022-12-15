@@ -52,8 +52,8 @@ CREATE TABLE contact (
   useremail varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   subject varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   contributions varchar(225) COLLATE utf8_unicode_ci NOT NULL,
-  timecreate TIME NOT NULL,
-  daycreate DATE NOT NULL
+  timecreate varchar(225) NOT NULL,
+  daycreate varchar(225) NOT NULL
 
 );
 
@@ -62,12 +62,12 @@ CREATE TABLE reservation (
   username varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   useremail varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   phone_number varchar(15) NOT NULL,
-  timereservation TIME NOT NULL,
-  dayreservation DATE NOT NULL,
+  timereservation varchar(225) NOT NULL,
+  dayreservation varchar(225) NOT NULL,
   people varchar(3),
   contributions varchar(225) COLLATE utf8_unicode_ci NOT NULL,
-  timecreate TIME NOT NULL,
-  daycreate DATE NOT NULL
+  timecreate varchar(225) NOT NULL,
+  daycreate varchar(225) NOT NULL
 
 );
 

@@ -32,7 +32,7 @@ public class ContactRepositoryTests {
 		contact.setUseremail("hungnghia20101@gmail.com");
 		contact.setSubject("test");
 		contact.setContributions("day chi la test");
-		contact.setDaycreate("14/12/2022");
+		contact.setDaycreate("test");
 		contact.setTimecreate("2:19:03");
 		
 		Contact savedUser = repo.save(contact);
