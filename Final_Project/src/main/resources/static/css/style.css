@@ -1126,6 +1126,15 @@ html {
 .popup-confirmdeletefood-container .popup .footer-popup {
 	padding: 10px 4px;
 }
+
+.error-img .popup .header-content {
+	background-color: red;
+}
+
+.error-img .header-content i {
+	color: white;
+	font-size: 25px;
+}
 /* End CSS Menu Page */
 
 /* Start CSS Cart Page */
@@ -1668,6 +1677,12 @@ aside {
 }
 /* End CSS Book Table Page */
 
+/* Start CSS Contact Page */
+
+
+
+/* End CSS Contact Page */
+
 /* CSS Responsive */
 @media screen and (min-width: 641px) and (max-width: 960px) {
 	aside {
@@ -1675,7 +1690,6 @@ aside {
 	}
 }
 
-/* End CSS Responsive */
 @media screen and (max-width: 960px) {
 	main {
 		width: 100%;
@@ -1684,6 +1698,8 @@ aside {
 		padding: 0 1rem;
 	}
 }
+
+/* End CSS Responsive */
 
 /* Animation */
 @keyframes modalFadeIn {
