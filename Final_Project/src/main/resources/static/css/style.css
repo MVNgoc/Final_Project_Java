@@ -919,7 +919,8 @@ html {
 
 .cart-container .cart-form-body {
 	height: auto;
-	padding-bottom: 20px;
+	text-align: center;
+	padding: 20px 0;
 }
 
 .cart-container .cart-form-footer {
