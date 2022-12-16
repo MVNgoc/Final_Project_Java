@@ -279,7 +279,7 @@ $(document).ready(function() {
 	/* Slide show Home Page */
 
 	var myIndex = 0;
-	carousel()
+	carousel();
 
 	function carousel() {
 		var i;
