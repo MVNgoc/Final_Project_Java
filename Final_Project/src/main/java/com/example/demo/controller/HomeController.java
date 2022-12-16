@@ -167,7 +167,7 @@ public class HomeController {
 	
 	@PostMapping("/changepass")
 	public String changepassnew(@RequestParam String newpasscf, @RequestParam String newpass
-			,@RequestParam String password, @AuthenticationPrincipal CustomUserDetails loggedUser,Model model)
+			,@RequestParam String password, @AuthenticationPrincipal CustomUserDetails loggedUser,Model model , HttpSession session)
 	{
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodePassword = encoder.encode(password);
@@ -193,6 +193,13 @@ public class HomeController {
 			repo.save(user);
 			model.addAttribute("success", "Đổi mật khẩu thành công");
 		}
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		
 		return "/changepass";
 	}
@@ -472,7 +479,14 @@ public class HomeController {
 	}
 	
 	@GetMapping("/food_orders")
-	public String food_orders() {
+	public String food_orders(HttpSession session, Model model) {
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "admin/food_orders";
 	}
 	
@@ -482,12 +496,26 @@ public class HomeController {
 //	}
 	
 	@GetMapping("/book_table")
-	public String book_table() {
+	public String book_table(HttpSession session , Model model) {
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "admin/book_table";
 	}
 	
 	@GetMapping("/contact")
-	public String contact() {
+	public String contact(HttpSession session , Model model) {
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "admin/contact";
 	}
 	

@@ -88,48 +88,25 @@
 						<li class="subtotal-tag">Tổng tiền</li>
 					</ul>
 				</div>
-				<div class="basket-product">
+				<div class="basket-product" th:each="cart : ${carts}">
 					<div class="item">
 						<div class="product-image">
-							<img src="img/denuong.jpg" alt="Placholder Image 2"
+							<img th:src="@{'src/main/upload/food/' + ${cart.img_food}}"
 								class="product-frame">
 						</div>
 						<div class="product-details">
 							<h1>
-								<strong><span class="item-quantity">1</span> x Thịt dê nướng</strong>
+								<strong th:text="${cart.title}"><span class="item-quantity"S>1</span></strong>
 							</h1>
 						</div>
 					</div>
-					<div class="price-temp hide">80000</div>
-					<div class="price">80000</div>
+					<div class="price-temp hide" th:text="${cart.price}"></div>
+					<div class="price" th:text="${cart.price}"></div>
 					<div class="quantity">
 						<input type="number" value="1" min="1" class="quantity-field">
 					</div>
-					<div class="subtotal-temp hide">80000</div>
-					<div class="subtotal">80000</div>
-					<div class="remove">
-						<button>Xóa</button>
-					</div>
-				</div>
-				<div class="basket-product">
-					<div class="item">
-						<div class="product-image">
-							<img src="img/hotdog.jpg" alt="Placholder Image 2"
-								class="product-frame">
-						</div>
-						<div class="product-details">
-							<h1>
-								<strong><span class="item-quantity">1</span> x Xúc xích nướng</strong>
-							</h1>
-						</div>
-					</div>
-					<div class="price-temp hide">50000</div>
-					<div class="price">50000</div>
-					<div class="quantity">
-						<input type="number" value="1" min="1" class="quantity-field">
-					</div>
-					<div class="subtotal-temp hide">50000</div>
-					<div class="subtotal">50000</div>
+					<div class="subtotal-temp hide" th:text="${cart.price}"></div>
+					<div class="subtotal" th:text="${cart.price}"></div>
 					<div class="remove">
 						<button>Xóa</button>
 					</div>
