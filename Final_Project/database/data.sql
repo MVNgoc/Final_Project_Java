@@ -35,7 +35,8 @@ CREATE TABLE food_order (
   phone_number varchar(15) NOT NULL,
   email varchar(64) NOT NULL,
   user_address varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  total_price int(255) NOT NULL
+  total_price int(255) NOT NULL,
+  status varchar(20)
 );
 
 CREATE TABLE food (
@@ -68,8 +69,8 @@ CREATE TABLE reservation (
   people varchar(3),
   contributions varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   timecreate varchar(225) NOT NULL,
-  daycreate varchar(225) NOT NULL
-
+  daycreate varchar(225) NOT NULL,
+  status varchar(20)
 );
 
 -- pass: 123456

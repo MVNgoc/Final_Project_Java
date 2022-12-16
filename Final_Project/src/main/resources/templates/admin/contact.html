@@ -107,8 +107,8 @@
 							<p th:text="${contact.subject}">Bravo!!!</p>
 						</div>
 					</div>
-					<div class="contact-footer">
-						<a class="edit_contact">Xem</a>
+					<div class="contact-footer" id="contact-footer" th:href="@{/viewcontact/(id=${contact.id})}">
+						<a  class="edit_contact">Xem</a>
 					</div>
 				</div>
 		
@@ -167,20 +167,22 @@
 				<div class="contact-content">
 					<div class="contact-content-item">
 						<h4>Họ tên:</h4>
-						<p>Mai Văn Ngọc</p>
+						<p id="username" name="username">Mai Văn Ngọc</p>
 					</div>
 					<div class="contact-content-item">
 						<h4>Email:</h4>
-						<p>maingoc28820114@gmail.com</p>
+						<p id="email" name="email">maingoc28820114@gmail.com</p>
 					</div>
 					<div class="contact-content-item">
 						<h4>Chủ đề:</h4>
-						<p>Bravo!!!</p>
+						<p id="subject" name="subject">Bravo!!!</p>
 					</div>
 					<div class="contact-content-item">
 						<h4 class="note">Nội dung:</h4>
-						<p class="note-content">Giao nhanh + ngon = 10 đỉm lunn!!</p>
+						<p id="content" name="content" class="note-content">Giao nhanh + ngon = 10 đỉm lunn!!</p>
 					</div>
+					<input name="contactid" id="contactid" hidden>
+					
 				</div>
 				<div class="form-item">
 					<button type="button" id="cancel-contact-btn">Xóa</button>

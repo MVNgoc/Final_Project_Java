@@ -220,6 +220,8 @@ $(document).ready(function() {
 	
 	//book table page button
 	
+	
+	
 
 	/* Preview an image before it is uploaded */
 
@@ -241,6 +243,7 @@ $(document).ready(function() {
 		(function(i){ 
 		  edit_order[i].onclick = function() {
 		      $(".popup-orderfood-container").removeClass("hide");
+		      
 		  }
 		})(i);
 	}
@@ -280,12 +283,25 @@ $(document).ready(function() {
 	
 	
 	/* JS Contact Page */
-	
+	var edit_footer = document.getElementsByClassName("contact-footer");
 	var edit_contact = document.getElementsByClassName("edit_contact");
 	for (var i = 0; i < edit_contact.length; i++) {
 		(function(i){ 
 		  edit_contact[i].onclick = function() {
 		      $(".popup-contact-container").removeClass("hide");
+		      var href = edit_footer[i].getAttribute("href");
+		      
+		      $.get(href, function(contact, status){
+				  var test = contact.username;
+				  $('#contact').val(contact.id);
+				  $('#username').text(contact.username);
+				  $('#email').text(contact.useremail);
+				  $('#subject').text(contact.subject);
+				  $('#content').text(contact.contributions);
+				  
+				
+			  });
+		      
 		  }
 		})(i);
 	}

@@ -478,6 +478,7 @@ public class HomeController {
 		reser.setContributions(request.getParameter("content"));
 		reser.setDaycreate(date.format(localDate));
 		reser.setTimecreate(time.format(localTime));
+		reser.setStatus("Đang chờ duyệt");
 		
 		reserRepo.save(reser);
 		
@@ -519,9 +520,17 @@ public class HomeController {
     	}else {
     		model.addAttribute("carts",null);
     	}
-    	
+
     	List<Reservation> listReser = reserRepo.findAll();
-    	model.addAttribute("listReser", listReser);
+    	List<Reservation> listReserwait = new ArrayList<Reservation>();
+    	
+    	for(int i = 0 ; i < listReser.size() ; i++) {
+			if (listReser.get(i).getStatus().equals("Đang chờ duyệt")) {
+				listReserwait.add(listReser.get(i));
+			}
+		}
+
+    	model.addAttribute("listReser", listReserwait);
     	
 		return "admin/book_table";
 	}
@@ -546,6 +555,12 @@ public class HomeController {
     	model.addAttribute("listproductContact", listContact);
     	
 		return "admin/contact";
+	}
+	
+	@RequestMapping("/viewcontact")
+	@ResponseBody
+	public Optional<Contact> viewcontact(Long id){
+		return contactRepo.findById(id);
 	}
 	
 	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
