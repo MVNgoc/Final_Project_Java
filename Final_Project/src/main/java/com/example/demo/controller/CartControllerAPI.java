@@ -6,6 +6,9 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import com.example.demo.model.Cart;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +30,17 @@ public class CartControllerAPI {
     		cart.put(params.getId(), params);
     	}
     	session.setAttribute("cartSession", cart);
+    	return cart.size();
+    }
+    
+    @DeleteMapping("/api/cart/{productId}")
+    public int removeToCart(@PathVariable(value = "productId") long productId , HttpSession session) {
+    	@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null && cart.containsKey(productId)) {
+    		cart.remove(productId);
+    		session.setAttribute("cartSession", cart);
+    	}
     	return cart.size();
     }
 }
