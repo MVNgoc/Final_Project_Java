@@ -1769,11 +1769,13 @@ aside {
 	}
 }
 
-/* Start CSS Navbar */
-
-
-
-/* End CSS Navbar */
+	/* Start CSS Navbar */
+	
+@media (max-width: 63.9375em) {
+	
+}	
+	
+	/* End CSS Navbar */
 
 /* End CSS Responsive */
 
