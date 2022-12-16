@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Đăng ký</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+	<div class="container">
+		<section class="content">
+			<form th:action="@{/process_register}" th:object="${user}"
+				method="post" id="content-info">
+				<h3>Đăng ký</h3>
+				<div class="form-group">
+					<input id="" type="text" placeholder="Họ và tên" th:field="*{name}"
+						required>
+				</div>
+				<div class="form-group">
+					<input id="fullname" type="text" placeholder="Tên đăng nhập"
+						th:field="*{username}" required>
+				</div>
+				<div class="form-group">
+					<input id="email" type="email" placeholder="Email"
+						th:field="*{email}" required>
+				</div>
+				<div class="form-group">
+					<input id="password" name="password" type="password"
+						placeholder="Mật khẩu" required>
+				</div>
+				<div class="form-group">
+					<input id="cfpassword" name="cfpassword" type="password"
+						placeholder="Nhập lại mật khẩu" required>
+				</div>
+				<div class="form-group">
+					<input id="tel" type="tel" placeholder="Số điện thoại"
+						th:field="*{phone}" required>
+				</div>
+				<div class="form-group">
+					<input id="address" type="text" placeholder="Địa chỉ"
+						th:field="*{address}" required>
+				</div>
+				<td th:if="${errorMsg != null}">
+					<div class="alert alert-danger form-group">
+						<strong th:text="${errorMsg}"></strong>
+					</div>
+				</td>
+				<div class="form-group">
+					<button type="submit" class="btn-submit">Đăng ký</button>
+				</div>
+				<div class="form-group">
+					<div>
+						<a th:href="@{/login}">Đã có tài khoản</a>
+					</div>
+				</div>
+			</form>
+
+			<td th:object="${user}" th:if="${success != null}">
+				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+							</div>
+							<div class="modal-body">
+								<i class="fa-solid fa-check"></i>
+								<p>Đăng ký tài khoản thành công</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-success btn-secondary">
+									<a th:href="@{/login}" style="color: white;">Đăng nhập</a>
+								</button>
+								<button type="button" class="btn btn-danger btn-primary">
+									<a th:href="@{/signup}" style="color: white;">Đóng</a>
+									</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+		</section>
+	</div>
+</body>
+<script>
+	$('#exampleModal').modal('show')
+</script>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Giỏ hàng</title>
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<main class="container-home">
+		<section class="navbar">
+			<div class="more-icon">
+				<i class="fa-solid fa-bars"></i>
+				<ul class="nav justify-content-center">
+					<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
+						<ul class="nav-child">
+							<li class="nav-child-item"><a class="nav-link active"
+								href="food_orders">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="contact">Phản hồi khách hàng</a></li>
+						</ul></li>
+					<li class="nav-item"><a class="nav-link active" href="home">Trang
+							chủ</a></li>
+					<li class="nav-item"><a class="nav-link" href="menu">Thực
+							đơn</a></li>
+					<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
+							bàn</a></li>
+					<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
+					<li class="nav-item"><a class="nav-link" href="home#contact">Liên
+							hệ</a></li>
+					<li class="nav-item"><a class="nav-link disabled"
+						href="changepass">Đổi mật khẩu</a></li>
+					<form th:action="@{/logout}" method="post">
+						<li class="nav-item"><button class="nav-link disabled"
+								type="submit">Đăng xuất</button></li>
+					</form>
+				</ul>
+			</div>
+			<ul class="nav justify-content-center">
+				<li class="nav-item"><a class="nav-link active"
+					href="home#content-home">Trang chủ</a></li>
+				<li class="nav-item"><a class="nav-link" href="menu">Thưc
+						đơn</a></li>
+				<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
+						bàn</a></li>
+				<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
+				<li class="nav-item"><a class="nav-link" href="home#contact">Liên
+						hệ</a></li>
+				<li class="nav-item"><a class="nav-link disabled"
+					href="changepass">Đổi mật khẩu</a></li>
+				<form th:action="@{/logout}" method="post">
+					<li class="nav-item"><button class="nav-link disabled"
+							type="submit">Đăng xuất</button></li>
+				</form>
+			</ul>
+			<div class="cart-container" th:if="${carts == null}">
+				<div class="cart-icon">
+					<div class="num-cart-item-top" id="cartCounter">0</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>
+								Giỏ hàng (<span class="num-cart-item">2</span>)
+							</h4>
+						</div>
+						<div class="cart-form-body" id="cart-form-body">Chưa có sản
+							phẩm</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="cart-container" th:if="${carts != null} ">
+				<div class="cart-icon">
+					<div class="num-cart-item-top" id="cartCounter">
+						(<span class="num-cart-item">2</span>)
+					</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>
+								Giỏ hàng (<span class="num-cart-item">2</span>)
+							</h4>
+						</div>
+						<div class="cart-form-body" id="cart-form-body"
+							th:each="cart: ${carts}">
+							<div class="cart-item">
+								<div class="cart-image">
+									<img th:src="@{'src/main/upload/food/' + ${cart.img_food}}">
+								</div>
+								<div class="cart-food-item">
+									<h4 th:text="${cart.title}"></h4>
+									<p class="food-price" th:text="${cart.price}"></p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+						</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+		<div class="body-cart">
+			<div class="basket">
+				<div class="basket-labels">
+					<ul>
+						<li class="item item-heading">Món</li>
+						<li class="price-tag">Giá</li>
+						<li class="price-tag">Số lượng</li>
+						<li class="subtotal-tag">Tổng tiền</li>
+					</ul>
+				</div>
+				<div class="basket-product" th:each="cart : ${carts}">
+					<div class="item">
+						<div class="product-image">
+							<img th:src="@{'src/main/upload/food/' + ${cart.img_food}}"
+								class="product-frame">
+						</div>
+						<div class="product-details">
+							<h1>
+								<strong th:text="${cart.title}"><span
+									class="item-quantity" S>1</span></strong>
+							</h1>
+						</div>
+					</div>
+					<div class="price-temp hide" th:text="${cart.price}"></div>
+					<div class="price" th:text="${cart.price}"></div>
+					<div class="quantity">
+						<input th:attr="onblur=|updateCart(this,${cart.id})|" type="number" value="1" min="1" class="quantity-field">
+					</div>
+					<div class="subtotal-temp hide" th:text="${cart.price}"></div>
+					<div class="subtotal" th:text="${cart.price}"></div>
+					<div class="remove" th:attr="onclick=|removeToCart(${cart.id})|">
+						<button>Xóa</button>
+					</div>
+				</div>
+			</div>
+			<aside>
+				<form action="#" class="summary" th:action="@{/cart_pay}" method="post">
+					<div class="summary-total-items">
+						<span class="total-items"></span> Món ăn cần thanh toán
+					</div>
+					<div class="summary-total">
+						<div class="total-title">Tổng thanh toán</div>
+						<div class="total-value final-value" id="basket-total">0</div>
+					</div>
+					<div class="form-item">
+						<input name="phone_number_editor" type="tel"
+							placeholder="Số điện thoại" th:value="${userphone}" required>
+						<input name="address_customer" type="text"
+							placeholder="Địa chỉ giao" required>
+					</div>
+					<div class="summary-checkout">
+						<button type="submit" class="checkout-cta">Đặt món</button>
+					</div>
+				</form>
+			</aside>
+		</div>
+		<section class="footer">
+			<div class="footer-content">
+				<div class="info">
+					<h3>3AE</h3>
+					<p>
+						19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành phố Hồ Chí
+						Minh <br> <br> <strong>Số điện thoại: </strong>0337375409
+						<br> <strong>Email: </strong>email@gmail.com
+					</p>
+					<div class="social-link">
+						<a href="#" class="twitter"> <i class="fa-brands fa-twitter"></i>
+						</a> <a href="#" class="facebook"> <i
+							class="fa-brands fa-facebook-f"></i>
+						</a> <a href="#" class="instagram"> <i
+							class="fa-brands fa-instagram"></i>
+						</a> <a href="#" class="youtube"> <i class="fa-brands fa-youtube"></i>
+						</a>
+					</div>
+				</div>
+				<div class="link-shortcuts">
+					<h4>Xem thêm</h4>
+					<ul>
+						<li><a href="home#content-home">Trang chủ</a></li>
+						<li><a href="#">Thực đơn</a></li>
+						<li><a href="home#booktable">Đặt bàn</a></li>
+						<li><a href="home#contact">Liên hệ</a></li>
+						<li><a href="changepass">Đổi mật khẩu</a></li>
+					</ul>
+				</div>
+				<div class="logo-restaurant">
+					<img alt="logo" src="img/3aelogo.png">
+				</div>
+			</div>
+			<div class="footer-info">
+				<ul>
+					<li>51900147 - Mai Văn Ngọc</li>
+					<li>51900145 - Phạm Hùng Nghĩa</li>
+					<li>51900200 - Nguyễn Thanh Sơn</li>
+				</ul>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

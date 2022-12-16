@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Error</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<div class="container-home container-error">
+		<section class="navbar">
+			<ul class="nav justify-content-center">
+			<div
+				th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+				<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
+					<ul class="nav-child">
+						<li class="nav-child-item"><a class="nav-link active"
+							href="food_orders">Đơn đặt món</a></li>
+						<li class="nav-child-item"><a class="nav-link active"
+							href="#">Đơn đặt bàn</a></li>
+						<li class="nav-child-item"><a class="nav-link active"
+							href="#">Phản hồi khách hàng</a></li>
+					</ul></li>
+					</div>
+				<li class="nav-item"><a class="nav-link active" href="home">Trang
+						chủ</a></li>
+				<li class="nav-item"><a class="nav-link" href="menu">Thực
+						đơn</a></li>
+				<li class="nav-item"><a class="nav-link" href="#booktable">Đặt
+						bàn</a></li>
+				<li class="nav-item"><img alt="Logo" src="../img/3aelogo.png"></li>
+				<li class="nav-item"><a class="nav-link" href="#contact">Liên
+						hệ</a></li>
+				<li class="nav-item"><a class="nav-link disabled"
+					href="changepass">Đổi mật khẩu</a></li>
+				<form th:action="@{/logout}" method="post">
+					<li class="nav-item"><button class="nav-link disabled"
+							type="submit">Đăng xuất</button></li>
+				</form>
+			</ul>
+			<div class="cart-container">
+				<div class="cart-icon">
+					<div class="num-cart-item-top">
+						<h4>3</h4>
+					</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>
+								Giỏ hàng (<span class="num-cart-item">2</span>)
+							</h4>
+						</div>
+						<div class="cart-form-body">
+							<div class="cart-item">
+								<div class="cart-image">
+									<img alt="denuong" src="../img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img alt="denuong" src="../img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+							<div class="cart-item">
+								<div class="cart-image">
+									<img alt="denuong" src="../img/denuong.jpg">
+								</div>
+								<div class="cart-food-item">
+									<h4>Thịt dê nướng</h4>
+									<p class="food-price">80000</p>
+								</div>
+								<div class="cart-delete-food">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+						</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+		<section id="content-home" class="content-home">
+			<div class="food-order-title">
+				<div class="error-icon">
+					<i class="fa-solid fa-xmark"></i>
+				</div>
+				<h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP</h1>
+			</div>
+		</section>
+		<section class="footer">
+			<div class="footer-content">
+				<div class="info">
+					<h3>3AE</h3>
+					<p>
+						19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành phố Hồ Chí
+						Minh <br> <br> <strong>Số điện thoại: </strong>0337375409
+						<br> <strong>Email: </strong>email@gmail.com
+					</p>
+					<div class="social-link">
+						<a href="#" class="twitter"> <i class="fa-brands fa-twitter"></i>
+						</a> <a href="#" class="facebook"> <i
+							class="fa-brands fa-facebook-f"></i>
+						</a> <a href="#" class="instagram"> <i
+							class="fa-brands fa-instagram"></i>
+						</a> <a href="#" class="youtube"> <i class="fa-brands fa-youtube"></i>
+						</a>
+					</div>
+				</div>
+				<div class="link-shortcuts">
+					<h4>Xem thêm</h4>
+					<ul>
+						<li><a href="#content-home">Trang chủ</a></li>
+						<li><a href="#">Thực đơn</a></li>
+						<li><a href="#booktable">Đặt bàn</a></li>
+						<li><a href="#contact">Liên hệ</a></li>
+						<li><a href="changepass">Đổi mật khẩu</a></li>
+					</ul>
+				</div>
+				<div class="logo-restaurant">
+					<img alt="logo" src="../img/3aelogo.png">
+				</div>
+			</div>
+			<div class="footer-info">
+				<ul>
+					<li>51900147 - Mai Văn Ngọc</li>
+					<li>51900145 - Phạm Hùng Nghĩa</li>
+					<li>51900200 - Nguyễn Thanh Sơn</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

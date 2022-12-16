@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8" />
+<title>Đổi mật khẩu</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<section class="content">
+			<form th:action="@{/reset_password}" method="post"  id="content-info">
+			<input type="hidden" name="token" th:value="${token}"/>
+				<h3>Đổi mật khẩu</h3>
+				<div class="form-group">
+					<input id="newpass" name="newpass" type="password" placeholder="Nhập mật khẩu mới" required>
+				</div>
+				<div class="form-group">
+					<input id="newpasscf" name="newpasscf" type="password" oninput="checkPassword(this);" placeholder="Xác nhận mật khẩu mới" required>
+				</div>
+				
+				<div class="form-group">
+					<button type="submit" class="btn-submit">Xác nhận</button>
+				</div>
+				
+				<div class="form-group">
+					<div>
+						<a th:href="@{/login}">Đăng nhập</a>
+					</div>
+				</div>
+			</form>
+			
+			<td th:object="${user}" th:if="${success != null}">
+				<div class="popup-changepass-container">
+						<div class="popup">
+							<div class="popup-exit">
+								<a th:href="@{/login}"><i class="fa-solid fa-xmark exit-icon"></i></a>
+							</div>
+							<div class="header-popup">
+								<div class="header-content">
+									<i class="fa-solid fa-check"></i>
+								</div>
+							</div>
+							<div class="popup-content">
+								<h3>Đổi mật khẩu thành công</h3>
+							</div>
+						</div>
+					</div>
+			</td>
+		</section>
+	</div>
+</body>
+<script type="text/javascript">
+function checkPassword(fieldconfirmpass){
+	if(fieldconfirmpass.value != $("#newpass").val()){
+		fieldconfirmpass.setCustomValidity("Passwords do not match");
+	}else if($("#newpass").val().length <= 5){
+		fieldconfirmpass.setCustomValidity("Passwords >5 character");
+	}else {
+		fieldconfirmpass.setCustomValidity("");
+	}
+	
+}
+</script>
+</html>
