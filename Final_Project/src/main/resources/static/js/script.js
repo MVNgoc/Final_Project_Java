@@ -209,7 +209,9 @@ $(document).ready(function() {
 	var img_food_edit = document.getElementById("img-food-edit");
 	img_food_editinput.onchange = e => {
 		const [file] = img_food_editinput.files;
-		$('#img-food-edit').src = URL.createObjectURL(file);
+		if(file){
+			img_food_edit.src = URL.createObjectURL(file);
+		}
 	};
 	
 
