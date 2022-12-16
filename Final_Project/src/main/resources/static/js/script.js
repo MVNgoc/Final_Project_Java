@@ -293,13 +293,12 @@ $(document).ready(function() {
 		      
 		      $.get(href, function(contact, status){
 				  var test = contact.username;
-				  $('#contact').val(contact.id);
+				  $('#contactid').val(contact.id);
 				  $('#username').text(contact.username);
 				  $('#email').text(contact.useremail);
 				  $('#subject').text(contact.subject);
 				  $('#content').text(contact.contributions);
-				  
-				
+				 
 			  });
 		      
 		  }

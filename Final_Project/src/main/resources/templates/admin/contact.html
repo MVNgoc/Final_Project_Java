@@ -157,7 +157,7 @@
 		</section>
 
 		<div class="popup-contact-container hide">
-			<form action="#" class="popup">
+			<form th:action="@{/deleteContact}" class="popup" method="post" id="formcontact">
 				<div class="form-item">
 					<div class="popup-exit-contact">
 						<a><i class="fa-solid fa-xmark exit-icon"></i></a>
@@ -185,7 +185,7 @@
 					
 				</div>
 				<div class="form-item">
-					<button type="button" id="cancel-contact-btn">Xóa</button>
+					<button type="submit" id="cancel-contact-btn">Xóa</button>
 				</div>
 			</form>
 		</div>
