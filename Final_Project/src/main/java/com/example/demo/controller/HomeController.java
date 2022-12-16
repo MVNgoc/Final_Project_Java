@@ -506,6 +506,12 @@ public class HomeController {
 	
 	@GetMapping("/book_table")
 	public String book_table(HttpSession session , Model model) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "/login";
+		}
+		
 		@SuppressWarnings("unchecked")
 		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
     	if (cart != null) {
@@ -513,11 +519,21 @@ public class HomeController {
     	}else {
     		model.addAttribute("carts",null);
     	}
+    	
+    	List<Reservation> listReser = reserRepo.findAll();
+    	model.addAttribute("listReser", listReser);
+    	
 		return "admin/book_table";
 	}
 	
 	@GetMapping("/contact")
 	public String contact(HttpSession session , Model model) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "/login";
+		}
+		
 		@SuppressWarnings("unchecked")
 		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
     	if (cart != null) {
@@ -525,6 +541,10 @@ public class HomeController {
     	}else {
     		model.addAttribute("carts",null);
     	}
+    	
+    	List<Contact> listContact = contactRepo.findAll();
+    	model.addAttribute("listproductContact", listContact);
+    	
 		return "admin/contact";
 	}
 	

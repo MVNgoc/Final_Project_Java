@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmln:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html
+	xmln:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="ISO-8859-1">
 <meta charset="utf-8" />
 <title>Trang chủ</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 </head>
@@ -15,57 +17,59 @@
 			<div class="more-icon">
 				<i class="fa-solid fa-bars"></i>
 				<ul class="nav justify-content-center">
-					<li class="nav-item">
-						<a class="nav-link active" href="#">Admin</a>
+					<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
 						<ul class="nav-child">
-							<li class="nav-child-item">
-								<a class="nav-link active" href="food_orders">Đơn đặt món</a>
-							</li>
-							<li class="nav-child-item">
-								<a class="nav-link active" href="book_table">Đơn đặt bàn</a>
-							</li>
-							<li class="nav-child-item">
-								<a class="nav-link active" href="contact">Phản hồi khách hàng</a>
-							</li>
-						</ul>
-					</li>
-					<li class="nav-item"><a class="nav-link active" href="#content-home">Trang chủ</a></li>
-					<li class="nav-item"><a class="nav-link" href="menu">Thực đơn</a></li>
-					<li class="nav-item"><a class="nav-link" href="#booktable">Đặt bàn</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="food_orders">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="contact">Phản hồi khách hàng</a></li>
+						</ul></li>
+					<li class="nav-item"><a class="nav-link active"
+						href="#content-home">Trang chủ</a></li>
+					<li class="nav-item"><a class="nav-link" href="menu">Thực
+							đơn</a></li>
+					<li class="nav-item"><a class="nav-link" href="#booktable">Đặt
+							bàn</a></li>
 					<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
-					<li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
-					<li class="nav-item"><a class="nav-link disabled" href="changepass">Đổi mật khẩu</a></li>
+					<li class="nav-item"><a class="nav-link" href="#contact">Liên
+							hệ</a></li>
+					<li class="nav-item"><a class="nav-link disabled"
+						href="changepass">Đổi mật khẩu</a></li>
 					<form th:action="@{/logout}" method="post">
-						<li class="nav-item"><button class="nav-link disabled" type="submit">Đăng xuất</button></li>
+						<li class="nav-item"><button class="nav-link disabled"
+								type="submit">Đăng xuất</button></li>
 					</form>
-				</ul>			
+				</ul>
 			</div>
 			<ul class="nav justify-content-center">
-			<div
-				th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Admin</a>
-					<ul class="nav-child">
-						<li class="nav-child-item">
-							<a class="nav-link active" href="food_orders">Đơn đặt món</a>
-						</li>
-						<li class="nav-child-item">
-							<a class="nav-link active" href="book_table">Đơn đặt bàn</a>
-						</li>
-						<li class="nav-child-item">
-							<a class="nav-link active" href="contact">Phản hồi khách hàng</a>
-						</li>
-					</ul>
-				</li>
+				<div
+					th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+					<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
+						<ul class="nav-child">
+							<li class="nav-child-item"><a class="nav-link active"
+								href="food_orders">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="contact">Phản hồi khách hàng</a></li>
+						</ul></li>
 				</div>
-				<li class="nav-item"><a class="nav-link active" th:href="@{#content-home}">Trang chủ</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/menu}">Thực đơn</a></li>
-				<li class="nav-item"><a class="nav-link" href="#booktable">Đặt bàn</a></li>
+				<li class="nav-item"><a class="nav-link active"
+					th:href="@{#content-home}">Trang chủ</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/menu}">Thực
+						đơn</a></li>
+				<li class="nav-item"><a class="nav-link" href="#booktable">Đặt
+						bàn</a></li>
 				<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
-				<li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
-				<li class="nav-item"><a class="nav-link disabled" href="changepass">Đổi mật khẩu</a></li>
+				<li class="nav-item"><a class="nav-link" href="#contact">Liên
+						hệ</a></li>
+				<li class="nav-item"><a class="nav-link disabled"
+					href="changepass">Đổi mật khẩu</a></li>
 				<form th:action="@{/logout}" method="post">
-					<li class="nav-item"><button class="nav-link disabled" type="submit">Đăng xuất</button></li>
+					<li class="nav-item"><button class="nav-link disabled"
+							type="submit">Đăng xuất</button></li>
 				</form>
 			</ul>
 			<div class="cart-container" th:if="${carts == null}">
@@ -78,8 +82,8 @@
 								Giỏ hàng (<span class="num-cart-item">2</span>)
 							</h4>
 						</div>
-						<div class="cart-form-body" id="cart-form-body">Chưa có sản
-							phẩm</div>
+						<div class="cart-form-body" id="cart-form-body">Chưa có
+							sản phẩm</div>
 						<div class="cart-form-footer">
 							<button type="submit">Thanh toán</button>
 						</div>
@@ -89,7 +93,9 @@
 
 			<div class="cart-container" th:if="${carts != null} ">
 				<div class="cart-icon">
-					<div class="num-cart-item-top" id="cartCounter">(<span class="num-cart-item">2</span>)</div>
+					<div class="num-cart-item-top" id="cartCounter">
+						(<span class="num-cart-item">2</span>)
+					</div>
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
@@ -97,7 +103,8 @@
 								Giỏ hàng (<span class="num-cart-item">2</span>)
 							</h4>
 						</div>
-						<div class="cart-form-body" id="cart-form-body" th:each="cart: ${carts}">
+						<div class="cart-form-body" id="cart-form-body"
+							th:each="cart: ${carts}">
 							<div class="cart-item">
 								<div class="cart-image">
 									<img th:src="@{'src/main/upload/food/' + ${cart.img_food}}">
@@ -123,7 +130,8 @@
 				<h1>
 					Chào mứng đến với <span>3AE</span>
 				</h1>
-				<h2>Cung cấp những món ăn tuyệt vời trong hơn 5 năm qua!</h2>
+				<h2>Cung cấp những món ăn tuyệt vời trong hơn 5 năm
+					qua!</h2>
 			</div>
 			<div class="btns">
 				<a href="menu">Thực đơn</a> <a href="#booktable">Đặt bàn</a>
@@ -138,20 +146,23 @@
 				<div class="about-item">
 					<span>01</span>
 					<h4>Không gian thoải mái</h4>
-					<p>Dù là một bữa ăn gia đình hay tổ chức các bữa tiệc thì ở đây
-						luôn mang lại một cảm giác thoải mái nhất cho bạn.</p>
+					<p>Dù là một bữa ăn gia đình hay tổ chức các
+						bữa tiệc thì ở đây luôn mang lại một cảm giác
+						thoải mái nhất cho bạn.</p>
 				</div>
 				<div class="about-item">
 					<span>02</span>
 					<h4>Đa dạng món ăn</h4>
-					<p>Một bữa ăn gia đình, một bữa tiệc hay một bữa tối sang
-						trọng. Chung tôi luôn có những món ăn phù hợp với nhu cầu của bạn.</p>
+					<p>Một bữa ăn gia đình, một bữa tiệc hay một
+						bữa tối sang trọng. Chung tôi luôn có những món ăn
+						phù hợp với nhu cầu của bạn.</p>
 				</div>
 				<div class="about-item">
 					<span>03</span>
 					<h4>Phục vụ hết mình</h4>
-					<p>Các nhân viên phục vụ cũng như đầu bếp luôn dốc hết sức để
-						mang lại cho bạn một bữa ăn ngon miệng nhất.</p>
+					<p>Các nhân viên phục vụ cũng như đầu bếp luôn
+						dốc hết sức để mang lại cho bạn một bữa ăn ngon
+						miệng nhất.</p>
 				</div>
 			</div>
 
@@ -192,7 +203,8 @@
 		<section class="event">
 			<div class="header-event">
 				<h2>EVENT</h2>
-				<p>Tổ chức các sự kiện của bạn tại nhà hàng của chúng tôi</p>
+				<p>Tổ chức các sự kiện của bạn tại nhà hàng
+					của chúng tôi</p>
 			</div>
 			<div class="body-event">
 				<div class="w3-content w3-section" style="max-width: 800px">
@@ -208,31 +220,37 @@
 				<p>Đặt bàn</p>
 			</div>
 			<div class="body-booktable">
-				<form th:action="@{/home_process}" method="post" class="booktable-form">
+				<form th:action="@{/home_process}" method="post"
+					class="booktable-form">
 					<div class="form-item">
-						<input name="username" type="text" placeholder="Họ Tên" required></input>
+						<input name="username" type="text" placeholder="Họ Tên"
+							required></input>
 					</div>
 					<div class="form-item">
 						<input name="email" type="email" placeholder="Email" required></input>
 					</div>
 					<div class="form-item">
-						<input name="phone" type="tel" placeholder="Số điện thoại" required></input>
+						<input name="phone" type="tel" placeholder="Số điện thoại"
+							required></input>
 					</div>
 					<div class="form-item">
-						<input name="datereser" id="datebook" type="date" oninput="checkdate(this);" required></input>
+						<input name="datereser" id="datebook" type="date"
+							oninput="checkdate(this);" required></input>
 					</div>
 					<div class="form-item">
-						<input name="time" id="timebook" type="time" oninput="checktime(this);" required></input>
+						<input name="time" id="timebook" type="time"
+							oninput="checktime(this);" required></input>
 					</div>
 					<div class="form-item">
-						<input name="people" type="number" placeholder="Số người" required></input>
+						<input name="people" type="number" placeholder="Số người"
+							required></input>
 					</div>
 					<div class="form-item">
 						<textarea name="content" rows="5" placeholder="Ghi chú" required></textarea>
 					</div>
-					
 
-					
+
+
 					<div class="form-item">
 						<button type="submit" class="btn-booktable">Đặt bàn</button>
 					</div>
@@ -244,7 +262,7 @@
 				<h2>GALLERY</h2>
 				<p>Một vài bức ảnh về nhà hàng</p>
 			</div>
-			<div class="body-menu">	
+			<div class="body-menu">
 				<div class="food-img">
 					<img alt="food" src="img/restaurant.jpg">
 				</div>
@@ -308,40 +326,45 @@
 					<div class="contact-form-container">
 						<form th:action="@{/home}" method="post" id="contact-form">
 							<div class="form-item">
-								<input name="username" type="text" placeholder="Họ tên" required></input>
+								<input name="username" type="text" placeholder="Họ tên"
+									required></input>
 							</div>
 							<div class="form-item">
 								<input name="email" type="email" placeholder="Email" required></input>
 							</div>
 							<div class="form-item">
-								<input name="subject" type="text" placeholder="Chủ đề" required></input>
+								<input name="subject" type="text" placeholder="Chủ đề"
+									required></input>
 							</div>
 							<div class="form-item">
-								<textarea name="content" rows="5" placeholder="Nội dung" required></textarea>
+								<textarea name="content" rows="5" placeholder="Nội dung"
+									required></textarea>
 							</div>
 							<div class="form-item">
-								<button type="submit" class="btn-contact">Gửi phản hồi</button>
+								<button type="submit" class="btn-contact">Gửi phản
+									hồi</button>
 							</div>
 						</form>
-						
+
 						<td th:object="${user}" th:if="${success != null}">
 							<div class="popup-changepass-container">
-									<div class="popup">
-										<div class="popup-exit">
-											<a th:href="@{/home}"><i class="fa-solid fa-xmark exit-icon"></i></a>
-										</div>
-										<div class="header-popup">
-											<div class="header-content">
-												<i class="fa-solid fa-check"></i>
-											</div>
-										</div>
-										<div class="popup-content">
-											<h3>[[${success}]]</h3>
+								<div class="popup">
+									<div class="popup-exit">
+										<a th:href="@{/home}"><i
+											class="fa-solid fa-xmark exit-icon"></i></a>
+									</div>
+									<div class="header-popup">
+										<div class="header-content">
+											<i class="fa-solid fa-check"></i>
 										</div>
 									</div>
+									<div class="popup-content">
+										<h3>[[${success}]]</h3>
+									</div>
 								</div>
+							</div>
 						</td>
-						
+
 					</div>
 				</div>
 			</div>
@@ -351,9 +374,9 @@
 				<div class="info">
 					<h3>3AE</h3>
 					<p>
-						19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành phố Hồ Chí
-						Minh <br> <br> <strong>Số điện thoại: </strong>0337375409
-						<br> <strong>Email: </strong>email@gmail.com
+						19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành
+						phố Hồ Chí Minh <br> <br> <strong>Số
+							điện thoại: </strong>0337375409 <br> <strong>Email: </strong>email@gmail.com
 					</p>
 					<div class="social-link">
 						<a href="#" class="twitter"> <i class="fa-brands fa-twitter"></i>
@@ -388,8 +411,8 @@
 			</div>
 		</section>
 	</div>
-	
-	
+
+
 </body>
 <script>
 function checkdate(fielddate){

@@ -13,21 +13,22 @@
 	<div class="container-home">
 		<section class="navbar">
 			<ul class="nav justify-content-center">
-			<div
-				th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
-				<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
-					<ul class="nav-child">
-						<li class="nav-child-item"><a class="nav-link active"
-							href="food_orders">Đơn đặt món</a></li>
-						<li class="nav-child-item"><a class="nav-link active"
-							href="book_table">Đơn đặt bàn</a></li>
-						<li class="nav-child-item"><a class="nav-link active"
-							href="contact">Phản hồi khách hàng</a></li>
-					</ul></li>
-					</div>
+				<div
+					th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+					<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
+						<ul class="nav-child">
+							<li class="nav-child-item"><a class="nav-link active"
+								href="food_orders">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="contact">Phản hồi khách hàng</a></li>
+						</ul></li>
+				</div>
 				<li class="nav-item"><a class="nav-link active"
 					href="home#content-home">Trang chủ</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Thưc đơn</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Thưc
+						đơn</a></li>
 				<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
 						bàn</a></li>
 				<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
@@ -55,8 +56,8 @@
 								Giỏ hàng (<span class="num-cart-item">2</span>)
 							</h4>
 						</div>
-						<div class="cart-form-body" id="cart-form-body">Chưa có sản
-							phẩm</div>
+						<div class="cart-form-body" id="cart-form-body">Chưa có
+							sản phẩm</div>
 						<div class="cart-form-footer">
 							<button type="submit">Thanh toán</button>
 						</div>
@@ -101,7 +102,8 @@
 		<section id="content-menu" class="content-menu">
 			<div class="introduce">
 				<h1>THỰC ĐƠN</h1>
-				<h2>Mang đến cho bạn những món ăn đa dạng và ngon miệng</h2>
+				<h2>Mang đến cho bạn những món ăn đa dạng và ngon
+					miệng</h2>
 			</div>
 		</section>
 
@@ -157,7 +159,8 @@
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping" th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
+							<i class="fa-solid fa-cart-shopping"
+								th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 
 						<td
@@ -183,7 +186,8 @@
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping" th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
+							<i class="fa-solid fa-cart-shopping"
+								th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 
 						<td
@@ -210,7 +214,8 @@
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping" th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
+							<i class="fa-solid fa-cart-shopping"
+								th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 
 						<td
@@ -233,9 +238,9 @@
 				<div class="info">
 					<h3>3AE</h3>
 					<p>
-						19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành phố Hồ Chí
-						Minh <br> <br> <strong>Số điện thoại: </strong>0337375409
-						<br> <strong>Email: </strong>email@gmail.com
+						19 Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7<br>Thành
+						phố Hồ Chí Minh <br> <br> <strong>Số
+							điện thoại: </strong>0337375409 <br> <strong>Email: </strong>email@gmail.com
 					</p>
 					<div class="social-link">
 						<a href="#" class="twitter"> <i class="fa-brands fa-twitter"></i>
@@ -287,7 +292,8 @@
 					src="img/food-placeholder.png" id="img-food-add">
 			</div>
 			<div class="form-item">
-				<textarea name="description" rows="2" placeholder="Mô tả" required></textarea>
+				<textarea name="description" rows="2" placeholder="Mô tả"
+					required></textarea>
 			</div>
 			<div class="form-item">
 				<input name="price" type="number" placeholder="Giá" required>
@@ -309,28 +315,33 @@
 	</div>
 
 	<div class="popup-editfood-container hide">
-		<form th:action="@{/update}" method="post" class="popup" enctype="multipart/form-data">
+		<form th:action="@{/update}" method="post" class="popup"
+			enctype="multipart/form-data">
 			<div class="form-item">
 				<h3>Chỉnh sửa</h3>
 			</div>
-			
+
 			<div class="form-item">
-				<input id="name" name="name" type="text" placeholder="Tên món" required>
+				<input id="name" name="name" type="text" placeholder="Tên món"
+					required>
 			</div>
 			<div class="form-item">
-				<input accept="image/*" type="file" name="img-food-editinput" id="img-food-editinput">
-				<img alt="Your food image" src="img/food-placeholder.png"
-					id="img-food-edit" name="img-food-edit">
+				<input accept="image/*" type="file" name="img-food-editinput"
+					id="img-food-editinput"> <img alt="Your food image"
+					src="img/food-placeholder.png" id="img-food-edit"
+					name="img-food-edit">
 			</div>
 			<div class="form-item">
-				<textarea id="description" name="description" rows="2" placeholder="Mô tả" required></textarea>
+				<textarea id="description" name="description" rows="2"
+					placeholder="Mô tả" required></textarea>
 			</div>
 			<div class="form-item">
-				<input id="price" name="price" type="number" placeholder="Giá" required>
+				<input id="price" name="price" type="number" placeholder="Giá"
+					required>
 			</div>
 			<div class="form-item">
 				<select name="category" id="category">
-					<option value="" name="loai" id="loai" >Chọn loại món</option>
+					<option value="" name="loai" id="loai">Chọn loại món</option>
 					<option value="nuong">Nướng</option>
 					<option value="lau">Lẩu</option>
 					<option value="chay">Chay</option>

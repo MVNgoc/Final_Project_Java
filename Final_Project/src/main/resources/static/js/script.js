@@ -217,6 +217,9 @@ $(document).ready(function() {
 		};
 	}
 	
+	
+	//book table page button
+	
 
 	/* Preview an image before it is uploaded */
 

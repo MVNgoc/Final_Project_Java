@@ -97,62 +97,21 @@
 				<h1>PHẢN HỒI CỦA KHÁCH HÀNG</h1>
 			</div>
 			<div class="contact-container">
-				<div class="contact contact-item">
+				<div class="contact contact-item" th:each="contact: ${listproductContact}">
 					<div class="contact-header">
 						<h3>Phản hồi khách hàng</h3>
 					</div>
 					<div class="contact-body">
 						<div class="contact-body-child">
 							<h4>Tiêu đề</h4>
-							<p>Bravo!!!</p>
+							<p th:text="${contact.subject}">Bravo!!!</p>
 						</div>
 					</div>
 					<div class="contact-footer">
 						<button type="button" class="edit_contact">Xem</button>
 					</div>
 				</div>
-				<div class="contact contact-item">
-					<div class="contact-header">
-						<h3>Phản hồi khách hàng</h3>
-					</div>
-					<div class="contact-body">
-						<div class="contact-body-child">
-							<h4>Tiêu đề</h4>
-							<p>Bravo!!!</p>
-						</div>
-					</div>
-					<div class="contact-footer">
-						<button type="button" class="edit_contact">Xem</button>
-					</div>
-				</div>
-				<div class="contact contact-item">
-					<div class="contact-header">
-						<h3>Phản hồi khách hàng</h3>
-					</div>
-					<div class="contact-body">
-						<div class="contact-body-child">
-							<h4>Tiêu đề</h4>
-							<p>Bravo!!!</p>
-						</div>
-					</div>
-					<div class="contact-footer">
-						<button type="button" class="edit_contact">Xem</button>
-					</div>
-				</div>
-				<div class="contact contact-item">
-					<div class="contact-header">
-						<h3>Phản hồi khách hàng</h3>
-					</div>
-					<div class="contact-body">
-						<div class="contact-body-child">
-							<h4>Tiêu đề</h4>
-							<p>Bravo!!!</p>
-						</div>
-					</div>
-					<div class="contact-footer">
-						<button type="button" class="edit_contact">Xem</button>
-					</div>
-				</div>
+		
 			</div>
 		</section>
 		<section class="footer">

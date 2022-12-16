@@ -26,65 +26,52 @@ import com.example.demo.service.CustomUserDetailsService;
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig{
+public class WebSecurityConfig {
 
 	@Autowired
 	private DataSource dataSource;
-	
+
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new CustomUserDetailsService();
 	}
-	
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(userDetailsService());
 		authProvider.setPasswordEncoder(passwordEncoder());
-		
+
 		return authProvider;
 	}
 
-	
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-			http.csrf().disable().authorizeRequests()
-			.antMatchers("/delete/**","/update/**","/view/**").hasRole("ADMIN")
-			.antMatchers("/home").authenticated()
-			.anyRequest().permitAll()
-			.and()
-			.formLogin().loginPage("/login")
-				.usernameParameter("username")
-				.defaultSuccessUrl("/home")
-				.permitAll()
-				.failureForwardUrl("/fail_login")
-			.and()
-			//Custom logout
-			.logout().logoutSuccessHandler(new LogoutSuccessHandler() {
-				 
-                public void onLogoutSuccess(HttpServletRequest request,
-                            HttpServletResponse response, Authentication authentication)
-                        throws IOException, ServletException {              	
-                    response.sendRedirect("/login");
-                }
-            })
-            .permitAll()
-            .and().exceptionHandling().accessDeniedPage("/403")
-            .and()
-            .rememberMe().key("ANVUUGnjshdaygdsa967643242")
-            .tokenValiditySeconds(3 * 24 * 60 * 60);
-		
+		http.csrf().disable().authorizeRequests()
+		.antMatchers("/delete/**", "/update/**", "/view/**","/food_orders/**","/book_table/**","/contact/**").hasAuthority("ADMIN")
+				.antMatchers("/home").authenticated().anyRequest().permitAll().and().formLogin().loginPage("/login")
+				.usernameParameter("username").defaultSuccessUrl("/home").permitAll().failureForwardUrl("/fail_login")
+				.and()
+				// Custom logout
+				.logout().logoutSuccessHandler(new LogoutSuccessHandler() {
+
+					public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
+							Authentication authentication) throws IOException, ServletException {
+						response.sendRedirect("/login");
+					}
+				}).permitAll().and().exceptionHandling().accessDeniedPage("/403").and().rememberMe()
+				.key("ANVUUGnjshdaygdsa967643242").tokenValiditySeconds(3 * 24 * 60 * 60);
+
 		return http.build();
 	}
-	
-	
+
 }
