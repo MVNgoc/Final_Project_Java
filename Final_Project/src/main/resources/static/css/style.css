@@ -937,7 +937,8 @@ html {
 .cart-container .cart-form-footer button {
 	background-color: #cda45e;
 	border-radius: 50px;
-	padding: 6px 22px;
+	padding: 8px 22px;
+	width: 130px;
 }
 
 .cart-container .cart-form-footer button:hover {
@@ -1087,11 +1088,11 @@ html {
 .popup-editfood-container .form-item button,
 .popup-confirmdeletefood-container .footer-popup button,
 .popup-confirmdeletefood-container .footer-popup a,
-.container-home .food-order-footer button,
+.container-home .food-order-footer .edit_order,
 .popup-orderfood-container .form-item button,
-.book-table .book-table-footer button,
+.book-table .book-table-footer .edit_book_table,
 .popup-booktable-container .form-item button,
-.contact .contact-footer button,
+.contact .contact-footer .edit_contact,
 .popup-contact-container .form-item button {
 	height: 30px;
 	width: 70px;
@@ -1124,8 +1125,8 @@ html {
 .container-home .food-order-footer button:hover,
 .popup-orderfood-container #accept-order-btn:hover,
 .popup-booktable-container #accept-booktable-btn:hover,
-.book-table .book-table-footer button:hover,
-.contact .contact-footer button:hover {
+.book-table .book-table-footer .edit_book_table:hover,
+.contact .contact-footer .edit_contact:hover {
 	cursor: pointer;
 	background-color: #cda45e;
 }
@@ -1214,7 +1215,8 @@ input, button {
 	outline: 0 none;
 }
 
-button {
+button, .edit_order, .edit_contact,
+.edit_book_table {
 	background-color: #666;
 	color: #fff;
 }
@@ -1594,9 +1596,9 @@ aside {
 	padding: 10px 10px;
 }
 
-.food-order .food-order-footer button,
-.book-table .book-table-footer button,
-.contact .contact-footer button {
+.food-order .food-order-footer .edit_order,
+.book-table .book-table-footer .edit_book_table,
+.contact .contact-footer .edit_contact {
 	margin-right: 0;
 }
 
@@ -1606,7 +1608,9 @@ aside {
 	width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    padding: 0 20px;
+    align-items: center;
 }
 
 .popup-orderfood-container .popup-exit-order,
@@ -1689,6 +1693,20 @@ aside {
 .container-order .content-home {
 	background-image: url("../img/restaurant3.jpg");
 }
+
+.food-order-container .food-order-footer .edit_order,
+.contact-container .contact-footer .edit_contact,
+.book-table-container .book-table-footer .edit_book_table {
+	font-size: 13.333px;
+	font-weight: normal;
+	padding: 0;
+	text-transform: none;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+}
 /* End CSS food_orders Page */
 
 /* Start CSS Error Page */
@@ -1755,6 +1773,7 @@ aside {
 .container-home .book-table {
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
+
 /* End CSS Book Table Page */
 
 /* Start CSS Contact Page */
