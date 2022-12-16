@@ -13,6 +13,8 @@
 	<div class="container-home">
 		<section class="navbar">
 			<ul class="nav justify-content-center">
+			<div
+				th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
 				<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
 					<ul class="nav-child">
 						<li class="nav-child-item"><a class="nav-link active"
@@ -22,6 +24,7 @@
 						<li class="nav-child-item"><a class="nav-link active"
 							href="contact">Phản hồi khách hàng</a></li>
 					</ul></li>
+					</div>
 				<li class="nav-item"><a class="nav-link active"
 					href="home#content-home">Trang chủ</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Thưc đơn</a></li>
@@ -154,7 +157,7 @@
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
+							<i class="fa-solid fa-cart-shopping" th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 
 						<td
@@ -180,7 +183,7 @@
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
+							<i class="fa-solid fa-cart-shopping" th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 
 						<td
@@ -207,7 +210,7 @@
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
+							<i class="fa-solid fa-cart-shopping" th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 
 						<td

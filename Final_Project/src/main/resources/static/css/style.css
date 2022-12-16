@@ -1832,8 +1832,8 @@ aside {
 	}
 	
 	.navbar .nav-child {
-		top: 10px;
-		left: 160px;
+		top: 0px;
+		left: 190px;
 	}
 	
 	.navbar .nav-child li {

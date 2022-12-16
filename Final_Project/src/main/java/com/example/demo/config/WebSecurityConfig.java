@@ -58,6 +58,7 @@ public class WebSecurityConfig{
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 			http.csrf().disable().authorizeRequests()
+			.antMatchers("/delete/**").hasAuthority("ADMIN")
 			.antMatchers("/home").authenticated()
 			.anyRequest().permitAll()
 			.and()
@@ -79,7 +80,8 @@ public class WebSecurityConfig{
             .permitAll()
             .and()
             .rememberMe().key("ANVUUGnjshdaygdsa967643242")
-            .tokenValiditySeconds(3 * 24 * 60 * 60);
+            .tokenValiditySeconds(3 * 24 * 60 * 60)
+			.and().exceptionHandling().accessDeniedPage("/fail_authorities");
 		
 		return http.build();
 	}
