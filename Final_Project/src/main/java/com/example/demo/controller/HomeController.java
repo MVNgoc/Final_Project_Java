@@ -86,6 +86,15 @@ public class HomeController {
         return "redirect:/home";
     }
 	
+	@GetMapping("/fail_authorities")
+    public String error() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "login";
+		}
+        return "dad";
+    }
+	
 	@PostMapping("/fail_login")
 	public String handleFailedLogin(@RequestParam String username, ModelMap model) {
 		if(repo.findbyUsername(username) == null) {

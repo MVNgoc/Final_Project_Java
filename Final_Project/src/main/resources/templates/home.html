@@ -13,6 +13,8 @@
 	<div class="container-home">
 		<section class="navbar">
 			<ul class="nav justify-content-center">
+			<div
+				th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
 				<li class="nav-item">
 					<a class="nav-link active" href="#">Admin</a>
 					<ul class="nav-child">
@@ -27,6 +29,7 @@
 						</li>
 					</ul>
 				</li>
+				</div>
 				<li class="nav-item"><a class="nav-link active" href="#content-home">Trang chủ</a></li>
 				<li class="nav-item"><a class="nav-link" href="menu">Thực đơn</a></li>
 				<li class="nav-item"><a class="nav-link" href="#booktable">Đặt bàn</a></li>
