@@ -51,7 +51,8 @@
 								Giỏ hàng (<span class="num-cart-item">2</span>)
 							</h4>
 						</div>
-						<div class="cart-form-body" id="cart-form-body" th:each="cart: ${carts}">
+						<div class="cart-form-body" id="cart-form-body"
+							th:each="cart: ${carts}">
 							<div class="cart-item">
 								<div class="cart-image">
 									<img th:src="@{'src/main/upload/food/' + ${cart.img_food}}">

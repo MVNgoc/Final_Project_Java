@@ -20,6 +20,6 @@ public class CartController {
     	}else {
     		model.addAttribute("carts",null);
     	}
-		return null;
+		return "cart";
 	}
 }

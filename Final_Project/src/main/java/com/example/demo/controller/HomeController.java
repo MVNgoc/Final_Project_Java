@@ -167,7 +167,7 @@ public class HomeController {
 	
 	@PostMapping("/changepass")
 	public String changepassnew(@RequestParam String newpasscf, @RequestParam String newpass
-			,@RequestParam String password, @AuthenticationPrincipal CustomUserDetails loggedUser,Model model)
+			,@RequestParam String password, @AuthenticationPrincipal CustomUserDetails loggedUser,Model model , HttpSession session)
 	{
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodePassword = encoder.encode(password);
@@ -193,6 +193,13 @@ public class HomeController {
 			repo.save(user);
 			model.addAttribute("success", "Đổi mật khẩu thành công");
 		}
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		
 		return "/changepass";
 	}
@@ -255,8 +262,8 @@ public class HomeController {
 			,Model model) throws IOException {
 		Product product = new Product();
 		String type = request.getParameter("type");
-		String typeV;
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		String typeV;
 		if(type.equals("nuong")) {
 			typeV = "Nướng";
 		}else if(type.equals("lau")) {
@@ -472,7 +479,14 @@ public class HomeController {
 	}
 	
 	@GetMapping("/food_orders")
-	public String food_orders() {
+	public String food_orders(HttpSession session, Model model) {
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "admin/food_orders";
 	}
 	
@@ -482,12 +496,26 @@ public class HomeController {
 //	}
 	
 	@GetMapping("/book_table")
-	public String book_table() {
+	public String book_table(HttpSession session , Model model) {
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "admin/book_table";
 	}
 	
 	@GetMapping("/contact")
-	public String contact() {
+	public String contact(HttpSession session , Model model) {
+		@SuppressWarnings("unchecked")
+		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
+    	if (cart != null) {
+    		model.addAttribute("carts",cart.values());
+    	}else {
+    		model.addAttribute("carts",null);
+    	}
 		return "admin/contact";
 	}
 	
@@ -496,9 +524,9 @@ public class HomeController {
 		try {
 			Product product = repoProduct.findbytestId(id);	
 		
-			String DeleteDir = "./src/main/upload/food/"; Path DeletePath =
-			Paths.get(DeleteDir); Path filePath =
-			DeletePath.resolve(product.getImg_food());
+			String DeleteDir = "./src/main/upload/food/"; 
+			Path DeletePath = Paths.get(DeleteDir); 
+			Path filePath = DeletePath.resolve(product.getImg_food());
 			  
 			Files.delete(filePath);
 			
@@ -519,17 +547,65 @@ public class HomeController {
 	}
 	
 	@PostMapping(value="/update")
-	public String update(HttpServletRequest request,@RequestParam("img-food-input") MultipartFile multipartFile) {
+	public String update(HttpServletRequest request,@RequestParam("img-food-editinput") MultipartFile multipartFile,Model model) throws IOException {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		System.out.println(request.getParameter("name"));
-		System.out.println(fileName);
-		if(fileName.isEmpty()) {
-			System.out.println("no change");
+		Long id = Long.parseLong(request.getParameter("editid"));
+		Long price = Long.parseLong(request.getParameter("price"));
+		String type = request.getParameter("category");
+		String typeV;
+		if(type.equals("nuong")) {
+			typeV = "Nướng";
+		}else if(type.equals("lau")) {
+			typeV = "Lẩu";
+		}else if(type.equals("chay")) {
+			typeV = "Chay";
+		}else {
+			typeV = "Fastfood";
 		}
-		System.out.println(request.getParameter("description"));
-		System.out.println(request.getParameter("price"));
-		System.out.println(request.getParameter("category"));
-		return "redirect:/menu";
+		
+		Product product = repoProduct.findbyId(id);
+		if(!request.getParameter("name").equals(product.getTitle()) 
+				& (repoProduct.findbytitle(request.getParameter("name")) != null)) {
+			model.addAttribute("error", "Tên món ăn bị trùng"); 
+			return "/menu";
+			
+		}else if(repoProduct.findbyimgfood(fileName) != null){
+			model.addAttribute("error", "Tên ảnh bị trùng"); 
+			return "/menu";
+		}
+		else if(fileName.isEmpty()) {
+			product.setCategory_name(typeV);
+			product.setDescription_food(request.getParameter("description"));
+			product.setPrice(price);
+			product.setTitle(request.getParameter("name"));
+			repoProduct.save(product);
+			model.addAttribute("success", "Cập nhật thành công");
+		}else {
+			
+			//Xóa hình ảnh cũ
+			String DeleteDir = "./src/main/upload/food/"; 
+			Path DeletePath = Paths.get(DeleteDir); 
+			Path filePath = DeletePath.resolve(product.getImg_food());	  
+			Files.delete(filePath);
+			
+			product.setCategory_name(typeV);
+			product.setDescription_food(request.getParameter("description"));
+			product.setPrice(price);
+			product.setTitle(request.getParameter("name"));
+			product.setImg_food(fileName);
+			//thêm hình ảnh mới
+			
+			try (InputStream inputStream = multipartFile.getInputStream()){ 
+				Path filePath2 = DeletePath.resolve(fileName); 
+				Files.copy(inputStream, filePath2 ,StandardCopyOption.REPLACE_EXISTING); 
+			} catch (IOException e) { 
+				throw new IOException("Could not save uploaded file: " + fileName); 
+			}
+			repoProduct.save(product);
+			model.addAttribute("success", "Chỉnh sửa món thành công");
+		}
+
+		return "/menu";
 		
 	}
 }

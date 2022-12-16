@@ -179,10 +179,12 @@ $(document).ready(function() {
 		      
 		      $.get(href, function(product, status){
 				  var test = product.category_name;
+				  $('#editid').val(product.id);
 				  $('#name').val(product.title);
 				  $('#img-food-edit').attr("src","/src/main/upload/food/"+product.img_food);
 				  $('#description').val(product.description_food);
 				  $('#price').val(product.price);
+				  
 				  if(test == "Nướng"){
 					  $("#category option[value='nuong']").attr('selected', 'selected');
 				  }else if(test == "Lẩu"){
@@ -202,6 +204,16 @@ $(document).ready(function() {
 		  }
 		})(i);
 	}
+	
+	var img_food_editinput = document.getElementById("img-food-editinput");
+	var img_food_edit = document.getElementById("img-food-edit");
+	img_food_editinput.onchange = e => {
+		const [file] = img_food_editinput.files;
+		if(file){
+			img_food_edit.src = URL.createObjectURL(file);
+		}
+	};
+	
 
 	/* Preview an image before it is uploaded */
 
