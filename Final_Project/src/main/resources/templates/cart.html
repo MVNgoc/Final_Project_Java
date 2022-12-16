@@ -107,7 +107,7 @@
 					</div>
 					<div class="subtotal-temp hide" th:text="${cart.price}"></div>
 					<div class="subtotal" th:text="${cart.price}"></div>
-					<div class="remove">
+					<div class="remove" th:attr="onclick=|removeToCart(${cart.id})|">
 						<button>Xóa</button>
 					</div>
 				</div>

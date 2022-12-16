@@ -150,7 +150,7 @@
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
+							<i class="fa-solid fa-cart-shopping" th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 
 						<td
@@ -176,7 +176,7 @@
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
+							<i class="fa-solid fa-cart-shopping" th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 
 						<td
@@ -203,7 +203,7 @@
 						<h3 class="food-name" th:text="${product.title}"></h3>
 						<p class="food-price" th:text="${product.price}" />
 						<div class="buy-icon">
-							<i class="fa-solid fa-cart-shopping"></i>
+							<i class="fa-solid fa-cart-shopping" th:attr="onclick=|addToCart(${product.id},'${product.title}','${product.img_food}',${product.price})|"></i>
 						</div>
 
 						<td

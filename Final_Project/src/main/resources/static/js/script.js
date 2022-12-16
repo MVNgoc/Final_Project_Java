@@ -328,3 +328,16 @@ function addToCart(id,title,img_food,price) {
 	})
 
 }
+
+function removeToCart(productId) {
+	fetch(`/api/cart/${productId}`, {
+		method: "delete",
+	}).then(function(res) {
+		console.log(res.json)
+		return res.json()
+	}).then(function(data) {
+		let counter = document.getElementById("cartCounter")
+		counter.innerText = data
+	})
+
+}
