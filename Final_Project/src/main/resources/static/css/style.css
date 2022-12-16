@@ -759,10 +759,6 @@ html {
 }
 
 .navbar ul .nav-item:first-child > a:hover {
-	background-color: rgba(255, 255, 255, 0.1);
-}
-
-.navbar ul .nav-item:first-child:hover {
 	background-color: rgba(255, 255, 255, 0.6);
 }
 
@@ -790,6 +786,7 @@ html {
 
 .navbar a:hover, .navbar button:hover {
 	background-color: rgba(255, 255, 255, 0.6);
+	cursor: pointer;
 }
 /* End CSS Navbar */
 
@@ -1157,6 +1154,30 @@ html {
 .error-img .header-content i {
 	color: white;
 	font-size: 25px;
+}
+
+.more-icon {
+	height: 100%;
+	width: 90px;
+	display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+}
+
+.more-icon:hover {
+	background-color: #cda45e;
+	
+}
+
+.more-icon:hover > i {
+	color: white;
+}
+
+.more-icon i {
+	color: #cda45e;
+	font-size: 24px;
 }
 /* End CSS Menu Page */
 
@@ -1771,8 +1792,53 @@ aside {
 
 	/* Start CSS Navbar */
 	
-@media (max-width: 63.9375em) {
+@media (max-width: 1200px) {
+	.navbar ul li:nth-child(5) {
+		display: none;
+	}
+}
+
+@media (max-width: 1100px) {
+	.more-icon {
+		display: flex;
+	}
 	
+	.more-icon:hover > ul {
+		display: block;
+	}
+	
+	.navbar {
+		height: 80px;
+	}
+	
+	.navbar ul {
+		flex-direction: column;
+		position: absolute;
+	    left: 90px;
+	    top: 0;
+	    display: none;
+	}
+	
+	.navbar ul li {
+		background-color: black;
+		width: 190px;
+		height: 80px
+	}
+	
+	.navbar ul li a,
+	.navbar ul li button {
+		width: 100%;
+		text-align: center;
+	}
+	
+	.navbar .nav-child {
+		top: 10px;
+		left: 160px;
+	}
+	
+	.navbar .nav-child li {
+		width: 100%;
+	}
 }	
 	
 	/* End CSS Navbar */
