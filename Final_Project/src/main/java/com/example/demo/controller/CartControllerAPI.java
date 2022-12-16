@@ -27,7 +27,7 @@ public class CartControllerAPI {
     		cart.put(params.getId(), params);
     	}
     	session.setAttribute("cartSession", cart);
-    	return Utils.countCart(cart);
+    	return cart.size();
     }
 }
 

@@ -39,11 +39,9 @@
 							type="submit">Đăng xuất</button></li>
 				</form>
 			</ul>
-			<div class="cart-container">
+			<div class="cart-container" th:if="${carts == null}">
 				<div class="cart-icon">
-					<div class="num-cart-item-top">
-						<h4>3</h4>
-					</div>
+					<div class="num-cart-item-top" id="cartCounter">0</div>
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
