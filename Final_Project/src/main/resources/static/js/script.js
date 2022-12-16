@@ -207,12 +207,15 @@ $(document).ready(function() {
 	
 	var img_food_editinput = document.getElementById("img-food-editinput");
 	var img_food_edit = document.getElementById("img-food-edit");
-	img_food_editinput.onchange = e => {
-		const [file] = img_food_editinput.files;
-		if(file){
-			img_food_edit.src = URL.createObjectURL(file);
-		}
-	};
+	
+	if(img_food_editinput != null) {	
+		img_food_editinput.onchange = e => {
+			const [file] = img_food_editinput.files;
+			if(file){
+				img_food_edit.src = URL.createObjectURL(file);
+			}
+		};
+	}
 	
 
 	/* Preview an image before it is uploaded */
@@ -291,7 +294,7 @@ $(document).ready(function() {
 	/* Slide show Home Page */
 
 	var myIndex = 0;
-	carousel()
+	carousel();
 
 	function carousel() {
 		var i;
