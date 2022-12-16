@@ -1315,7 +1315,7 @@ li.price-tag:before, li.subtotal:before, li.subtotal-tag:before {
 }
 
 .item {
-	width: 55%;
+	width: 50%;
 }
 
 .price-tag, .quantity, .subtotal, .subtotal-tag, .price {
@@ -1368,7 +1368,7 @@ li.price-tag:before, li.subtotal:before, li.subtotal-tag:before {
 
 .basket-product {
 	border-bottom: 1px solid #000;
-	padding: 1rem 0;
+	padding: 2rem 0;
 	position: relative;
 }
 
@@ -1483,10 +1483,7 @@ aside {
 	width: 100%;
 }
 
-@media screen and (max-width: 640px) {
-	aside, .basket, .summary, .item, .remove {
-		width: 100%;
-	}
+@media screen and (max-width: 650px) {
 	.basket-labels {
 		display: none;
 	}
@@ -1497,7 +1494,7 @@ aside {
 		width: 40%;
 	}
 	.product-details {
-		width: 60%;
+		width: 100%;	
 	}
 	.price-tag, .subtotal {
 		width: 33%;
@@ -1522,6 +1519,37 @@ aside {
 	.summary {
 		margin-top: 1.25rem;
 		position: relative;
+	}
+	
+	.remove button {
+	    background-color: rgba(240, 67, 67, 0.9);
+	    color: #777;
+	    float: none;
+	    text-transform: uppercase;
+	    padding: 8px 20px;
+	    border-radius: 12px;
+	    color: white;
+	}
+	
+	.basket-product {
+		padding: 1rem 0;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	aside {
+		top: -10px !important;
+	}
+}
+
+@media screen and (max-width: 920px) {
+	aside, .basket, .summary, .item, .remove {
+		width: 100%;
+	}
+	
+	aside {
+		padding: 0 1rem !important;
+		top: 35px;
 	}
 }
 
@@ -1808,18 +1836,38 @@ aside {
 /* End CSS Contact Page */
 
 /* CSS Responsive */
-@media screen and (min-width: 641px) and (max-width: 960px) {
+@media screen and (min-width: 641px) and (max-width: 1100px) {
 	aside {
 		padding: 0 1rem 0 0;
 	}
+	
+	.basket-product {
+		padding: 4rem 0;
+	}
+	
+	.item {
+		width: 40%;
+	}
+	
+	.price-tag, .quantity, .subtotal, .subtotal-tag, .price {
+		width: 20%;
+	}
+	
+	.product-image  {
+		width: 60%;
+	}
+	
+	.product-details {
+		width: 110%;
+	}
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1100px) {
 	main {
 		width: 100%;
 	}
 	.product-details {
-		padding: 0 1rem;
+		padding: 1rem 1rem 0 0;
 	}
 }
 
@@ -1827,6 +1875,16 @@ aside {
 @media (max-width: 1200px) {
 	.navbar ul li:nth-child(5) {
 		display: none;
+	}
+}
+
+@media (max-width: 1250px) {
+	.navbar ul li:nth-child(5) {
+		display: none;
+	}
+	
+	.basket-product {
+		padding: 3rem 0 1rem 0;
 	}
 }
 
@@ -1849,6 +1907,7 @@ aside {
 	    left: 90px;
 	    top: 0;
 	    display: none;
+	    animation: modalSlideRight ease .3s;
 	}
 	
 	.navbar ul li {
@@ -1866,6 +1925,7 @@ aside {
 	.navbar .nav-child {
 		top: 0px;
 		left: 190px;
+		animation: modalSlideRightAdmin ease .3s;
 	}
 	
 	.navbar .nav-child li {
@@ -1935,6 +1995,22 @@ aside {
 	.container-home .footer .link-shortcuts {
 		margin: 60px 0;
 	}
+	
+	.body-menu .body-category .food-item {
+		grid-template-columns: 33.33% 33.33% 33.33%;
+    	grid-template-rows: 40% 40% 20%;
+	}
+	
+	.body-menu .body-category .food-item h3, 
+	.body-category .food-item .food-price {
+		grid-column: 2/4;
+		margin-left: 0;
+	}
+	
+	.body-menu .body-category .food-item {
+		height: 150px;
+		margin-bottom: 15px;
+	}
 }
 
 @media (max-width: 600px) {
@@ -1948,6 +2024,30 @@ aside {
 	
 	.container-home .booktable .booktable-form {
    	 	grid-template-rows: 64px 64px 64px 64px 64px 64px 130px 60px;
+	}
+	
+	.body-menu .body-category .food-item h3, 
+	.body-category .food-item .food-price {
+		grid-column: 1/4;
+		margin-left: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+	
+	.body-menu .body-category .food-item {
+		grid-template-columns: 33.33% 33.33% 33.33%;
+    	grid-template-rows: 30% 20% 20% 30%;
+	}
+	
+	.body-menu .body-category .food-item {
+		height: 300px; 
+		margin-bottom: 0;
+	}
+	
+	.body-menu .food-item img {
+		margin-left: 100%;
 	}
 }
 
@@ -1990,6 +2090,30 @@ aside {
 
 	to {
 		top: 0;
+		opacity: 1;
+	}
+}
+
+@keyframes modalSlideRight {
+	from { 
+		left: 50px;
+		opacity: 0.5;
+	}
+
+	to {
+		left: 90px;
+		opacity: 1;
+	}
+}
+
+@keyframes modalSlideRightAdmin {
+	from { 
+		left: 120px;
+		opacity: 0.5;
+	}
+
+	to {
+		left: 190px;
 		opacity: 1;
 	}
 }

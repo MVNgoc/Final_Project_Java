@@ -13,6 +13,35 @@
 <body>
 	<div class="container-home container-order">
 		<section class="navbar">
+			<div class="more-icon">
+				<i class="fa-solid fa-bars"></i>
+				<ul class="nav justify-content-center">
+					<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
+						<ul class="nav-child">
+							<li class="nav-child-item"><a class="nav-link active"
+								href="#">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="contact">Phản hồi khách hàng</a></li>
+						</ul></li>
+					<li class="nav-item"><a class="nav-link active"
+						href="home">Trang chủ</a></li>
+					<li class="nav-item"><a class="nav-link" href="menu">Thực
+							đơn</a></li>
+					<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
+							bàn</a></li>
+					<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
+					<li class="nav-item"><a class="nav-link" href="home#contact">Liên
+							hệ</a></li>
+					<li class="nav-item"><a class="nav-link disabled"
+						href="changepass">Đổi mật khẩu</a></li>
+					<form th:action="@{/logout}" method="post">
+						<li class="nav-item"><button class="nav-link disabled"
+								type="submit">Đăng xuất</button></li>
+					</form>
+				</ul>
+			</div>
 			<ul class="nav justify-content-center">
 				<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
 					<ul class="nav-child">
@@ -235,7 +264,7 @@
 							<td>2</td>
 						</tr>
 					</table>
-					
+
 					<div class="order-info">
 						<h4>Số điện thoại:</h4>
 						<p>0337375401</p>
@@ -244,7 +273,7 @@
 						<h3>Tổng thanh toán:</h3>
 						<h3 id="sum_price_order">180000</h3>
 					</div>
-					
+
 				</div>
 				<div class="form-item">
 					<button type="submit" id="accept-order-btn">Xác nhận</button>
