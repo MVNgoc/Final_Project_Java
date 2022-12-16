@@ -175,11 +175,29 @@ $(document).ready(function() {
 		(function(i){ 
 		  edit_icon[i].onclick = function() {
 		      $(".popup-editfood-container").removeClass("hide");
+		      var href = $(this).attr('href');
+		      
+		      $.get(href, function(product, status){
+				  var test = product.category_name;
+				  $('#name').val(product.title);
+				  $('#img-food-edit').attr("src","/src/main/upload/food/"+product.img_food);
+				  $('#description').val(product.description_food);
+				  $('#price').val(product.price);
+				  if(test == "Nướng"){
+					  $("#category option[value='nuong']").attr('selected', 'selected');
+				  }else if(test == "Lẩu"){
+					  $("#category option[value='lau']").attr('selected', 'selected');
+				  }else if(test == "Chay"){
+					  $("#category option[value='chay']").attr('selected', 'selected');
+				  }else{
+					  $("#category option[value='fastfood']").attr('selected', 'selected');
+				  }
+
+			  });
 		  }
 		  remove_icon[i].onclick = function() {
 		      $(".popup-confirmdeletefood-container").removeClass("hide");
 		      var href = $(this).attr('href');
-		      console.log(href);
 		      $('#delete-food-btn').attr('href',href);
 		  }
 		})(i);

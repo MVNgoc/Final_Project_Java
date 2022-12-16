@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -46,6 +47,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -507,7 +509,27 @@ public class HomeController {
 		}catch (IOException e) {
 			throw new IOException("Could not delete this: "); 
 		}
-
+		
+	}
+	
+	@RequestMapping("/view")
+	@ResponseBody
+	public Optional<Product> view(Long id){
+		return repoProduct.findById(id);
+	}
+	
+	@PostMapping(value="/update")
+	public String update(HttpServletRequest request,@RequestParam("img-food-input") MultipartFile multipartFile) {
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		System.out.println(request.getParameter("name"));
+		System.out.println(fileName);
+		if(fileName.isEmpty()) {
+			System.out.println("no change");
+		}
+		System.out.println(request.getParameter("description"));
+		System.out.println(request.getParameter("price"));
+		System.out.println(request.getParameter("category"));
+		return "redirect:/menu";
 		
 	}
 }
