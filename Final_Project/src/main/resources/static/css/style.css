@@ -558,6 +558,7 @@ html {
 	width: 231px;
 	top: 93px;
 	right: -63px;
+	animation: modalSlideRightUser ease .3s;
 }
 
 .navbar .nav-child li {
@@ -2114,6 +2115,18 @@ aside {
 
 	to {
 		left: 190px;
+		opacity: 1;
+	}
+}
+
+@keyframes modalSlideRightUser {
+	from { 
+		top: 60px;
+		opacity: 0.5;
+	}
+
+	to {
+		top: 93px;
 		opacity: 1;
 	}
 }

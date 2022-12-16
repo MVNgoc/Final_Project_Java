@@ -360,7 +360,6 @@ function removeToCart(productId) {
 		let counter = document.getElementById("cartCounter")
 		counter.innerText = data
 	})
-
 }
 
 function updateCart(obj,id) {
