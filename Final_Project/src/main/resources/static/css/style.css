@@ -919,7 +919,8 @@ html {
 
 .cart-container .cart-form-body {
 	height: auto;
-	padding-bottom: 20px;
+	text-align: center;
+	padding: 20px 0;
 }
 
 .cart-container .cart-form-footer {
@@ -1082,6 +1083,7 @@ html {
 .popup-addfood-container .form-item button,
 .popup-editfood-container .form-item button,
 .popup-confirmdeletefood-container .footer-popup button,
+.popup-confirmdeletefood-container .footer-popup a,
 .container-home .food-order-footer button,
 .popup-orderfood-container .form-item button,
 .book-table .book-table-footer button,
@@ -1099,8 +1101,18 @@ html {
 	margin-right: 0;
 }
 
-.popup-confirmdeletefood-container .footer-popup button {
+.popup-confirmdeletefood-container .footer-popup button,
+.popup-confirmdeletefood-container .footer-popup a {
 	float: right;
+}
+
+.popup-confirmdeletefood-container .footer-popup a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	background-color: #666;
+	font-size: 13.333px;
 }
 
 .popup-addfood-container #add-food-btn:hover,
@@ -1506,9 +1518,13 @@ aside {
 
 /* Start CSS food_orders Page */
 
+.popup-orderfood-container .popup {
+	box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset, rgb(0 0 0 / 30%) 0px 18px 36px -18px inset;
+}
+
 .container-home .food-order,
 .container-home .book-table,
-.container-home .contact {
+.container-home .contact-item {
 	margin-top: 40px;
 	background-color: white;
 	padding: 0 10px;
@@ -1700,6 +1716,7 @@ aside {
 
 .popup-booktable-container .popup,
 .popup-contact-container .popup {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 	width: 530px;
 }
 

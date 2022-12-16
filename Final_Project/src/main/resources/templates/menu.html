@@ -13,6 +13,15 @@
 	<div class="container-home">
 		<section class="navbar">
 			<ul class="nav justify-content-center">
+				<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
+					<ul class="nav-child">
+						<li class="nav-child-item"><a class="nav-link active"
+							href="food_orders">Đơn đặt món</a></li>
+						<li class="nav-child-item"><a class="nav-link active"
+							href="book_table">Đơn đặt bàn</a></li>
+						<li class="nav-child-item"><a class="nav-link active"
+							href="contact">Phản hồi khách hàng</a></li>
+					</ul></li>
 				<li class="nav-item"><a class="nav-link active"
 					href="home#content-home">Trang chủ</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Thưc đơn</a></li>
@@ -50,7 +59,9 @@
 
 			<div class="cart-container" th:if="${carts != null} ">
 				<div class="cart-icon">
-					<div class="num-cart-item-top" id="cartCounter">(<span class="num-cart-item">2</span>)</div>
+					<div class="num-cart-item-top" id="cartCounter">
+						(<span class="num-cart-item">2</span>)
+					</div>
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
 						<div class="cart-form-header">
@@ -58,7 +69,8 @@
 								Giỏ hàng (<span class="num-cart-item">2</span>)
 							</h4>
 						</div>
-						<div class="cart-form-body" id="cart-form-body" th:each="cart: ${carts}">
+						<div class="cart-form-body" id="cart-form-body"
+							th:each="cart: ${carts}">
 							<div class="cart-item">
 								<div class="cart-image">
 									<img th:src="@{'src/main/upload/food/' + ${cart.img_food}}">
@@ -121,7 +133,7 @@
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
 							<div class="remove-icon" th:href="@{/delete/(id=${product.id})}">
-								<i class="fa-solid fa-trash"><a id="deletefoodbutton" ></a></i>
+								<i class="fa-solid fa-trash"><a id="deletefoodbutton"></a></i>
 							</div>
 						</td>
 					</div>
@@ -147,7 +159,7 @@
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
 							<div class="remove-icon" th:href="@{/delete/(id=${product.id})}">
-								<i class="fa-solid fa-trash"><a id="deletefoodbutton" ></a></i>
+								<i class="fa-solid fa-trash"><a id="deletefoodbutton"></a></i>
 							</div>
 						</td>
 					</div>
@@ -173,7 +185,7 @@
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
 							<div class="remove-icon" th:href="@{/delete/(id=${product.id})}">
-								<i class="fa-solid fa-trash"><a id="deletefoodbutton" ></a></i>
+								<i class="fa-solid fa-trash"><a id="deletefoodbutton"></a></i>
 							</div>
 						</td>
 
@@ -200,7 +212,7 @@
 								<i class="fa-solid fa-pen-to-square"></i>
 							</div>
 							<div class="remove-icon" th:href="@{/delete/(id=${product.id})}">
-								<i class="fa-solid fa-trash"><a id="deletefoodbutton" ></a></i>
+								<i class="fa-solid fa-trash"><a id="deletefoodbutton"></a></i>
 							</div>
 						</td>
 
@@ -264,10 +276,14 @@
 			</div>
 			<div class="form-item">
 				<input accept="image/*" name="img-food-input" type="file"
+<<<<<<< HEAD
 					id="img-food-input"> <img alt="Your food image"
 					id="img-food-input" required> <img alt="Your food image">
 				<input accept="image/*" name="img-food-input" type="file" id="img-food-input" required> 
 				<img alt="Your food image"
+=======
+					id="img-food-input" required> <img alt="Your food image"
+>>>>>>> 4b102c421fd609a5e2a0f47a61ba9b54095b342b
 					src="img/food-placeholder.png" id="img-food-add">
 			</div>
 			<div class="form-item">
@@ -372,7 +388,7 @@
 			</div>
 		</div>
 	</td>
-	
+
 
 	<td th:if="${success != null}">
 		<div class="popup-changepass-container">

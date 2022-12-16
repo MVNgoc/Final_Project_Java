@@ -257,7 +257,7 @@ public class HomeController {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		if(type.equals("nuong")) {
 			typeV = "Nướng";
-		}else if(type.equals("nau")) {
+		}else if(type.equals("lau")) {
 			typeV = "Lẩu";
 		}else if(type.equals("chay")) {
 			typeV = "Chay";
@@ -492,9 +492,7 @@ public class HomeController {
 	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
 	public String deletefood(Long id, Model model) throws IOException {
 		try {
-			Product product = repoProduct.findbytestId(id);
-			System.out.println(product.getTitle());	
-			System.out.println(product.getImg_food());	
+			Product product = repoProduct.findbytestId(id);	
 		
 			String DeleteDir = "./src/main/upload/food/"; Path DeletePath =
 			Paths.get(DeleteDir); Path filePath =

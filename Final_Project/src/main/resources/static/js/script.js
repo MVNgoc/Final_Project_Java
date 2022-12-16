@@ -213,6 +213,21 @@ $(document).ready(function() {
 			$(".popup-orderfood-container").addClass("hide");
 	})
 	
+	var food_order_price = document.getElementsByClassName("food-order-price");
+
+	for (var i = 0; i < food_order_price.length; i++) {
+		var num_food_order_price = parseInt(food_order_price[i].innerHTML);
+		num_food_order_price = num_food_order_price.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
+		food_order_price[i].innerHTML = num_food_order_price;
+	}
+	
+	var sum_price_order = document.getElementById("sum_price_order");
+	if(sum_price_order != null) {
+		var num_sum_price_order = parseInt(sum_price_order.innerHTML);
+		num_sum_price_order = num_sum_price_order.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
+		sum_price_order.innerHTML = num_sum_price_order;
+	}
+	
 	/* JS Book Table Page */
 	var edit_book_table = document.getElementsByClassName("edit_book_table");
 	for (var i = 0; i < edit_book_table.length; i++) {
@@ -226,6 +241,7 @@ $(document).ready(function() {
 	$(".popup-exit-booktable").click(function() {
 			$(".popup-booktable-container").addClass("hide");
 	})
+	
 	
 	/* JS Contact Page */
 	

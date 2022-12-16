@@ -21,16 +21,16 @@
 						<li class="nav-child-item"><a class="nav-link active"
 							href="book_table">Đơn đặt bàn</a></li>
 						<li class="nav-child-item"><a class="nav-link active"
-							href="#">Phản hồi khách hàng</a></li>
+							href="contact">Phản hồi khách hàng</a></li>
 					</ul></li>
 				<li class="nav-item"><a class="nav-link active" href="home">Trang
 						chủ</a></li>
 				<li class="nav-item"><a class="nav-link" href="menu">Thực
 						đơn</a></li>
-				<li class="nav-item"><a class="nav-link" href="#booktable">Đặt
+				<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
 						bàn</a></li>
 				<li class="nav-item"><img alt="Logo" src="img/3aelogo.png"></li>
-				<li class="nav-item"><a class="nav-link" href="#contact">Liên
+				<li class="nav-item"><a class="nav-link" href="home#contact">Liên
 						hệ</a></li>
 				<li class="nav-item"><a class="nav-link disabled"
 					href="changepass">Đổi mật khẩu</a></li>
@@ -51,38 +51,14 @@
 								Giỏ hàng (<span class="num-cart-item">2</span>)
 							</h4>
 						</div>
-						<div class="cart-form-body">
+						<div class="cart-form-body" id="cart-form-body" th:each="cart: ${carts}">
 							<div class="cart-item">
 								<div class="cart-image">
-									<img alt="denuong" src="img/denuong.jpg">
+									<img th:src="@{'src/main/upload/food/' + ${cart.img_food}}">
 								</div>
 								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
-									<p class="food-price">80000</p>
-								</div>
-								<div class="cart-delete-food">
-									<i class="fa-solid fa-xmark"></i>
-								</div>
-							</div>
-							<div class="cart-item">
-								<div class="cart-image">
-									<img alt="denuong" src="img/denuong.jpg">
-								</div>
-								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
-									<p class="food-price">80000</p>
-								</div>
-								<div class="cart-delete-food">
-									<i class="fa-solid fa-xmark"></i>
-								</div>
-							</div>
-							<div class="cart-item">
-								<div class="cart-image">
-									<img alt="denuong" src="img/denuong.jpg">
-								</div>
-								<div class="cart-food-item">
-									<h4>Thịt dê nướng</h4>
-									<p class="food-price">80000</p>
+									<h4 th:text="${cart.title}"></h4>
+									<p class="food-price" th:text="${cart.price}"></p>
 								</div>
 								<div class="cart-delete-food">
 									<i class="fa-solid fa-xmark"></i>
@@ -265,7 +241,7 @@
 						<h4>Địa chỉ:</h4>
 						<p>Q7, TP Hồ Chí Minh</p>
 						<h3>Tổng thanh toán:</h3>
-						<h3>180000</h3>
+						<h3 id="sum_price_order">180000</h3>
 					</div>
 					
 				</div>
