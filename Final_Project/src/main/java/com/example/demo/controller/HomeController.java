@@ -86,7 +86,7 @@ public class HomeController {
         return "redirect:/home";
     }
 	
-	@GetMapping("/fail_authorities")
+	@GetMapping("/403")
     public String error() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
