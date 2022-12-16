@@ -652,4 +652,13 @@ public class HomeController {
 		return "/menu";
 		
 	}
+	
+	@PostMapping(value="/deleteContact")
+	public String deleteContact(HttpServletRequest request) {
+		Long id = Long.parseLong(request.getParameter("contactid"));
+		Contact contact = contactRepo.getById(id);
+		contactRepo.delete(contact);
+
+		return "redirect:/contact";
+	}
 }
