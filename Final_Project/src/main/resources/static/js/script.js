@@ -242,16 +242,19 @@ $(document).ready(function() {
 		(function(i) {
 			edit_order[i].onclick = function() {
 				$(".popup-orderfood-container").removeClass("hide");
+				var sum_price_order = document.getElementById("sum_price_order");
+				var num_sum_price_order = parseInt(sum_price_order.innerHTML);
+				num_sum_price_order = num_sum_price_order.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
 
 				var href = editOrder_table[i].getAttribute("href");
 				$.get(href, function(food_order, status) {
 					$('#phoneFood_order').text(food_order.phone_number);
 					$('#addressFood_order').text(food_order.user_address);
 					$('#statusFood_order').text(food_order.status);
-					$('#sum_price_order').text(food_order.total_price);
+					$('#sum_price_order').text((food_order.total_price).toLocaleString('it-IT', { style: 'currency', currency: 'vnd' }));
 					
 				});
-			}
+			}	
 		})(i);
 	}
 
@@ -265,13 +268,6 @@ $(document).ready(function() {
 		var num_food_order_price = parseInt(food_order_price[i].innerHTML);
 		num_food_order_price = num_food_order_price.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
 		food_order_price[i].innerHTML = num_food_order_price;
-	}
-
-	var sum_price_order = document.getElementById("sum_price_order");
-	if (sum_price_order != null) {
-		var num_sum_price_order = parseInt(sum_price_order.innerHTML);
-		num_sum_price_order = num_sum_price_order.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
-		sum_price_order.innerHTML = num_sum_price_order;
 	}
 
 	/* JS Book Table Page */
