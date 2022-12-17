@@ -220,6 +220,12 @@ public class HomeController {
 
 	@GetMapping("/home")
 	public String home(Model model, HttpSession session, @AuthenticationPrincipal CustomUserDetails loggedUser) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "/login";
+		}
+		
 		@SuppressWarnings("unchecked")
 		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
 		if (cart != null) {
@@ -501,7 +507,13 @@ public class HomeController {
 	}
 
 	@GetMapping("/food_orders")
-	public String food_orders(HttpSession session, Model model) {
+	public String food_orders(HttpSession session, Model model,@AuthenticationPrincipal CustomUserDetails loggedUser) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			return "/login";
+		}
+		
 		@SuppressWarnings("unchecked")
 		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
 		if (cart != null) {
@@ -509,14 +521,27 @@ public class HomeController {
 		} else {
 			model.addAttribute("carts", null);
 		}
-		List<Food_order> food_order = repoFood_order.findAll();
-		List<Food_order> listFood_order = new ArrayList<Food_order>();
-		for (int i = 0; i < food_order.size(); i++) {
-			if (food_order.get(i).getStatus().equals("Đang chờ duyệt")) {
-				listFood_order.add(food_order.get(i));
+		
+		if(!loggedUser.getUsername().equals("admin")) {
+			List<Food_order> food_order = repoFood_order.findAll();
+			List<Food_order> listFood_order = new ArrayList<Food_order>();
+			for (int i = 0; i < food_order.size(); i++) {
+				if (food_order.get(i).getUsername().equals(loggedUser.getUsername())) {
+					listFood_order.add(food_order.get(i));
+				}
 			}
+			model.addAttribute("food_orders", listFood_order);
+		}else {
+			List<Food_order> food_order = repoFood_order.findAll();
+			List<Food_order> listFood_order = new ArrayList<Food_order>();
+			for (int i = 0; i < food_order.size(); i++) {
+				if (food_order.get(i).getStatus().equals("Đang chờ duyệt")) {
+					listFood_order.add(food_order.get(i));
+				}
+			}
+			model.addAttribute("food_orders", listFood_order);
 		}
-		model.addAttribute("food_orders", listFood_order);
+		
 		return "admin/food_orders";
 	}
 	
@@ -724,6 +749,23 @@ public class HomeController {
 		reserRepo.save(reser);
 
 		return "redirect:/book_table";
+	}
+	
+	@PostMapping(value = "/updatefoodorder")
+	public String updatefoodorder(HttpServletRequest request) {
+		Long id = Long.parseLong(request.getParameter("id"));
+		String test = request.getParameter("accept-order-btn");
+		Food_order foodorder = repoFood_order.getById(id);
+		
+		if(test != null) {
+			foodorder.setStatus("Chấp nhận");
+		}else {
+			foodorder.setStatus("Hủy đơn");
+		}
+		
+		repoFood_order.save(foodorder);
+
+		return "redirect:/food_orders";
 	}
 	
 	

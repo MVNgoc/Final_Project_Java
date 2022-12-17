@@ -250,6 +250,7 @@ $(document).ready(function() {
 				var href = editOrder_table[i].getAttribute("href");
 				$.get(href, function(food_order, status) {
 					var myArray = food_order.food_name.split(',');
+					$('#id').val(food_order.id);
 					$('#phoneFood_order').text(food_order.phone_number);
 					$('#addressFood_order').text(food_order.user_address);
 					$('#statusFood_order').text(food_order.status);

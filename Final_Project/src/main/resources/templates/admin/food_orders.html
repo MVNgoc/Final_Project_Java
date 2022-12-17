@@ -16,15 +16,34 @@
 			<div class="more-icon">
 				<i class="fa-solid fa-bars"></i>
 				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
-						<ul class="nav-child">
-							<li class="nav-child-item"><a class="nav-link active"
-								href="#">Đơn đặt món</a></li>
-							<li class="nav-child-item"><a class="nav-link active"
-								href="book_table">Đơn đặt bàn</a></li>
-							<li class="nav-child-item"><a class="nav-link active"
-								href="contact">Phản hồi khách hàng</a></li>
-						</ul></li>
+					
+					<div th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+						<li class="nav-item">
+						<a class="nav-link active" href="#">Admin</a>
+							<ul class="nav-child">
+								<li class="nav-child-item"><a class="nav-link active"
+									href="food_orders">Đơn đặt món</a></li>
+								<li class="nav-child-item"><a class="nav-link active"
+									href="book_table">Đơn đặt bàn</a></li>
+								<li class="nav-child-item"><a class="nav-link active"
+									href="contact">Phản hồi khách hàng</a></li>
+							</ul>
+						</li>
+					</div>
+					
+					<div
+						th:if="${#strings.contains(#authentication.principal.authorities, 'USER')}">
+						<li class="nav-item"><a class="nav-link active" href="#">Lịch
+								sử</a>
+							<ul class="nav-child">
+								<li class="nav-child-item"><a class="nav-link active"
+									href="food_orders">Đơn đặt món</a></li>
+								<li class="nav-child-item"><a class="nav-link active"
+									href="book_table">Đơn đặt bàn</a></li>
+
+							</ul></li>
+					</div>
+					
 					<li class="nav-item"><a class="nav-link active" href="home">Trang
 							chủ</a></li>
 					<li class="nav-item"><a class="nav-link" href="menu">Thực
@@ -44,15 +63,30 @@
 				</ul>
 			</div>
 			<ul class="nav justify-content-center">
+				
+				<div th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
 				<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
 					<ul class="nav-child">
 						<li class="nav-child-item"><a class="nav-link active"
-							href="#">Đơn đặt món</a></li>
+							href="food_orders">Đơn đặt món</a></li>
 						<li class="nav-child-item"><a class="nav-link active"
-							href="book_table">Đơn đặt bàn</a></li>
+							href="#">Đơn đặt bàn</a></li>
 						<li class="nav-child-item"><a class="nav-link active"
 							href="contact">Phản hồi khách hàng</a></li>
 					</ul></li>
+				</div>
+				
+				<div th:if="${#strings.contains(#authentication.principal.authorities, 'USER')}">
+				<li class="nav-item"><a class="nav-link active" href="#">Lịch sử</a>
+					<ul class="nav-child">
+						<li class="nav-child-item"><a class="nav-link active"
+							href="food_orders">Đơn đặt món</a></li>
+						<li class="nav-child-item"><a class="nav-link active"
+							href="#">Đơn đặt bàn</a></li>
+
+					</ul></li>
+				</div>
+				
 				<li class="nav-item"><a class="nav-link active" href="home">Trang
 						chủ</a></li>
 				<li class="nav-item"><a class="nav-link" href="menu">Thực
@@ -196,7 +230,7 @@
 		</section>
 
 		<div class="popup-orderfood-container hide">
-			<form action="#" class="popup">
+			<form th:action="@{/updatefoodorder}" method="post" class="popup">
 				<div class="form-item">
 					<div class="popup-exit-order">
 						<a><i class="fa-solid fa-xmark"></i></a>
@@ -219,12 +253,15 @@
 						<p id="statusFood_order"></p>
 						<h3>Tổng thanh toán:</h3>
 						<h3 id="sum_price_order"></h3>
+						<input id="id" name="id" hidden>
 					</div>
 
 				</div>
+				<div th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
 				<div class="form-item">
-					<button type="submit" id="accept-order-btn">Xác nhận</button>
-					<button type="button" id="cancel-order-btn">Hủy đơn</button>
+					<button value="accept" type="submit" name="accept-order-btn" id="accept-order-btn">Xác nhận</button>
+					<button value="cancel" type="submit" name="cancel-order-btn" id="cancel-order-btn">Hủy đơn</button>
+				</div>
 				</div>
 			</form>
 		</div>
