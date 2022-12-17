@@ -250,7 +250,6 @@ $(document).ready(function() {
 					$('#addressFood_order').text(food_order.user_address);
 					$('#statusFood_order').text(food_order.status);
 					$('#sum_price_order').text(food_order.total_price);
-					
 				});
 			}
 		})(i);

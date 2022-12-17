@@ -46,6 +46,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -522,8 +523,10 @@ public class HomeController {
 	@RequestMapping("/viewFood_order")
 	@ResponseBody
 	public Optional<Food_order> viewFood_order(Long id,Model model) {
-		return Optional.ofNullable(repoFood_order.getFood_orderById(id));
+ 		return Optional.ofNullable(repoFood_order.getFood_orderById(id));
 	}
+	
+	
 	
 //	@GetMapping("/error")
 //	public String error() {
