@@ -16,15 +16,30 @@
 			<div class="more-icon">
 				<i class="fa-solid fa-bars"></i>
 				<ul class="nav justify-content-center">
+				
+					<div th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">		
 					<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
 						<ul class="nav-child">
 							<li class="nav-child-item"><a class="nav-link active"
-								href="#">Đơn đặt món</a></li>
+								href="food_orders">Đơn đặt món</a></li>
 							<li class="nav-child-item"><a class="nav-link active"
 								href="book_table">Đơn đặt bàn</a></li>
 							<li class="nav-child-item"><a class="nav-link active"
 								href="contact">Phản hồi khách hàng</a></li>
 						</ul></li>
+					</div>
+					
+					<div
+					th:if="${#strings.contains(#authentication.principal.authorities, 'USER')}">
+					<li class="nav-item"><a class="nav-link active" href="#">Lịch sử</a>
+						<ul class="nav-child">
+							<li class="nav-child-item"><a class="nav-link active"
+								href="food_orders">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+						</ul></li>
+					</div>
+						
 					<li class="nav-item"><a class="nav-link active" href="home">Trang
 							chủ</a></li>
 					<li class="nav-item"><a class="nav-link" href="menu">Thực
@@ -44,15 +59,32 @@
 				</ul>
 			</div>
 			<ul class="nav justify-content-center">
-				<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
-					<ul class="nav-child">
-						<li class="nav-child-item"><a class="nav-link active"
-							href="#">Đơn đặt món</a></li>
-						<li class="nav-child-item"><a class="nav-link active"
-							href="book_table">Đơn đặt bàn</a></li>
-						<li class="nav-child-item"><a class="nav-link active"
-							href="contact">Phản hồi khách hàng</a></li>
-					</ul></li>
+			
+			<div
+					th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">
+					<li class="nav-item"><a class="nav-link active" href="#">Admin</a>
+						<ul class="nav-child">
+							<li class="nav-child-item"><a class="nav-link active"
+								href="food_orders">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="contact">Phản hồi khách hàng</a></li>
+						</ul></li>
+				</div>
+				
+				<div
+					th:if="${#strings.contains(#authentication.principal.authorities, 'USER')}">
+					<li class="nav-item"><a class="nav-link active" href="#">Lịch sử</a>
+						<ul class="nav-child">
+							<li class="nav-child-item"><a class="nav-link active"
+								href="food_orders">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+						</ul></li>
+				</div>
+					
+					
 				<li class="nav-item"><a class="nav-link active" href="home">Trang
 						chủ</a></li>
 				<li class="nav-item"><a class="nav-link" href="menu">Thực
