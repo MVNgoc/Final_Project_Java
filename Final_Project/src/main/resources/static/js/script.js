@@ -30,7 +30,6 @@ $(document).ready(function() {
 	/* Recalculate cart */
 	function recalculateCart(onlyTotal) {
 		var subtotal = 0;
-		console.log(onlyTotal);
 		/* Sum up row totals */
 		$('.basket-product').each(function() {
 			subtotal += parseFloat($(this).children('.subtotal-temp').text());
@@ -237,26 +236,52 @@ $(document).ready(function() {
 	}
 
 	/* JS Food Orders Page */
+	var myTable = document.getElementById("tableViewOrder");
 	var editOrder_table = document.getElementsByClassName("food-order-footer");
 	var edit_order = document.getElementsByClassName("edit_order");
 	for (var i = 0; i < edit_order.length; i++) {
 		(function(i) {
 			edit_order[i].onclick = function() {
 				$(".popup-orderfood-container").removeClass("hide");
+				var sum_price_order = document.getElementById("sum_price_order");
+				var num_sum_price_order = parseInt(sum_price_order.innerHTML);
+				num_sum_price_order = num_sum_price_order.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
+
 
 				var href = editOrder_table[i].getAttribute("href");
 				$.get(href, function(food_order, status) {
+					
+					var myArray = food_order.food_name.split(',');
 					$('#phoneFood_order').text(food_order.phone_number);
 					$('#addressFood_order').text(food_order.user_address);
 					$('#statusFood_order').text(food_order.status);
-					$('#sum_price_order').text(food_order.total_price);
+					$('#sum_price_order').text((food_order.total_price).toLocaleString('it-IT', { style: 'currency', currency: 'vnd' }));
+
+					var test = 0;
+					for (var i = 0; i < (myArray.length / 2) - 1; i++) {
+						var tr = document.createElement('TR');
+						tr.id = i.toString();
+						myTable.appendChild(tr);
+
+						for (var j = 0; j < 2; j++) {
+							var td = document.createElement('TD');
+							td.appendChild(document.createTextNode(myArray[test]));
+							tr.appendChild(td);
+							test = test + 1;
+						}
+					}
+					
 				});
 			}
 		})(i);
 	}
-
+	var myTable = document.getElementById("tableViewOrder");
 	$(".popup-exit-order").click(function() {
 		$(".popup-orderfood-container").addClass("hide");
+		var num = myTable.rows.length;
+		for (var i = 0 ; i < num ; i++){
+			document.getElementById(i.toString()).remove();
+		}
 	})
 
 	var food_order_price = document.getElementsByClassName("food-order-price");
@@ -265,13 +290,6 @@ $(document).ready(function() {
 		var num_food_order_price = parseInt(food_order_price[i].innerHTML);
 		num_food_order_price = num_food_order_price.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
 		food_order_price[i].innerHTML = num_food_order_price;
-	}
-
-	var sum_price_order = document.getElementById("sum_price_order");
-	if (sum_price_order != null) {
-		var num_sum_price_order = parseInt(sum_price_order.innerHTML);
-		num_sum_price_order = num_sum_price_order.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
-		sum_price_order.innerHTML = num_sum_price_order;
 	}
 
 	/* JS Book Table Page */
