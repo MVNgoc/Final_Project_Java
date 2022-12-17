@@ -17,7 +17,6 @@ html {
 /* Start CSS Home Page */
 .container-home .content-home, .container-home .content-menu {
 	width: 100%;
-	background-color: rgba(85, 85, 85, 0.5);
 	position: relative;
 	height: 100vh;
 	background-size: cover;
@@ -1594,7 +1593,7 @@ aside {
 	margin-top: 40px;
 	background-color: white;
 	padding: 0 10px;
-	width: 200px;
+	width: 240px;
 	height: auto;
 	display: flex;
 	flex-direction: column;
@@ -1701,7 +1700,7 @@ aside {
 	margin-top: 30px;
 	display: grid;
 	grid-template-columns: 50% 50%;
-    grid-template-rows: 33.33% 33.33% 33.33%;
+    grid-template-rows: 25% 25% 25% 25%;
     text-align: center;
 }
 
