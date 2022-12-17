@@ -519,7 +519,7 @@ public class HomeController {
 	
 	@RequestMapping("/viewFood_order")
 	@ResponseBody
-	public Optional<Food_order> viewFood_order(Long id) {
+	public Optional<Food_order> viewFood_order(Long id,Model model) {
 		return Optional.ofNullable(repoFood_order.getFood_orderById(id));
 	}
 	

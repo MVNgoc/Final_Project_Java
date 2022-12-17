@@ -31,7 +31,8 @@
 							đơn</a></li>
 					<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
 							bàn</a></li>
-					<li class="nav-item img-li"><img alt="Logo" src="img/3aelogo.png"></li>
+					<li class="nav-item img-li"><img alt="Logo"
+						src="img/3aelogo.png"></li>
 					<li class="nav-item"><a class="nav-link" href="home#contact">Liên
 							hệ</a></li>
 					<li class="nav-item"><a class="nav-link disabled"
@@ -58,7 +59,8 @@
 						đơn</a></li>
 				<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
 						bàn</a></li>
-				<li class="nav-item img-li"><img alt="Logo" src="img/3aelogo.png"></li>
+				<li class="nav-item img-li"><img alt="Logo"
+					src="img/3aelogo.png"></li>
 				<li class="nav-item"><a class="nav-link" href="home#contact">Liên
 						hệ</a></li>
 				<li class="nav-item"><a class="nav-link disabled"
@@ -125,7 +127,7 @@
 			<div class="food-order-title">
 				<h1>DANH SÁCH ĐƠN MÓN</h1>
 			</div>
-			<div class="food-order-container" >
+			<div class="food-order-container">
 				<div class="food-order" th:each="food_order : ${food_orders}">
 					<div class="food-order-header">
 						<h3>Đơn đặt món</h3>
@@ -144,8 +146,9 @@
 							<p class="food-order-price" th:text="${food_order.total_price}"></p>
 						</div>
 					</div>
-					<div class="food-order-footer" th:href="@{/viewFood_order/(id=${food_order.id})}">
-						<a class="edit_order" >Xem</a>
+					<div class="food-order-footer"
+						th:href="@{/viewFood_order/(id=${food_order.id})}">
+						<a class="edit_order">Xem</a>
 					</div>
 				</div>
 			</div>
@@ -201,28 +204,19 @@
 					<h3>Đơn đặt món</h3>
 				</div>
 				<div class="order-content">
-					<table>
+					<table id = "tableViewOrder">
 						<tr>
 							<th>Món</th>
 							<th>Số lượng</th>
 						</tr>
-						<tr>
-							<td>Thịt dê nướng</td>
-							<td>1</td>
-						</tr>
-						<tr>
-							<td>Xúc xích nướng</td>
-							<td>2</td>
-						</tr>
 					</table>
-
 					<div class="order-info">
 						<h4>Số điện thoại:</h4>
-						<p id = "phoneFood_order"></p>
+						<p id="phoneFood_order"></p>
 						<h4>Địa chỉ:</h4>
-						<p id = "addressFood_order"></p>
+						<p id="addressFood_order"></p>
 						<h4>Trạng thái:</h4>
-						<p id = "statusFood_order"></p>
+						<p id="statusFood_order"></p>
 						<h3>Tổng thanh toán:</h3>
 						<h3 id="sum_price_order"></h3>
 					</div>

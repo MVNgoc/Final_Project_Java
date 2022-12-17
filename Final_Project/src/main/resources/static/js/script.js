@@ -243,16 +243,15 @@ $(document).ready(function() {
 		(function(i) {
 			edit_order[i].onclick = function() {
 				$(".popup-orderfood-container").removeClass("hide");
-				
+
 				var href = editOrder_table[i].getAttribute("href");
-				console.log(href);
 				$.get(href, function(food_order, status) {
 					$('#phoneFood_order').text(food_order.phone_number);
 					$('#addressFood_order').text(food_order.user_address);
-					$("#statusFood_order").text(food_order.status);
-					$("#sum_price_order").text(food_order.total_price);
+					$('#statusFood_order').text(food_order.status);
+					$('#sum_price_order').text(food_order.total_price);
+					
 				});
-
 			}
 		})(i);
 	}
