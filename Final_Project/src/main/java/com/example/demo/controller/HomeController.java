@@ -216,7 +216,7 @@ public class HomeController {
 	}
 
 	@GetMapping("/home")
-	public String home(Model model, HttpSession session) {
+	public String home(Model model, HttpSession session, @AuthenticationPrincipal CustomUserDetails loggedUser) {
 		@SuppressWarnings("unchecked")
 		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
 		if (cart != null) {
@@ -224,6 +224,10 @@ public class HomeController {
 		} else {
 			model.addAttribute("carts", null);
 		}
+		
+		User user = repo.findbyUsername(loggedUser.getUsername());
+		model.addAttribute("user", user);
+		
 		return "home";
 	}
 
@@ -434,7 +438,7 @@ public class HomeController {
 	ContactRepository contactRepo;
 
 	@PostMapping("/home")
-	public String contact(Contact contact, HttpServletRequest request, Model model) {
+	public String contact(User user,Contact contact, HttpServletRequest request, Model model) {
 		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		LocalDate localDate = LocalDate.now();
 
@@ -461,7 +465,7 @@ public class HomeController {
 	ReservationRepository reserRepo;
 
 	@PostMapping("/home_process")
-	public String Reser(Reservation reser, HttpServletRequest request, Model model) {
+	public String Reser(User user,Reservation reser, HttpServletRequest request, Model model) {
 
 		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		DateTimeFormatter fromform = DateTimeFormatter.ofPattern("uuuu-MM-dd");
