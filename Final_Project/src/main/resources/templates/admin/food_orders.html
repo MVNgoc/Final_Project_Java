@@ -25,8 +25,8 @@
 							<li class="nav-child-item"><a class="nav-link active"
 								href="contact">Phản hồi khách hàng</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link active"
-						href="home">Trang chủ</a></li>
+					<li class="nav-item"><a class="nav-link active" href="home">Trang
+							chủ</a></li>
 					<li class="nav-item"><a class="nav-link" href="menu">Thực
 							đơn</a></li>
 					<li class="nav-item"><a class="nav-link" href="home#booktable">Đặt
@@ -68,10 +68,29 @@
 							type="submit">Đăng xuất</button></li>
 				</form>
 			</ul>
-			<div class="cart-container">
+			<div class="cart-container" th:if="${carts == null}">
 				<div class="cart-icon">
-					<div class="num-cart-item-top">
-						<h4>3</h4>
+					<div class="num-cart-item-top" id="cartCounter">0</div>
+					<i class="fa-solid fa-cart-shopping"></i>
+					<form action="/cart" class="cart-form">
+						<div class="cart-form-header">
+							<h4>
+								Giỏ hàng (<span class="num-cart-item">2</span>)
+							</h4>
+						</div>
+						<div class="cart-form-body" id="cart-form-body">Chưa có sản
+							phẩm</div>
+						<div class="cart-form-footer">
+							<button type="submit">Thanh toán</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="cart-container" th:if="${carts != null} ">
+				<div class="cart-icon">
+					<div class="num-cart-item-top" id="cartCounter">
+						(<span class="num-cart-item"></span>)
 					</div>
 					<i class="fa-solid fa-cart-shopping"></i>
 					<form action="/cart" class="cart-form">
@@ -106,91 +125,23 @@
 			<div class="food-order-title">
 				<h1>DANH SÁCH ĐƠN MÓN</h1>
 			</div>
-			<div class="food-order-container">
-				<div class="food-order">
+			<div class="food-order-container" >
+				<div class="food-order" th:each="food_order : ${food_orders}">
 					<div class="food-order-header">
 						<h3>Đơn đặt món</h3>
 					</div>
 					<div class="food-order-body">
 						<div class="food-order-body-child">
+							<h4>ID</h4>
+							<p th:text="${food_order.id}"></p>
+						</div>
+						<div class="food-order-body-child">
 							<h4>Số lượng món</h4>
-							<p>2</p>
+							<p th:text="${food_order.quantity}"></p>
 						</div>
 						<div class="food-order-body-child">
 							<h4>Tổng thanh toán</h4>
-							<p class="food-order-price">130000</p>
-						</div>
-					</div>
-					<div class="food-order-footer">
-						<a class="edit_order">Xem</a>
-					</div>
-				</div>
-				<div class="food-order">
-					<div class="food-order-header">
-						<h3>Đơn đặt món</h3>
-					</div>
-					<div class="food-order-body">
-						<div class="food-order-body-child">
-							<h4>Số lượng món</h4>
-							<p>2</p>
-						</div>
-						<div class="food-order-body-child">
-							<h4>Tổng thanh toán</h4>
-							<p class="food-order-price">130000</p>
-						</div>
-					</div>
-					<div class="food-order-footer">
-						<a class="edit_order">Xem</a>
-					</div>
-				</div>
-				<div class="food-order">
-					<div class="food-order-header">
-						<h3>Đơn đặt món</h3>
-					</div>
-					<div class="food-order-body">
-						<div class="food-order-body-child">
-							<h4>Số lượng món</h4>
-							<p>2</p>
-						</div>
-						<div class="food-order-body-child">
-							<h4>Tổng thanh toán</h4>
-							<p class="food-order-price">130000</p>
-						</div>
-					</div>
-					<div class="food-order-footer">
-						<a class="edit_order">Xem</a>
-					</div>
-				</div>
-				<div class="food-order">
-					<div class="food-order-header">
-						<h3>Đơn đặt món</h3>
-					</div>
-					<div class="food-order-body">
-						<div class="food-order-body-child">
-							<h4>Số lượng món</h4>
-							<p>2</p>
-						</div>
-						<div class="food-order-body-child">
-							<h4>Tổng thanh toán</h4>
-							<p class="food-order-price">130000</p>
-						</div>
-					</div>
-					<div class="food-order-footer">
-						<a class="edit_order">Xem</a>
-					</div>
-				</div>
-				<div class="food-order">
-					<div class="food-order-header">
-						<h3>Đơn đặt món</h3>
-					</div>
-					<div class="food-order-body">
-						<div class="food-order-body-child">
-							<h4>Số lượng món</h4>
-							<p>2</p>
-						</div>
-						<div class="food-order-body-child">
-							<h4>Tổng thanh toán</h4>
-							<p class="food-order-price">130000</p>
+							<p class="food-order-price" th:text="${food_order.total_price}"></p>
 						</div>
 					</div>
 					<div class="food-order-footer">

@@ -13,11 +13,9 @@ public class Food_order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(nullable = false, length = 64)
+	@Column(nullable = false)
 	private String food_name;
 	@Column(nullable = true, length = 225)
-	private String img_food;
-	@Column(nullable = false, length = 10)
 	private long quantity;
 	@Column(nullable = false, length = 64)
 	private String username;
@@ -54,14 +52,6 @@ public class Food_order {
 
 	public void setFood_name(String food_name) {
 		this.food_name = food_name;
-	}
-
-	public String getImg_food() {
-		return img_food;
-	}
-
-	public void setImg_food(String img_food) {
-		this.img_food = img_food;
 	}
 
 	public long getQuantity() {

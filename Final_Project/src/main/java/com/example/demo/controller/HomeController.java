@@ -55,10 +55,14 @@ import com.example.demo.config.Utility;
 import com.example.demo.model.Cart;
 import com.example.demo.model.Contact;
 import com.example.demo.model.CustomUserDetails;
+import com.example.demo.model.Food_order;
+import com.example.demo.model.Food_orderConfirm;
+import com.example.demo.model.Name_Quantity;
 import com.example.demo.model.Product;
 import com.example.demo.model.Reservation;
 import com.example.demo.model.User;
 import com.example.demo.repository.ContactRepository;
+import com.example.demo.repository.Food_orderRepository;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.UserRepository;
@@ -76,31 +80,33 @@ public class HomeController {
 	private UserRepository repo;
 	@Autowired
 	private ProductRepository repoProduct;
-	
+	@Autowired
+	private Food_orderRepository repoFood_order;
+
 	@GetMapping("/login")
-    public String login() {
+	public String login() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "login";
 		}
-        return "redirect:/home";
-    }
-	
+		return "redirect:/home";
+	}
+
 	@GetMapping("/403")
-    public String error() {
+	public String error() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "login";
 		}
-        return "dad";
-    }
-	
+		return "dad";
+	}
+
 	@PostMapping("/fail_login")
 	public String handleFailedLogin(@RequestParam String username, ModelMap model) {
-		if(repo.findbyUsername(username) == null) {
+		if (repo.findbyUsername(username) == null) {
 			model.addAttribute("errorMsg", "Username không tồn tại");
 			return "/login";
-		}else {
+		} else {
 			model.addAttribute("errorMsg", "Username hoặc mật khẩu sai");
 			return "/login";
 		}
@@ -110,41 +116,38 @@ public class HomeController {
 	@GetMapping("/signup")
 	public String signup(Model model) {
 		model.addAttribute("user", new User());
-		
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "signup";
 		}
-		
+
 		return "redirect:/home";
 	}
-	
+
 	@PostMapping("/process_register")
-	public String processRegistration(User user, @RequestParam String cfpassword
-			,@RequestParam String password, ModelMap model) {
-		
+	public String processRegistration(User user, @RequestParam String cfpassword, @RequestParam String password,
+			ModelMap model) {
+
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodePassword = encoder.encode(password);
-	
-		if(repo.findbyEmail(user.getEmail()) != null) {
+
+		if (repo.findbyEmail(user.getEmail()) != null) {
 			model.addAttribute("errorMsg", "email bi trung");
 			return "/signup";
-		}
-		else if(repo.findbyUsername(user.getUsername()) != null){
+		} else if (repo.findbyUsername(user.getUsername()) != null) {
 			model.addAttribute("errorMsg", "Username da bi trung");
 			return "/signup";
-		}
-		else if(password.length() < 5) {
+		} else if (password.length() < 5) {
 			model.addAttribute("errorMsg", "Password >5");
 			return "/signup";
-		}
-		else if(!password.equals(cfpassword)) {
+		} else if (!password.equals(cfpassword)) {
 			model.addAttribute("errorMsg", "Confirm password wrong");
 			return "/signup";
-		}else if(repo.findbyPhone(user.getPhone()) != null) {
+		} else if (repo.findbyPhone(user.getPhone()) != null) {
 			model.addAttribute("errorMsg", "Phone has been used");
 			return "/signup";
-		}else {
+		} else {
 			user.setPassword(encodePassword);
 			user.setRole("USER");
 			repo.save(user);
@@ -158,43 +161,42 @@ public class HomeController {
 			user.setPassword("");
 			cfpassword = "";
 		}
-		
+
 		return "/signup";
 	}
-	
 
 	@GetMapping("/changepass")
 	public String changepass() {
-		
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "redirect:/login";
 		}
-		
+
 		return "/changepass";
 	}
-	
+
 	@PostMapping("/changepass")
-	public String changepassnew(@RequestParam String newpasscf, @RequestParam String newpass
-			,@RequestParam String password, @AuthenticationPrincipal CustomUserDetails loggedUser,Model model , HttpSession session)
-	{
+	public String changepassnew(@RequestParam String newpasscf, @RequestParam String newpass,
+			@RequestParam String password, @AuthenticationPrincipal CustomUserDetails loggedUser, Model model,
+			HttpSession session) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodePassword = encoder.encode(password);
 		boolean isMatch = encoder.matches(password, loggedUser.getPassword());
-		
-		if(isMatch == false) {
+
+		if (isMatch == false) {
 			model.addAttribute("errorMsg", "Mật khẩu cũ không trùng");
 			return "/changepass";
-		}else if(newpass.length() < 5) {
+		} else if (newpass.length() < 5) {
 			model.addAttribute("errorMsg", "Mật khẩu mới phải lớn hơn 5 kí tự");
 			return "/changepass";
-		}else if(!newpass.equals(newpasscf)) {
+		} else if (!newpass.equals(newpasscf)) {
 			model.addAttribute("errorMsg", "Mật khẩu xác nhận không trùng khớp");
 			return "/changepass";
-		}else if(newpass.equals(password)) {
+		} else if (newpass.equals(password)) {
 			model.addAttribute("errorMsg", "Mật khẩu mới không được trùng với mật khẩu cũ");
 			return "/changepass";
-		}else {
+		} else {
 			String encodenewPass = encoder.encode(newpass);
 			loggedUser.setPassword(encodenewPass);
 			User user = repo.getUserByUsername(loggedUser.getUsername());
@@ -203,172 +205,170 @@ public class HomeController {
 			model.addAttribute("success", "Đổi mật khẩu thành công");
 		}
 		@SuppressWarnings("unchecked")
-		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
-    	if (cart != null) {
-    		model.addAttribute("carts",cart.values());
-    	}else {
-    		model.addAttribute("carts",null);
-    	}
-		
+		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
+		if (cart != null) {
+			model.addAttribute("carts", cart.values());
+		} else {
+			model.addAttribute("carts", null);
+		}
+
 		return "/changepass";
 	}
 
-
 	@GetMapping("/home")
-	public String home(Model model,HttpSession session) {
+	public String home(Model model, HttpSession session) {
 		@SuppressWarnings("unchecked")
-		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
-    	if (cart != null) {
-    		model.addAttribute("carts",cart.values());
-    	}else {
-    		model.addAttribute("carts",null);
-    	}
+		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
+		if (cart != null) {
+			model.addAttribute("carts", cart.values());
+		} else {
+			model.addAttribute("carts", null);
+		}
 		return "home";
 	}
-	
+
 	@SuppressWarnings("null")
 	@GetMapping("/menu")
-	public String menu(Model model,HttpSession session) {
+	public String menu(Model model, HttpSession session) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "/login";
 		}
-		
+
 		List<Product> listProduct = repoProduct.findAll();
 		List<Product> listProductNuong = new ArrayList<Product>();
 		List<Product> listProductLau = new ArrayList<Product>();
 		List<Product> listProductChay = new ArrayList<Product>();
 		List<Product> listProductFastfood = new ArrayList<Product>();
-		model.addAttribute("listProducts",listProduct);
-		for (int i = 0 ; i < listProduct.size() ; i++) {
+		model.addAttribute("listProducts", listProduct);
+		for (int i = 0; i < listProduct.size(); i++) {
 			if (listProduct.get(i).getCategory_name().equals("Nướng")) {
 				listProductNuong.add(listProduct.get(i));
-			}else if (listProduct.get(i).getCategory_name().equals("Lẩu")) {
+			} else if (listProduct.get(i).getCategory_name().equals("Lẩu")) {
 				listProductLau.add(listProduct.get(i));
-			}else if (listProduct.get(i).getCategory_name().equals("Chay")) {
+			} else if (listProduct.get(i).getCategory_name().equals("Chay")) {
 				listProductChay.add(listProduct.get(i));
-			}else if (listProduct.get(i).getCategory_name().equals("Fastfood")) {
+			} else if (listProduct.get(i).getCategory_name().equals("Fastfood")) {
 				listProductFastfood.add(listProduct.get(i));
 			}
 		}
-		model.addAttribute("listProductsNuong",listProductNuong);
-		model.addAttribute("listProductsLau",listProductLau);
-		model.addAttribute("listProductsChay",listProductChay);
-		model.addAttribute("listProductsFastfood",listProductFastfood);
+		model.addAttribute("listProductsNuong", listProductNuong);
+		model.addAttribute("listProductsLau", listProductLau);
+		model.addAttribute("listProductsChay", listProductChay);
+		model.addAttribute("listProductsFastfood", listProductFastfood);
 		@SuppressWarnings("unchecked")
-		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
-    	if (cart != null) {
-    		model.addAttribute("carts",cart.values());
-    	}else {
-    		model.addAttribute("carts",null);
-    	}
+		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
+		if (cart != null) {
+			model.addAttribute("carts", cart.values());
+		} else {
+			model.addAttribute("carts", null);
+		}
 		return "menu";
 	}
-	
-	//xử lý thêm món
+
+	// xử lý thêm món
 	@PostMapping("/menu_add")
-	public String addFood(HttpServletRequest request,@RequestParam("img-food-input") MultipartFile multipartFile
-			,Model model) throws IOException {
+	public String addFood(HttpServletRequest request, @RequestParam("img-food-input") MultipartFile multipartFile,
+			Model model) throws IOException {
 		Product product = new Product();
 		String type = request.getParameter("type");
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		String typeV;
-		if(type.equals("nuong")) {
+		if (type.equals("nuong")) {
 			typeV = "Nướng";
-		}else if(type.equals("lau")) {
+		} else if (type.equals("lau")) {
 			typeV = "Lẩu";
-		}else if(type.equals("chay")) {
+		} else if (type.equals("chay")) {
 			typeV = "Chay";
-		}else {
+		} else {
 			typeV = "Fastfood";
 		}
-		
-		if(repoProduct.findbytitle(request.getParameter("namefood")) != null) {
-			model.addAttribute("error", "Tên món ăn bị trùng"); 
+
+		if (repoProduct.findbytitle(request.getParameter("namefood")) != null) {
+			model.addAttribute("error", "Tên món ăn bị trùng");
 			return "/menu";
-		}else if(repoProduct.findbyimgfood(fileName) != null){
-			model.addAttribute("error", "Tên ảnh bị trùng"); 
+		} else if (repoProduct.findbyimgfood(fileName) != null) {
+			model.addAttribute("error", "Tên ảnh bị trùng");
 			return "/menu";
-		}else {
+		} else {
 			product.setImg_food(fileName);
 			product.setCategory_name(typeV);
 			product.setDescription_food(request.getParameter("description"));
 			product.setPrice((Long.parseLong(request.getParameter("price"))));
 			product.setTitle(request.getParameter("namefood"));
-			
+
 			repoProduct.save(product);
-			
-			
+
 			String uploadDir = "./src/main/upload/food/";
-			  
+
 			Path uploadPath = Paths.get(uploadDir);
-			  
-			try (InputStream inputStream = multipartFile.getInputStream()){ 
-				Path filePath = uploadPath.resolve(fileName); 
-				Files.copy(inputStream, filePath ,StandardCopyOption.REPLACE_EXISTING); 
-			} catch (IOException e) { 
-				throw new IOException("Could not save uploaded file: " + fileName); 
+
+			try (InputStream inputStream = multipartFile.getInputStream()) {
+				Path filePath = uploadPath.resolve(fileName);
+				Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				throw new IOException("Could not save uploaded file: " + fileName);
 			}
-			model.addAttribute("success", "Thêm món thành công"); 
+			model.addAttribute("success", "Thêm món thành công");
 		}
 
 		return "/menu";
 	}
-	
+
 	@GetMapping("/logout")
 	public String lougout() {
 		return "redirect:/login";
 	}
-	
-	//Xử lý quên password
-	
+
+	// Xử lý quên password
+
 	@GetMapping("/fogotpass")
 	public String fogotpass() {
-		
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "fogotpass";
 		}
-		
+
 		return "redirect:/home";
 	}
-	
+
 	@GetMapping("/fail")
 	public String fail() {
-		
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "/fail";
 		}
-		
+
 		return "redirect:/home";
 	}
-	
+
 	@GetMapping("/reset_password")
-	public String changepasspw(@Param(value = "token") String token,Model model) {
-		
+	public String changepasspw(@Param(value = "token") String token, Model model) {
+
 		User user = repo.findByResetPasswordToken(token);
-		if(user == null) {
+		if (user == null) {
 			model.addAttribute("message", "Token không hợp lệ");
 			return "Fail";
 		}
 		model.addAttribute("token", token);
-		
+
 		return "changepasspw";
 	}
-	
+
 	@PostMapping("/reset_password")
-	public String resetpass(@RequestParam String newpasscf, @RequestParam String newpass
-			,Model model, @RequestParam String token) {
+	public String resetpass(@RequestParam String newpasscf, @RequestParam String newpass, Model model,
+			@RequestParam String token) {
 		User user = repo.findByResetPasswordToken(token);
-		
-		if(user == null) {
+
+		if (user == null) {
 			model.addAttribute("message", "Token không hợp lệ");
 			return "Fail";
-		}else {
+		} else {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			String encodePassword = encoder.encode(newpass);
-			
+
 			user.setPassword(encodePassword);
 			user.setResetPasswordToken(null);
 			repo.save(user);
@@ -377,67 +377,67 @@ public class HomeController {
 
 		return "changepasspw";
 	}
-	
+
 	@Autowired
 	private JavaMailSender mailSender;
-	
+
 	@PostMapping("/fogotpass")
-	public String fogot(@RequestParam String email,Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
-		if(repo.findbyEmail(email) == null) {
+	public String fogot(@RequestParam String email, Model model, HttpServletRequest request)
+			throws UnsupportedEncodingException, MessagingException {
+		if (repo.findbyEmail(email) == null) {
 			model.addAttribute("errorMsg", "Email này không tồn tại");
 			return "/fogotpass";
-		}else {
+		} else {
 			String token = RandomString.make(45);
 			User user = repo.findbyEmail(email);
 			try {
 				user.setResetPasswordToken(token);
 				repo.save(user);
-				//generate reset password link
+				// generate reset password link
 				String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
-				
-				//send email to user
+
+				// send email to user
 				sendEmail(email, resetPasswordLink);
 				model.addAttribute("success", "Đã gửi mail cho bạn, vui lòng kiểm tra mail");
-			}catch(UnsupportedEncodingException | MessagingException e){
+			} catch (UnsupportedEncodingException | MessagingException e) {
 				model.addAttribute("errorMsg", "Lỗi trong việc gửi email");
 			}
-			
-			
+
 		}
-		
+
 		return "fogotpass";
 	}
 
-	private void sendEmail(String email, String resetPasswordLink) throws UnsupportedEncodingException, MessagingException{
+	private void sendEmail(String email, String resetPasswordLink)
+			throws UnsupportedEncodingException, MessagingException {
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
-		
+
 		helper.setFrom("contact@3ae.com", "3ae Support");
 		helper.setTo(email);
-		
+
 		String subject = "Đây là link để reset password của bạn";
-		String content = "<p>Xin chào</p>" + 
-				"<p>Bạn có yêu cầu để tạo mới mật khẩu.</p>" + 
-				"<p>Nhấn vào link dưới đây để tạo mới mật khẩu: </p>" +
-				"<p><b><a href=\"" + resetPasswordLink + "\"> Thay đổi mật khẩu </a><b></p>"
+		String content = "<p>Xin chào</p>" + "<p>Bạn có yêu cầu để tạo mới mật khẩu.</p>"
+				+ "<p>Nhấn vào link dưới đây để tạo mới mật khẩu: </p>" + "<p><b><a href=\"" + resetPasswordLink
+				+ "\"> Thay đổi mật khẩu </a><b></p>"
 				+ "<p>Bỏ qua email này nếu bạn nhớ mật khẩu của mình hoặc bạn không tạo yêu cầu đổi mật khẩu</p>";
-		
+
 		helper.setSubject(subject);
 		helper.setText(content, true);
-		
+
 		mailSender.send(message);
 	}
-	
-	//post contact
-	
+
+	// post contact
+
 	@Autowired
 	ContactRepository contactRepo;
-	
+
 	@PostMapping("/home")
-	public String contact(Contact contact,HttpServletRequest request,Model model) {	
+	public String contact(Contact contact, HttpServletRequest request, Model model) {
 		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		LocalDate localDate = LocalDate.now();
-		
+
 		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
 		LocalTime localTime = LocalTime.now();
 
@@ -447,28 +447,28 @@ public class HomeController {
 		contact.setContributions(request.getParameter("content"));
 		contact.setDaycreate(date.format(localDate));
 		contact.setTimecreate(time.format(localTime));
-		
+
 		contactRepo.save(contact);
-		
+
 		model.addAttribute("success", "Gửi phản hồi thành công");
-		
+
 		return "/home";
-		
+
 	}
-	
-	//post reservation
+
+	// post reservation
 	@Autowired
 	ReservationRepository reserRepo;
-	
+
 	@PostMapping("/home_process")
-	public String Reser(Reservation reser,HttpServletRequest request,Model model) {
-		
+	public String Reser(Reservation reser, HttpServletRequest request, Model model) {
+
 		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		LocalDate localDate = LocalDate.now();
-		
+
 		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
 		LocalTime localTime = LocalTime.now();
-		
+
 		reser.setUsername(request.getParameter("username"));
 		reser.setUseremail(request.getParameter("email"));
 		reser.setPeople(request.getParameter("people"));
@@ -479,181 +479,182 @@ public class HomeController {
 		reser.setDaycreate(date.format(localDate));
 		reser.setTimecreate(time.format(localTime));
 		reser.setStatus("Đang chờ duyệt");
-		
+
 		reserRepo.save(reser);
-		
+
 		model.addAttribute("success", "Gửi form đặt bàn thành công");
-		
+
 		return "/home";
-		
+
 	}
-	
+
 	@GetMapping("/food_orders")
 	public String food_orders(HttpSession session, Model model) {
 		@SuppressWarnings("unchecked")
-		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
-    	if (cart != null) {
-    		model.addAttribute("carts",cart.values());
-    	}else {
-    		model.addAttribute("carts",null);
-    	}
+		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
+		if (cart != null) {
+			model.addAttribute("carts", cart.values());
+		} else {
+			model.addAttribute("carts", null);
+		}
+		List<Food_order> food_order = repoFood_order.findAll();
+		model.addAttribute("food_orders", food_order);
 		return "admin/food_orders";
 	}
-	
+
 //	@GetMapping("/error")
 //	public String error() {
 //		return "error";
 //	}
-	
+
 	@GetMapping("/book_table")
-	public String book_table(HttpSession session , Model model) {
-		
+	public String book_table(HttpSession session, Model model) {
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "/login";
 		}
-		
-		@SuppressWarnings("unchecked")
-		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
-    	if (cart != null) {
-    		model.addAttribute("carts",cart.values());
-    	}else {
-    		model.addAttribute("carts",null);
-    	}
 
-    	List<Reservation> listReser = reserRepo.findAll();
-    	List<Reservation> listReserwait = new ArrayList<Reservation>();
-    	
-    	for(int i = 0 ; i < listReser.size() ; i++) {
+		@SuppressWarnings("unchecked")
+		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
+		if (cart != null) {
+			model.addAttribute("carts", cart.values());
+		} else {
+			model.addAttribute("carts", null);
+		}
+
+		List<Reservation> listReser = reserRepo.findAll();
+		List<Reservation> listReserwait = new ArrayList<Reservation>();
+
+		for (int i = 0; i < listReser.size(); i++) {
 			if (listReser.get(i).getStatus().equals("Đang chờ duyệt")) {
 				listReserwait.add(listReser.get(i));
 			}
 		}
 
-    	model.addAttribute("listReser", listReserwait);
-    	
+		model.addAttribute("listReser", listReserwait);
+
 		return "admin/book_table";
 	}
-	
+
 	@GetMapping("/contact")
-	public String contact(HttpSession session , Model model) {
-		
+	public String contact(HttpSession session, Model model) {
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "/login";
 		}
-		
+
 		@SuppressWarnings("unchecked")
-		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
-    	if (cart != null) {
-    		model.addAttribute("carts",cart.values());
-    	}else {
-    		model.addAttribute("carts",null);
-    	}
-    	
-    	List<Contact> listContact = contactRepo.findAll();
-    	model.addAttribute("listproductContact", listContact);
-    	
+		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
+		if (cart != null) {
+			model.addAttribute("carts", cart.values());
+		} else {
+			model.addAttribute("carts", null);
+		}
+
+		List<Contact> listContact = contactRepo.findAll();
+		model.addAttribute("listproductContact", listContact);
+
 		return "admin/contact";
 	}
-	
+
 	@RequestMapping("/viewcontact")
 	@ResponseBody
-	public Optional<Contact> viewcontact(Long id){
+	public Optional<Contact> viewcontact(Long id) {
 		return contactRepo.findById(id);
 	}
-	
-	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
+
+	@RequestMapping(value = "/delete", method = { RequestMethod.DELETE, RequestMethod.GET })
 	public String deletefood(Long id, Model model) throws IOException {
 		try {
-			Product product = repoProduct.findbytestId(id);	
-		
-			String DeleteDir = "./src/main/upload/food/"; 
-			Path DeletePath = Paths.get(DeleteDir); 
+			Product product = repoProduct.findbytestId(id);
+
+			String DeleteDir = "./src/main/upload/food/";
+			Path DeletePath = Paths.get(DeleteDir);
 			Path filePath = DeletePath.resolve(product.getImg_food());
-			  
+
 			Files.delete(filePath);
-			
-			repoProduct.delete(product) ;
-			
-			
+
+			repoProduct.delete(product);
+
 			return "redirect:/menu";
-		}catch (IOException e) {
-			throw new IOException("Could not delete this: "); 
+		} catch (IOException e) {
+			throw new IOException("Could not delete this: ");
 		}
-		
+
 	}
-	
+
 	@RequestMapping("/view")
 	@ResponseBody
-	public Optional<Product> view(Long id){
+	public Optional<Product> view(Long id) {
 		return repoProduct.findById(id);
 	}
-	
-	@PostMapping(value="/update")
-	public String update(HttpServletRequest request,@RequestParam("img-food-editinput") MultipartFile multipartFile,Model model) throws IOException {
+
+	@PostMapping(value = "/update")
+	public String update(HttpServletRequest request, @RequestParam("img-food-editinput") MultipartFile multipartFile,
+			Model model) throws IOException {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		Long id = Long.parseLong(request.getParameter("editid"));
 		Long price = Long.parseLong(request.getParameter("price"));
 		String type = request.getParameter("category");
 		String typeV;
-		if(type.equals("nuong")) {
+		if (type.equals("nuong")) {
 			typeV = "Nướng";
-		}else if(type.equals("lau")) {
+		} else if (type.equals("lau")) {
 			typeV = "Lẩu";
-		}else if(type.equals("chay")) {
+		} else if (type.equals("chay")) {
 			typeV = "Chay";
-		}else {
+		} else {
 			typeV = "Fastfood";
 		}
-		
+
 		Product product = repoProduct.findbyId(id);
-		if(!request.getParameter("name").equals(product.getTitle()) 
+		if (!request.getParameter("name").equals(product.getTitle())
 				& (repoProduct.findbytitle(request.getParameter("name")) != null)) {
-			model.addAttribute("error", "Tên món ăn bị trùng"); 
+			model.addAttribute("error", "Tên món ăn bị trùng");
 			return "/menu";
-			
-		}else if(repoProduct.findbyimgfood(fileName) != null){
-			model.addAttribute("error", "Tên ảnh bị trùng"); 
+
+		} else if (repoProduct.findbyimgfood(fileName) != null) {
+			model.addAttribute("error", "Tên ảnh bị trùng");
 			return "/menu";
-		}
-		else if(fileName.isEmpty()) {
+		} else if (fileName.isEmpty()) {
 			product.setCategory_name(typeV);
 			product.setDescription_food(request.getParameter("description"));
 			product.setPrice(price);
 			product.setTitle(request.getParameter("name"));
 			repoProduct.save(product);
 			model.addAttribute("success", "Cập nhật thành công");
-		}else {
-			
-			//Xóa hình ảnh cũ
-			String DeleteDir = "./src/main/upload/food/"; 
-			Path DeletePath = Paths.get(DeleteDir); 
-			Path filePath = DeletePath.resolve(product.getImg_food());	  
+		} else {
+
+			// Xóa hình ảnh cũ
+			String DeleteDir = "./src/main/upload/food/";
+			Path DeletePath = Paths.get(DeleteDir);
+			Path filePath = DeletePath.resolve(product.getImg_food());
 			Files.delete(filePath);
-			
+
 			product.setCategory_name(typeV);
 			product.setDescription_food(request.getParameter("description"));
 			product.setPrice(price);
 			product.setTitle(request.getParameter("name"));
 			product.setImg_food(fileName);
-			//thêm hình ảnh mới
-			
-			try (InputStream inputStream = multipartFile.getInputStream()){ 
-				Path filePath2 = DeletePath.resolve(fileName); 
-				Files.copy(inputStream, filePath2 ,StandardCopyOption.REPLACE_EXISTING); 
-			} catch (IOException e) { 
-				throw new IOException("Could not save uploaded file: " + fileName); 
+			// thêm hình ảnh mới
+
+			try (InputStream inputStream = multipartFile.getInputStream()) {
+				Path filePath2 = DeletePath.resolve(fileName);
+				Files.copy(inputStream, filePath2, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				throw new IOException("Could not save uploaded file: " + fileName);
 			}
 			repoProduct.save(product);
 			model.addAttribute("success", "Chỉnh sửa món thành công");
 		}
 
 		return "/menu";
-		
+
 	}
-	
-	@PostMapping(value="/deleteContact")
+
+	@PostMapping(value = "/deleteContact")
 	public String deleteContact(HttpServletRequest request) {
 		Long id = Long.parseLong(request.getParameter("contactid"));
 		Contact contact = contactRepo.getById(id);

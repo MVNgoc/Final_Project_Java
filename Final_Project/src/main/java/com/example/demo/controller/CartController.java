@@ -49,20 +49,25 @@ public class CartController {
 		Map<Long,Cart> cart = (Map<Long,Cart>) session.getAttribute("cartSession");
 		User user = repo.getUserByUsername(loggedUser.getUsername());
     	if (cart != null) {
+    		String s = "";
+    		Long d = (long) 0;
+    		Long total = (long) 0;
+    		Food_order food_order = new Food_order();
     		for (Cart c : cart.values()) {
-    			Food_order food_order = new Food_order();
-    			food_order.setEmail(user.getEmail());
-    			food_order.setFood_name(c.getTitle());
-    			food_order.setImg_food(c.getImg_food());
-    			food_order.setPhone_number(request.getParameter("phone_number_editor"));
-    			food_order.setQuantity(c.getQuantity());
-    			food_order.setTotal_price(c.getPrice()*c.getQuantity());
+    			s = s + c.getTitle() + ',' + c.getQuantity() + ',';
+    			d = d + c.getQuantity();
     			c.setQuantity(1);
-    			food_order.setUser_address(request.getParameter("address_customer"));
-    			food_order.setUsername(loggedUser.getUsername());
-    			food_order.setStatus("false");
-    			repoFood.save(food_order);
+    			total = total + c.getPrice()*c.getQuantity();
     		}
+			food_order.setEmail(user.getEmail());
+			food_order.setFood_name(s);
+			food_order.setPhone_number(request.getParameter("phone_number_editor"));
+			food_order.setQuantity(d);
+			food_order.setTotal_price(total);
+			food_order.setUser_address(request.getParameter("address_customer"));
+			food_order.setUsername(loggedUser.getUsername());
+			food_order.setStatus("false");
+			repoFood.save(food_order);
     	}
 		return "redirect:/cart";
 	}
