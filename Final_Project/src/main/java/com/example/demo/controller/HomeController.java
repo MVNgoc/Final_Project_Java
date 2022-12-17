@@ -522,6 +522,7 @@ public class HomeController {
 	public Optional<Food_order> viewFood_order(Long id) {
 		return Optional.ofNullable(repoFood_order.getFood_orderById(id));
 	}
+	
 //	@GetMapping("/error")
 //	public String error() {
 //		return "error";
