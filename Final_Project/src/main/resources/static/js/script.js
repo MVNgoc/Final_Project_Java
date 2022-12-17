@@ -30,7 +30,7 @@ $(document).ready(function() {
 	/* Recalculate cart */
 	function recalculateCart(onlyTotal) {
 		var subtotal = 0;
-
+		console.log(onlyTotal);
 		/* Sum up row totals */
 		$('.basket-product').each(function() {
 			subtotal += parseFloat($(this).children('.subtotal-temp').text());
