@@ -225,15 +225,15 @@
 				<form th:action="@{/home_process}" method="post"
 					class="booktable-form">
 					<div class="form-item">
-						<input name="username" type="text" placeholder="Họ Tên"
-							required></input>
+						<input name="username" th:value="${user.username}" type="text" placeholder="Họ Tên"
+							readonly></input>
 					</div>
 					<div class="form-item">
-						<input name="email" type="email" placeholder="Email" required></input>
+						<input name="email" th:value="${user.email}" type="email" placeholder="Email" readonly></input>
 					</div>
 					<div class="form-item">
-						<input name="phone" type="tel" placeholder="Số điện thoại"
-							required></input>
+						<input name="phone" th:value="${user.phone}" type="tel" placeholder="Số điện thoại"
+							readonly></input>
 					</div>
 					<div class="form-item">
 						<input name="datereser" id="datebook" type="date"
@@ -328,11 +328,11 @@
 					<div class="contact-form-container">
 						<form th:action="@{/home}" method="post" id="contact-form">
 							<div class="form-item">
-								<input name="username" type="text" placeholder="Họ tên"
-									required></input>
+								<input name="username" th:value="${user.username}" type="text" placeholder="Họ tên"
+									readonly></input>
 							</div>
 							<div class="form-item">
-								<input name="email" type="email" placeholder="Email" required></input>
+								<input name="email" th:value="${user.email}" type="email" placeholder="Email" readonly></input>
 							</div>
 							<div class="form-item">
 								<input name="subject" type="text" placeholder="Chủ đề"
