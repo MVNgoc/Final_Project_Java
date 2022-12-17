@@ -169,11 +169,19 @@ public class HomeController {
 	}
 
 	@GetMapping("/changepass")
-	public String changepass() {
+	public String changepass(Model model, HttpSession session) {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "redirect:/login";
+		}
+		
+		@SuppressWarnings("unchecked")
+		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
+		if (cart != null) {
+			model.addAttribute("carts", cart.values());
+		} else {
+			model.addAttribute("carts", null);
 		}
 
 		return "/changepass";

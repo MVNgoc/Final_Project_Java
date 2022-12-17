@@ -72,6 +72,7 @@ CREATE TABLE reservation (
 INSERT INTO user (email, password, username, phone, name, address, role) VALUES 
 ('admin@gmail.com', '$2a$10$J.2rANIWG/IB2I9uNl/fI.bvU0s0Ct3z8rPHvM.KHDtXdBGbi1xo.', 'admin', '43242626', 'ADMIN', '43/38 Dạ Nam, P2', 'ADMIN');
 
+
 INSERT INTO category (id,title, img_name, featured) VALUES
 ('1','Chay', 'món chay.jpg', 'Thanh đạm và dễ ăn'),
 ('2','Lẩu', 'món lẩu.jpg', 'Ăn vào nhưng ngày lạnh thì không còn gì bằng :3'),
