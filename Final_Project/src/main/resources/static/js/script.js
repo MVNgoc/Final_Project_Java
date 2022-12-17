@@ -236,7 +236,6 @@ $(document).ready(function() {
 	}
 
 	/* JS Food Orders Page */
-	var myTable = document.getElementById("tableViewOrder");
 	var editOrder_table = document.getElementsByClassName("food-order-footer");
 	var edit_order = document.getElementsByClassName("edit_order");
 	for (var i = 0; i < edit_order.length; i++) {
@@ -250,7 +249,6 @@ $(document).ready(function() {
 
 				var href = editOrder_table[i].getAttribute("href");
 				$.get(href, function(food_order, status) {
-					
 					var myArray = food_order.food_name.split(',');
 					$('#phoneFood_order').text(food_order.phone_number);
 					$('#addressFood_order').text(food_order.user_address);
