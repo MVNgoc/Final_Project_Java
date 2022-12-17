@@ -237,21 +237,43 @@ $(document).ready(function() {
 	}
 
 	/* JS Food Orders Page */
+	var myTable = document.getElementById("tableViewOrder");
 	var editOrder_table = document.getElementsByClassName("food-order-footer");
 	var edit_order = document.getElementsByClassName("edit_order");
 	for (var i = 0; i < edit_order.length; i++) {
 		(function(i) {
 			edit_order[i].onclick = function() {
 				$(".popup-orderfood-container").removeClass("hide");
-
+				myTable.remove();
 				var href = editOrder_table[i].getAttribute("href");
 				$.get(href, function(food_order, status) {
+					
+					var myArray = food_order.food_name.split(',');
+					console.log(food_order.food_name);
+					console.log(myArray.length-1);
+					var myTable = document.getElementById("tableViewOrder");
+					
 					$('#phoneFood_order').text(food_order.phone_number);
 					$('#addressFood_order').text(food_order.user_address);
 					$('#statusFood_order').text(food_order.status);
 					$('#sum_price_order').text(food_order.total_price);
 					
+					var test = 0;
+					for (var i = 0; i < (myArray.length/2)-1; i++) {
+						var tr = document.createElement('TR');
+						myTable.appendChild(tr);
+
+						for (var j = 0; j < 2; j++) {
+							var td = document.createElement('TD');
+							td.appendChild(document.createTextNode(myArray[test]));
+							tr.appendChild(td);
+							test = test +1;
+						}
+					}	
 				});
+				
+				
+					
 			}
 		})(i);
 	}
