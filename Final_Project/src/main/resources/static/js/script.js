@@ -268,11 +268,26 @@ $(document).ready(function() {
 	}
 	
 	/* JS Book Table Page */
+	var editbook_footer = document.getElementsByClassName("book-table-footer");
 	var edit_book_table = document.getElementsByClassName("edit_book_table");
 	for (var i = 0; i < edit_book_table.length; i++) {
 		(function(i){ 
 		  edit_book_table[i].onclick = function() {
 		      $(".popup-booktable-container").removeClass("hide");
+		      var href = editbook_footer[i].getAttribute("href");
+		      
+		      $.get(href, function(reservation, status){
+				  
+				  $('#id').val(reservation.id);
+				  $('#username').text(reservation.username);
+				  $('#email').text(reservation.useremail);
+				  $('#phone').text(reservation.phone_number);
+				  $('#day').text(reservation.dayreservation);
+				  $('#time').text(reservation.timereservation);
+				  $('#people').text(reservation.people);
+				  $('#content').text(reservation.contributions);
+				 
+			  });
 		  }
 		})(i);
 	}
@@ -292,7 +307,7 @@ $(document).ready(function() {
 		      var href = edit_footer[i].getAttribute("href");
 		      
 		      $.get(href, function(contact, status){
-				  var test = contact.username;
+				  
 				  $('#contactid').val(contact.id);
 				  $('#username').text(contact.username);
 				  $('#email').text(contact.useremail);

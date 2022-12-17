@@ -1700,7 +1700,7 @@ aside {
 	margin-top: 30px;
 	display: grid;
 	grid-template-columns: 50% 50%;
-    grid-template-rows: 33.33% 33.33% 33.33%;
+    grid-template-rows: 25% 25% 25% 25%;
     text-align: center;
 }
 
