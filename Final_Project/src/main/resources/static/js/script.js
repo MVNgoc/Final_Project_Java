@@ -177,6 +177,7 @@ $(document).ready(function() {
 				var href = $(this).attr('href');
 
 				$.get(href, function(product, status) {
+					var test = product.category_name;
 					$('#editid').val(product.id);
 					$('#name').val(product.title);
 					$('#img-food-edit').attr("src", "/src/main/upload/food/" + product.img_food);
@@ -310,6 +311,7 @@ $(document).ready(function() {
 					$('#time').text(reservation.timereservation);
 					$('#people').text(reservation.people);
 					$('#content').text(reservation.contributions);
+					$('#note-content').text(reservation.status);
 
 				});
 			}
