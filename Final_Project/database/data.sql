@@ -1,11 +1,6 @@
 CREATE DATABASE IF NOT EXISTS restaurant DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE restaurant;
 
-CREATE TABLE admin_account (
-  id varchar(15) NOT NULL,
-  username varchar(64) NOT NULL,
-  pass varchar(255) NOT NULL
-);
 
 CREATE TABLE user (
   id varchar(20) NOT NULL,
@@ -28,7 +23,7 @@ CREATE TABLE category (
 
 CREATE TABLE food_order (
   id varchar(15) NOT NULL,
-  food_name varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  food_name Longtext COLLATE utf8_unicode_ci NOT NULL,
   img_food varchar(225) COLLATE utf8_unicode_ci DEFAULT 'food-placeholder.png',
   quantity int(10) NOT NULL,
   username varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -77,10 +72,6 @@ CREATE TABLE reservation (
 INSERT INTO user (email, password, username, phone, name, address, role) VALUES 
 ('admin@gmail.com', '$2a$10$J.2rANIWG/IB2I9uNl/fI.bvU0s0Ct3z8rPHvM.KHDtXdBGbi1xo.', 'admin', '43242626', 'ADMIN', '43/38 Dạ Nam, P2', 'ADMIN');
 
-INSERT INTO admin_account (id, username, pass) VALUES
-('51900147', 'admin', '$2a$12$iWE1Epee9DVR0idqIriuAus3TkZklYMqEZVX3i2HSne1jeldtYjXO');
-
-
 INSERT INTO category (id,title, img_name, featured) VALUES
 ('1','Chay', 'món chay.jpg', 'Thanh đạm và dễ ăn'),
 ('2','Lẩu', 'món lẩu.jpg', 'Ăn vào nhưng ngày lạnh thì không còn gì bằng :3'),
@@ -121,12 +112,6 @@ INSERT INTO food (id,title, img_food, description_food, price, category_name) VA
 ('30','Xà Lách Trộn Cá Ngừ Và Thịt Xông Khói', 'Xà Lách Trộn Cá Ngừ Và Thịt Xông Khói.jpg', 'Rau Xanh Trộn Với Cá Ngừ,...', '79000', 'Fastfood');
 
 
-
-ALTER TABLE admin_account
-  ADD PRIMARY KEY (id);
-
-ALTER TABLE admin_account
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=20;
 
 ALTER TABLE user
   ADD PRIMARY KEY (id);
