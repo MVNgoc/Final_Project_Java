@@ -58,8 +58,11 @@ public class WebSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
 		.antMatchers("/delete/**", "/update/**", "/view/**","/contact/**").hasAuthority("ADMIN")
-				.antMatchers("/home").authenticated().anyRequest().permitAll().and().formLogin().loginPage("/login")
-				.usernameParameter("username").defaultSuccessUrl("/home").permitAll().failureForwardUrl("/fail_login")
+				.antMatchers("/home").authenticated()
+				.and()
+				.formLogin().loginPage("/login")
+				.usernameParameter("username")
+				.defaultSuccessUrl("/home").permitAll().failureForwardUrl("/fail_login")
 				.and()
 				// Custom logout
 				.logout().logoutSuccessHandler(new LogoutSuccessHandler() {
