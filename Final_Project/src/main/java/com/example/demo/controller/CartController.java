@@ -66,7 +66,7 @@ public class CartController {
 			food_order.setTotal_price(total);
 			food_order.setUser_address(request.getParameter("address_customer"));
 			food_order.setUsername(loggedUser.getUsername());
-			food_order.setStatus("false");
+			food_order.setStatus("Đang chờ duyệt");
 			repoFood.save(food_order);
     	}
 		return "redirect:/cart";

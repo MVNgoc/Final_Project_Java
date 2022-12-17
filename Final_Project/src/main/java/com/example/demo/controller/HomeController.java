@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -507,22 +509,36 @@ public class HomeController {
 			model.addAttribute("carts", null);
 		}
 		List<Food_order> food_order = repoFood_order.findAll();
-		model.addAttribute("food_orders", food_order);
+		List<Food_order> listFood_order = new ArrayList<Food_order>();
+		for (int i = 0; i < food_order.size(); i++) {
+			if (food_order.get(i).getStatus().equals("Đang chờ duyệt")) {
+				listFood_order.add(food_order.get(i));
+			}
+		}
+		model.addAttribute("food_orders", listFood_order);
 		return "admin/food_orders";
 	}
-
+	
+	@RequestMapping("/viewFood_order")
+	@ResponseBody
+	public Optional<Food_order> viewFood_order(Long id,Model model) {
+		return Optional.ofNullable(repoFood_order.getFood_orderById(id));
+	}
+	
 //	@GetMapping("/error")
 //	public String error() {
 //		return "error";
 //	}
 
 	@GetMapping("/book_table")
-	public String book_table(HttpSession session, Model model) {
+	public String book_table(HttpSession session, Model model,@AuthenticationPrincipal CustomUserDetails loggedUser) {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
 			return "/login";
 		}
+		
+		
 
 		@SuppressWarnings("unchecked")
 		Map<Long, Cart> cart = (Map<Long, Cart>) session.getAttribute("cartSession");
@@ -531,17 +547,29 @@ public class HomeController {
 		} else {
 			model.addAttribute("carts", null);
 		}
+		
+		if(!loggedUser.getUsername().equals("admin")) {
+			List<Reservation> listReser = reserRepo.findAll();
+			List<Reservation> listReserwait = new ArrayList<Reservation>();
 
-		List<Reservation> listReser = reserRepo.findAll();
-		List<Reservation> listReserwait = new ArrayList<Reservation>();
-
-		for (int i = 0; i < listReser.size(); i++) {
-			if (listReser.get(i).getStatus().equals("Đang chờ duyệt")) {
-				listReserwait.add(listReser.get(i));
+			for (int i = 0; i < listReser.size(); i++) {
+				if (listReser.get(i).getUsername().equals(loggedUser.getUsername())) {
+					listReserwait.add(listReser.get(i));
+				}
 			}
+			model.addAttribute("listReser", listReserwait);
+		}else {
+			List<Reservation> listReser = reserRepo.findAll();
+			List<Reservation> listReserwait = new ArrayList<Reservation>();
+
+			for (int i = 0; i < listReser.size(); i++) {
+				if (listReser.get(i).getStatus().equals("Đang chờ duyệt")) {
+					listReserwait.add(listReser.get(i));
+				}
+			}
+			model.addAttribute("listReser", listReserwait);
 		}
 
-		model.addAttribute("listReser", listReserwait);
 
 		return "admin/book_table";
 	}

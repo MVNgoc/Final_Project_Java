@@ -28,6 +28,18 @@
 								href="contact">Phản hồi khách hàng</a></li>
 						</ul></li>
 					</div>
+					
+					<div
+					th:if="${#strings.contains(#authentication.principal.authorities, 'USER')}">
+					<li class="nav-item"><a class="nav-link active" href="#">Lịch sử</a>
+						<ul class="nav-child">
+							<li class="nav-child-item"><a class="nav-link active"
+								href="food_orders">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+						</ul></li>
+				</div>
+					
 					<li class="nav-item"><a class="nav-link active"
 						href="#content-home">Trang chủ</a></li>
 					<li class="nav-item"><a class="nav-link" href="menu">Thực
@@ -58,6 +70,20 @@
 								href="contact">Phản hồi khách hàng</a></li>
 						</ul></li>
 				</div>
+				
+				<div
+					th:if="${#strings.contains(#authentication.principal.authorities, 'USER')}">
+					<li class="nav-item"><a class="nav-link active" href="#">Lịch sử</a>
+						<ul class="nav-child">
+							<li class="nav-child-item"><a class="nav-link active"
+								href="food_orders">Đơn đặt món</a></li>
+							<li class="nav-child-item"><a class="nav-link active"
+								href="book_table">Đơn đặt bàn</a></li>
+						</ul></li>
+				</div>
+				
+				
+				
 				<li class="nav-item"><a class="nav-link active"
 					th:href="@{#content-home}">Trang chủ</a></li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/menu}">Thực

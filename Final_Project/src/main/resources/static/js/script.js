@@ -158,68 +158,68 @@ $(document).ready(function() {
 	$("#cancel-btn").click(function() {
 		$(".popup-addfood-container").addClass("hide");
 	})
-	
+
 	$("#cancel-edit-btn").click(function() {
 		$(".popup-editfood-container").addClass("hide");
 	})
-	
+
 	$("#cancel-delete-btn").click(function() {
 		$(".popup-confirmdeletefood-container").addClass("hide");
 	})
-	
+
 	var edit_icon = document.getElementsByClassName("edit-icon");
 	var remove_icon = document.getElementsByClassName("remove-icon");
-	
-	for (var i = 0; i < edit_icon.length; i++) {
-		(function(i){ 
-		  edit_icon[i].onclick = function() {
-		      $(".popup-editfood-container").removeClass("hide");
-		      var href = $(this).attr('href');
-		      
-		      $.get(href, function(product, status){
-				  $('#editid').val(product.id);
-				  $('#name').val(product.title);
-				  $('#img-food-edit').attr("src","/src/main/upload/food/"+product.img_food);
-				  $('#description').val(product.description_food);
-				  $('#price').val(product.price);
-				  
-				  if(test == "Nướng"){
-					  $("#category option[value='nuong']").attr('selected', 'selected');
-				  }else if(test == "Lẩu"){
-					  $("#category option[value='lau']").attr('selected', 'selected');
-				  }else if(test == "Chay"){
-					  $("#category option[value='chay']").attr('selected', 'selected');
-				  }else{
-					  $("#category option[value='fastfood']").attr('selected', 'selected');
-				  }
 
-			  });
-		  }
-		  remove_icon[i].onclick = function() {
-		      $(".popup-confirmdeletefood-container").removeClass("hide");
-		      var href = $(this).attr('href');
-		      $('#delete-food-btn').attr('href',href);
-		  }
+	for (var i = 0; i < edit_icon.length; i++) {
+		(function(i) {
+			edit_icon[i].onclick = function() {
+				$(".popup-editfood-container").removeClass("hide");
+				var href = $(this).attr('href');
+
+				$.get(href, function(product, status) {
+					$('#editid').val(product.id);
+					$('#name').val(product.title);
+					$('#img-food-edit').attr("src", "/src/main/upload/food/" + product.img_food);
+					$('#description').val(product.description_food);
+					$('#price').val(product.price);
+
+					if (test == "Nướng") {
+						$("#category option[value='nuong']").attr('selected', 'selected');
+					} else if (test == "Lẩu") {
+						$("#category option[value='lau']").attr('selected', 'selected');
+					} else if (test == "Chay") {
+						$("#category option[value='chay']").attr('selected', 'selected');
+					} else {
+						$("#category option[value='fastfood']").attr('selected', 'selected');
+					}
+
+				});
+			}
+			remove_icon[i].onclick = function() {
+				$(".popup-confirmdeletefood-container").removeClass("hide");
+				var href = $(this).attr('href');
+				$('#delete-food-btn').attr('href', href);
+			}
 		})(i);
 	}
-	
+
 	var img_food_editinput = document.getElementById("img-food-editinput");
 	var img_food_edit = document.getElementById("img-food-edit");
-	
-	if(img_food_editinput != null) {	
+
+	if (img_food_editinput != null) {
 		img_food_editinput.onchange = e => {
 			const [file] = img_food_editinput.files;
-			if(file){
+			if (file) {
 				img_food_edit.src = URL.createObjectURL(file);
 			}
 		};
 	}
-	
-	
+
+
 	//book table page button
-	
-	
-	
+
+
+
 
 	/* Preview an image before it is uploaded */
 
@@ -234,22 +234,31 @@ $(document).ready(function() {
 			}
 		}
 	}
-	
+
 	/* JS Food Orders Page */
+	var editOrder_table = document.getElementsByClassName("food-order-footer");
 	var edit_order = document.getElementsByClassName("edit_order");
 	for (var i = 0; i < edit_order.length; i++) {
-		(function(i){ 
-		  edit_order[i].onclick = function() {
-		      $(".popup-orderfood-container").removeClass("hide");
-		      
-		  }
+		(function(i) {
+			edit_order[i].onclick = function() {
+				$(".popup-orderfood-container").removeClass("hide");
+
+				var href = editOrder_table[i].getAttribute("href");
+				$.get(href, function(food_order, status) {
+					$('#phoneFood_order').text(food_order.phone_number);
+					$('#addressFood_order').text(food_order.user_address);
+					$('#statusFood_order').text(food_order.status);
+					$('#sum_price_order').text(food_order.total_price);
+					
+				});
+			}
 		})(i);
 	}
-	
+
 	$(".popup-exit-order").click(function() {
-			$(".popup-orderfood-container").addClass("hide");
+		$(".popup-orderfood-container").addClass("hide");
 	})
-	
+
 	var food_order_price = document.getElementsByClassName("food-order-price");
 
 	for (var i = 0; i < food_order_price.length; i++) {
@@ -257,71 +266,71 @@ $(document).ready(function() {
 		num_food_order_price = num_food_order_price.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
 		food_order_price[i].innerHTML = num_food_order_price;
 	}
-	
+
 	var sum_price_order = document.getElementById("sum_price_order");
-	if(sum_price_order != null) {
+	if (sum_price_order != null) {
 		var num_sum_price_order = parseInt(sum_price_order.innerHTML);
 		num_sum_price_order = num_sum_price_order.toLocaleString('it-IT', { style: 'currency', currency: 'vnd' });
 		sum_price_order.innerHTML = num_sum_price_order;
 	}
-	
+
 	/* JS Book Table Page */
 	var editbook_footer = document.getElementsByClassName("book-table-footer");
 	var edit_book_table = document.getElementsByClassName("edit_book_table");
 	for (var i = 0; i < edit_book_table.length; i++) {
-		(function(i){ 
-		  edit_book_table[i].onclick = function() {
-		      $(".popup-booktable-container").removeClass("hide");
-		      var href = editbook_footer[i].getAttribute("href");
-		      
-		      $.get(href, function(reservation, status){
-				  
-				  $('#id').val(reservation.id);
-				  $('#username').text(reservation.username);
-				  $('#email').text(reservation.useremail);
-				  $('#phone').text(reservation.phone_number);
-				  $('#day').text(reservation.dayreservation);
-				  $('#time').text(reservation.timereservation);
-				  $('#people').text(reservation.people);
-				  $('#content').text(reservation.contributions);
-				 
-			  });
-		  }
+		(function(i) {
+			edit_book_table[i].onclick = function() {
+				$(".popup-booktable-container").removeClass("hide");
+				var href = editbook_footer[i].getAttribute("href");
+
+				$.get(href, function(reservation, status) {
+
+					$('#id').val(reservation.id);
+					$('#username').text(reservation.username);
+					$('#email').text(reservation.useremail);
+					$('#phone').text(reservation.phone_number);
+					$('#day').text(reservation.dayreservation);
+					$('#time').text(reservation.timereservation);
+					$('#people').text(reservation.people);
+					$('#content').text(reservation.contributions);
+
+				});
+			}
 		})(i);
 	}
-	
+
 	$(".popup-exit-booktable").click(function() {
-			$(".popup-booktable-container").addClass("hide");
+		$(".popup-booktable-container").addClass("hide");
 	})
-	
-	
+
+
 	/* JS Contact Page */
 	var edit_footer = document.getElementsByClassName("contact-footer");
 	var edit_contact = document.getElementsByClassName("edit_contact");
 	for (var i = 0; i < edit_contact.length; i++) {
-		(function(i){ 
-		  edit_contact[i].onclick = function() {
-		      $(".popup-contact-container").removeClass("hide");
-		      var href = edit_footer[i].getAttribute("href");
-		      
-		      $.get(href, function(contact, status){
-				  
-				  $('#contactid').val(contact.id);
-				  $('#username').text(contact.username);
-				  $('#email').text(contact.useremail);
-				  $('#subject').text(contact.subject);
-				  $('#content').text(contact.contributions);
-				 
-			  });
-		      
-		  }
+		(function(i) {
+			edit_contact[i].onclick = function() {
+				$(".popup-contact-container").removeClass("hide");
+				var href = edit_footer[i].getAttribute("href");
+
+				$.get(href, function(contact, status) {
+
+					$('#contactid').val(contact.id);
+					$('#username').text(contact.username);
+					$('#email').text(contact.useremail);
+					$('#subject').text(contact.subject);
+					$('#content').text(contact.contributions);
+
+				});
+
+			}
 		})(i);
 	}
-	
+
 	$(".popup-exit-contact").click(function() {
-			$(".popup-contact-container").addClass("hide");
+		$(".popup-contact-container").addClass("hide");
 	})
-	
+
 	/* Slide show Home Page */
 
 	var myIndex = 0;
@@ -340,7 +349,7 @@ $(document).ready(function() {
 	}
 });
 
-function addToCart(id,title,img_food,price) {
+function addToCart(id, title, img_food, price) {
 	fetch("/api/cart", {
 		method: "Post",
 		body: JSON.stringify({
@@ -375,7 +384,7 @@ function removeToCart(productId) {
 	})
 }
 
-function updateCart(obj,id) {
+function updateCart(obj, id) {
 	console.info(Math.random)
 	fetch("api/cart", {
 		method: "put",
