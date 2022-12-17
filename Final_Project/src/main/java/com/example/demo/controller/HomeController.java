@@ -503,10 +503,21 @@ public class HomeController {
 			model.addAttribute("carts", null);
 		}
 		List<Food_order> food_order = repoFood_order.findAll();
-		model.addAttribute("food_orders", food_order);
+		List<Food_order> listFood_order = new ArrayList<Food_order>();
+		for (int i = 0; i < food_order.size(); i++) {
+			if (food_order.get(i).getStatus().equals("Đang chờ duyệt")) {
+				listFood_order.add(food_order.get(i));
+			}
+		}
+		model.addAttribute("food_orders", listFood_order);
 		return "admin/food_orders";
 	}
-
+	
+	@RequestMapping("/viewFood_order")
+	@ResponseBody
+	public Optional<Food_order> viewFood_order(Long id) {
+		return Optional.ofNullable(repoFood_order.getFood_orderById(id));
+	}
 //	@GetMapping("/error")
 //	public String error() {
 //		return "error";

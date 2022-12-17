@@ -244,6 +244,10 @@ $(document).ready(function() {
 		  edit_order[i].onclick = function() {
 		      $(".popup-orderfood-container").removeClass("hide");
 		      
+		       $.get(href, function(food_order, status){
+				  $('#phoneFood_order').val(food_order.phone);
+			  });
+			  
 		  }
 		})(i);
 	}

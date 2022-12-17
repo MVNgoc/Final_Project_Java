@@ -144,8 +144,8 @@
 							<p class="food-order-price" th:text="${food_order.total_price}"></p>
 						</div>
 					</div>
-					<div class="food-order-footer">
-						<a class="edit_order">Xem</a>
+					<div class="food-order-footer" th:href="@{/viewFood_order/(id=${food_order.id})}">
+						<a class="edit_order" >Xem</a>
 					</div>
 				</div>
 			</div>
@@ -217,7 +217,7 @@
 					</table>
 
 					<div class="order-info">
-						<h4>Số điện thoại:</h4>
+						<h4 id="phoneFood_order">Số điện thoại:</h4>
 						<p>0337375401</p>
 						<h4>Địa chỉ:</h4>
 						<p>Q7, TP Hồ Chí Minh</p>
