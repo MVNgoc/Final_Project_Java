@@ -1872,15 +1872,8 @@ aside {
 	}
 }
 
-	
-@media (max-width: 1200px) {
-	.navbar ul li:nth-child(5) {
-		display: none;
-	}
-}
-
 @media (max-width: 1250px) {
-	.navbar ul li:nth-child(5) {
+	.navbar ul .img-li {
 		display: none;
 	}
 	
