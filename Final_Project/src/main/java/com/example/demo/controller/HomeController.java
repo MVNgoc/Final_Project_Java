@@ -464,15 +464,20 @@ public class HomeController {
 	public String Reser(Reservation reser, HttpServletRequest request, Model model) {
 
 		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		DateTimeFormatter fromform = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+
 		LocalDate localDate = LocalDate.now();
 
 		DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
 		LocalTime localTime = LocalTime.now();
-
+		
+		String dateform = request.getParameter("datereser");
+		String test = date.format(fromform.parse(dateform));
+		
 		reser.setUsername(request.getParameter("username"));
 		reser.setUseremail(request.getParameter("email"));
 		reser.setPeople(request.getParameter("people"));
-		reser.setDayreservation(request.getParameter("datereser"));
+		reser.setDayreservation(test);
 		reser.setPhone_number(request.getParameter("phone"));
 		reser.setTimereservation(request.getParameter("time"));
 		reser.setContributions(request.getParameter("content"));
@@ -535,6 +540,12 @@ public class HomeController {
 		model.addAttribute("listReser", listReserwait);
 
 		return "admin/book_table";
+	}
+	
+	@RequestMapping("/viewbook")
+	@ResponseBody
+	public Optional<Reservation> viewbook(Long id) {
+		return reserRepo.findById(id);
 	}
 
 	@GetMapping("/contact")
@@ -662,4 +673,23 @@ public class HomeController {
 
 		return "redirect:/contact";
 	}
+	
+	@PostMapping(value = "/updatebooking")
+	public String updatebooking(HttpServletRequest request) {
+		Long id = Long.parseLong(request.getParameter("id"));
+		String test = request.getParameter("accept-booktable-btn");
+		Reservation reser = reserRepo.getById(id);
+		
+		if(test != null) {
+			reser.setStatus("Chấp nhận");
+		}else {
+			reser.setStatus("Hủy đơn");
+		}
+		
+		reserRepo.save(reser);
+
+		return "redirect:/book_table";
+	}
+	
+	
 }
